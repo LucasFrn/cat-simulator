@@ -7,12 +7,18 @@ public class InputBox : MonoBehaviour
 {
     public Pao paoAtual;
     float PerfectionRange = 0.05f;
-    float cooldownInput =1f;
+    float cooldownInput;
     bool aceitaInput;
     Vector3 dir;
     // Start is called before the first frame update
     void Start()
     {
+        switch(ControllerMiniGamePao.controllerMiniGamePao.dificuldade){
+            case 1: cooldownInput = .5f;break;
+            case 2: cooldownInput = .3f;break;
+            case 3: cooldownInput = .1f;break;
+            default: cooldownInput= .1f;break;
+        }
         aceitaInput=true;
     }
 

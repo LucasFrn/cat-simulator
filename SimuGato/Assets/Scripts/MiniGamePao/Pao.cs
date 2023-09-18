@@ -11,6 +11,12 @@ public class Pao : MonoBehaviour
     [SerializeField]float speed = 3f;
     void Start()
     {
+        switch(ControllerMiniGamePao.controllerMiniGamePao.dificuldade){
+            case 1: speed = 4f;break;
+            case 2: speed = 6f;break;
+            case 3: speed = 8f;break;
+            default: speed = 8f;break;
+        }
         int tecla=Random.Range(1,5);
         switch(tecla){
             case 1: teclaCorreta=KeyCode.UpArrow; minhaSprite.sprite=upArrow; break;

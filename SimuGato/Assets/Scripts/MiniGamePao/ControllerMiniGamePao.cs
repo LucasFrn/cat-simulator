@@ -15,12 +15,19 @@ public class ControllerMiniGamePao : MonoBehaviour
     float tempoMiniGame = 30f;
     float timer;
     float delaySpawn=0,tempoEntreSpawn=1.5f;
+    public int dificuldade;
     public void Awake(){
         controllerMiniGamePao = this;
     } 
     // Start is called before the first frame update
     void Start()
     {
+        switch(dificuldade){
+            case 1: tempoEntreSpawn = 1f; break;
+            case 2: tempoEntreSpawn = 0.8f;break;
+            case 3: tempoEntreSpawn = 0.5f;break;
+            default: tempoEntreSpawn= 0.5f;break;
+        }
         miniGameAcabou=false;
         nPaesAtivos=0;
         nPaesSpawnados=0;
@@ -60,14 +67,23 @@ public class ControllerMiniGamePao : MonoBehaviour
         }
     }
     void TerminarMiniGame(){
-        //Calcular taxa acerto
         tx_Acerto=(float)nAcertos/(float)nPaesSpawnados;
         tx_Perfeicao=(float)nPerfeitos/(float)nAcertos;
-        //Dar display pro jogador
         controllerUI.DisplayResultado();
-        //Pagar ele?
+        //valor a ser recebido = alguma logica
+        //salario * tx_Acerto * mod_dificuldade
+        //Pagar o jogador
     }
     public void Recomecar(){
-        Start();
+        miniGameAcabou=false;
+        nPaesAtivos=0;
+        nPaesSpawnados=0;
+        podeSpawnarPaes=true;
+        miniGameIsRunning=true;
+        nAcertos=0;
+        nPerdidos=0;
+        nErros=0;
+        nPerfeitos=0;
+        timer=0;
     }
 }
