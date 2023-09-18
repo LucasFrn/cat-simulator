@@ -31,4 +31,7 @@ public class Pao : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void OnDestroy(){
+        ControllerMiniGamePao.controllerMiniGamePao.nPaesAtivos--;
+    }
 }

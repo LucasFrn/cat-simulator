@@ -5,11 +5,13 @@ using UnityEngine;
 public class ControllerMiniGamePao : MonoBehaviour
 {   
     public static ControllerMiniGamePao controllerMiniGamePao;
+    public UIMiniGamePao controllerUI;
     public GameObject inicioEsteira,FimEsteira;
     public GameObject paoPrefab;
-    bool miniGameIsRunning;
-    int nPaoSpawnados;
-    public int nAcertos,nErros,nPerdidos;
+    bool miniGameIsRunning,podeSpawnarPaes,miniGameAcabou;
+    public int nPaesAtivos, nPaesSpawnados;
+    public int nAcertos,nErros,nPerdidos,nPerfeitos;
+    public float tx_Acerto,tx_Perfeicao;
     float tempoMiniGame = 30f;
     float timer;
     float delaySpawn=0,tempoEntreSpawn=1.5f;
@@ -19,11 +21,15 @@ public class ControllerMiniGamePao : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        miniGameAcabou=false;
+        nPaesAtivos=0;
+        nPaesSpawnados=0;
+        podeSpawnarPaes=true;
         miniGameIsRunning=true;
-        nPaoSpawnados=0;
         nAcertos=0;
         nPerdidos=0;
         nErros=0;
+        nPerfeitos=0;
         timer=0;
         InvokeRepeating("SpawnarPao",delaySpawn,tempoEntreSpawn);
     }
@@ -33,21 +39,35 @@ public class ControllerMiniGamePao : MonoBehaviour
     {
         timer+=Time.deltaTime;
         if(timer>=tempoMiniGame&&miniGameIsRunning){
+            podeSpawnarPaes=false;
+        }
+        if(podeSpawnarPaes==false&&nPaesAtivos<=0){
             miniGameIsRunning=false;
+        }
+        if(miniGameAcabou==false&&miniGameIsRunning==false){
+            Debug.Log("MinigameAcabou");
+            miniGameAcabou=true;
             TerminarMiniGame();
         }
         
 
     }
     void SpawnarPao(){
-        if(miniGameIsRunning){
+        if(podeSpawnarPaes){
             Instantiate(paoPrefab,inicioEsteira.transform);
-            nPaoSpawnados++;
+            nPaesAtivos++;
+            nPaesSpawnados++;
         }
     }
     void TerminarMiniGame(){
         //Calcular taxa acerto
+        tx_Acerto=(float)nAcertos/(float)nPaesSpawnados;
+        tx_Perfeicao=(float)nPerfeitos/(float)nAcertos;
         //Dar display pro jogador
+        controllerUI.DisplayResultado();
         //Pagar ele?
+    }
+    public void Recomecar(){
+        Start();
     }
 }
