@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float speed = 25.0F;
+    public float speed = 15.0F;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
     private float turner;
     private float looker;
-    public float sensitivity = 5;
+    public float sensitivity = 2;
+    public GameObject cam;
 
     // Use this for initialization
     void Start()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -45,7 +46,16 @@ public class CameraMovement : MonoBehaviour
         if (looker != 0)
         {
             //Code for action on mouse moving right
-            transform.eulerAngles += new Vector3(looker, 0, 0);
+            
+            if (cam.transform.eulerAngles.x>=350 || cam.transform.eulerAngles.x <= 15)
+            {
+                cam.transform.eulerAngles += new Vector3(looker, 0, 0);
+            }
+            else if (transform.eulerAngles.x <350 && cam.transform.eulerAngles.x > 50)
+            {
+                cam.transform.eulerAngles = new Vector3(350, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z) ;
+            }
+            else { cam.transform.eulerAngles = new Vector3(15, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z); }
         }
         //Applying gravity to the controller
         moveDirection.y -= gravity * Time.deltaTime;
