@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIMiniGamePao : MonoBehaviour
@@ -24,8 +25,9 @@ public class UIMiniGamePao : MonoBehaviour
     }
 
     public void Recomecar(){
-        Start();
-        ControllerMiniGamePao.controllerMiniGamePao.Recomecar();
+        //Start();
+        // ControllerMiniGamePao.controllerMiniGamePao.Recomecar();
+        SceneManager.LoadScene(0);
     }
     void AtualizarInfo(){
         sliderTaxaAcerto.value=ControllerMiniGamePao.controllerMiniGamePao.tx_Acerto;
