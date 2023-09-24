@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Pao
   - FinalEsteira
+  - Casa
+  - PontoDeOnibus
+  - Fisica
+  - Seguravel
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class BuildingSystem : MonoBehaviour
@@ -35,13 +36,19 @@ public class BuildingSystem : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
         if (Input.GetKeyDown(KeyCode.A))
         {
             InitializeWithObject(prefab1);
+            GameManager.Instance.petiscos -= 10;
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             InitializeWithObject(prefab2);
+            GameManager.Instance.petiscos -= 10;
         }
 
         if (!objectToPlace)

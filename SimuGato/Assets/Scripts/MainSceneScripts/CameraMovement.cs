@@ -13,6 +13,8 @@ public class CameraMovement : MonoBehaviour
     public float sensitivity = 2;
     public GameObject cam;
 
+    
+
     // Use this for initialization
     void Start()
     {

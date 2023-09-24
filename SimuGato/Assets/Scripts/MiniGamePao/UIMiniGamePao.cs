@@ -27,6 +27,12 @@ public class UIMiniGamePao : MonoBehaviour
     public void Recomecar(){
         //Start();
         // ControllerMiniGamePao.controllerMiniGamePao.Recomecar();
+        GameManager.Instance.petiscos += 50;
+        GameManager.Instance.energia -= 60;
+        GameManager.Instance.social += 10;
+        GameManager.Instance.higiene -= 50;
+        GameManager.Instance.felicidade -= 30;
+
         SceneManager.LoadScene(0);
     }
     void AtualizarInfo(){
