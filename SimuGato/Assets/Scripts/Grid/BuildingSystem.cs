@@ -23,6 +23,16 @@ public class BuildingSystem : MonoBehaviour
         grid = gridLayout.gameObject.GetComponent<Grid>();
     }
 
+    public void PlaceObjectA(GameObject g)
+    {
+        InitializeWithObject(prefab1);
+    }
+
+    public void PlaceObjectB(GameObject g)
+    {
+        InitializeWithObject(prefab2);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
