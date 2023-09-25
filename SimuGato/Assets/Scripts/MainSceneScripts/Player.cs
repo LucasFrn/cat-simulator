@@ -4,15 +4,23 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     int petiscos;
-    double fome, energia, higiene, felicidade, social;
+    float fome, energia, higiene, felicidade, social;
+
+    public Slider fomeSldr;
+    public Slider energiaSldr;
+    public Slider higieneSldr;
+    public Slider felicidadeSldr;
+    public Slider socialSldr;
 
     private GameObject itemSegurado;
     private Rigidbody seguradoRB;
     public Transform boca;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +30,13 @@ public class Player : MonoBehaviour
         higiene = GameManager.Instance.higiene;
         felicidade = GameManager.Instance.felicidade;
         social = GameManager.Instance.social;
+
+        fomeSldr.value = fome;
+        energiaSldr.value = energia;
+        higieneSldr.value = higiene;
+        felicidadeSldr.value = felicidade;
+        socialSldr.value = social;
+
     }
 
     void FixedUpdate()
@@ -46,9 +61,9 @@ public class Player : MonoBehaviour
 
             }
         }
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            if (itemSegurado!=null)
+            if (itemSegurado != null)
             {
                 SoltaItem();
             }
@@ -65,7 +80,7 @@ public class Player : MonoBehaviour
         {
             felicidade += 5;
         }
-        
+
     }
     private void OnTriggerEnter(Collider collision)
     {
@@ -77,11 +92,27 @@ public class Player : MonoBehaviour
     }
     void PassaTempo()
     {
-        fome -= 0.0001;
-        energia -= 000.1;
-        higiene -= 000.1;
-        felicidade -= 000.1;
-        social -= 000.1;
+        if (fome > 100) fome = 100;
+        else if (fome < 0) fome = 0;
+        if (energia > 100) energia = 100;
+        else if (energia < 0) energia = 0;
+        if (higiene > 100) higiene = 100;
+        else if (higiene < 0) higiene = 0;
+        if (felicidade > 100) felicidade = 100;
+        else if (felicidade < 0) felicidade = 0;
+        if (social > 100) social = 100;
+        else if (social < 0) social = 0;
+
+        fome -= 0.0001f;
+        fomeSldr.value = (float)fome;
+        energia -= 0.0001f;
+        energiaSldr.value = (float)energia;
+        higiene -= 0.0001f;
+        higieneSldr.value = (float)(higiene);
+        felicidade -= 0.0001f;
+        felicidadeSldr.value = (float)(felicidade);
+        social -= 0.0001f;
+        socialSldr.value = (float)(social);
     }
 
     void TransferStatus()

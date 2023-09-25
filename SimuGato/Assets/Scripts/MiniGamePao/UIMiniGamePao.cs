@@ -11,6 +11,9 @@ public class UIMiniGamePao : MonoBehaviour
     public Text textoInfo;
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        
+        
         painelResultado.SetActive(false);
     }
 
@@ -28,9 +31,9 @@ public class UIMiniGamePao : MonoBehaviour
         //Start();
         // ControllerMiniGamePao.controllerMiniGamePao.Recomecar();
         GameManager.Instance.petiscos += 50;
-        GameManager.Instance.energia -= 60;
+        GameManager.Instance.energia -= 40;
         GameManager.Instance.social += 10;
-        GameManager.Instance.higiene -= 50;
+        GameManager.Instance.higiene -= 40;
         GameManager.Instance.felicidade -= 30;
 
         SceneManager.LoadScene(0);

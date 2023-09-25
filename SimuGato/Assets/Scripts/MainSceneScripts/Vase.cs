@@ -4,14 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Vase : MonoBehaviour
-{
-    
+{ 
     public GameObject quebrado;
-    private void Start()
-    {
-        
-        
-    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<TerrainCollider>())
