@@ -26,12 +26,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void PlaceObjectA(GameObject g)
     {
-        InitializeWithObject(prefab1);
-    }
-
-    public void PlaceObjectB(GameObject g)
-    {
-        InitializeWithObject(prefab2);
+        InitializeWithObject(g);
     }
 
     private void Update()
