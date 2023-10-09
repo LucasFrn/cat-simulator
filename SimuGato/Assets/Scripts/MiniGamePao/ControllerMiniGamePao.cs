@@ -4,57 +4,63 @@ using UnityEngine;
 
 public class ControllerMiniGamePao : MonoBehaviour
 {   
+    //Controllers
     public static ControllerMiniGamePao controllerMiniGamePao;
     public UIMiniGamePao controllerUI;
     public GameObject inicioEsteira,FimEsteira;
     public GameObject paoPrefab;
-    bool miniGameIsRunning,podeSpawnarPaes,miniGameAcabou;
+    public InputBox inputBox;
+    //variaveis de controle
+    bool miniGameIsRunning,podeSpawnarPaes,miniGameAcabou,miniGameComecou;
     public int nPaesAtivos, nPaesSpawnados;
+    //variaveis estatistica
     public int nAcertos,nErros,nPerdidos,nPerfeitos;
     public float tx_Acerto,tx_Perfeicao;
+    //variaveis tempo
     float tempoMiniGame = 30f;
     float timer;
-    float delaySpawn=0,tempoEntreSpawn=1.5f;
-    public int dificuldade;
+    float delaySpawn=3,tempoEntreSpawn=1.5f;
+    //Variaveis logica de dificuldade
+    //public int dificuldade; 
+    private float energiaGasta;
+    public int petiscosGanhos;
+    private float mod_dinheiro;
     public void Awake(){
         controllerMiniGamePao = this;
     } 
     // Start is called before the first frame update
     void Start()
     {
-        switch(dificuldade){
-            case 1: tempoEntreSpawn = 1f; break;
-            case 2: tempoEntreSpawn = 0.8f;break;
-            case 3: tempoEntreSpawn = 0.5f;break;
-            default: tempoEntreSpawn= 0.5f;break;
-        }
+        miniGameComecou = false;
+        //SetDificuldade(1);
         miniGameAcabou=false;
         nPaesAtivos=0;
         nPaesSpawnados=0;
-        podeSpawnarPaes=true;
-        miniGameIsRunning=true;
+        podeSpawnarPaes=false;
+        miniGameIsRunning=false;
         nAcertos=0;
         nPerdidos=0;
         nErros=0;
         nPerfeitos=0;
         timer=0;
-        InvokeRepeating("SpawnarPao",delaySpawn,tempoEntreSpawn);
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer+=Time.deltaTime;
-        if(timer>=tempoMiniGame&&miniGameIsRunning){
-            podeSpawnarPaes=false;
-        }
-        if(podeSpawnarPaes==false&&nPaesAtivos<=0){
-            miniGameIsRunning=false;
-        }
-        if(miniGameAcabou==false&&miniGameIsRunning==false){
-            Debug.Log("MinigameAcabou");
-            miniGameAcabou=true;
-            TerminarMiniGame();
+        if(miniGameComecou){
+            timer+=Time.deltaTime;
+            if(timer>=tempoMiniGame&&miniGameIsRunning){
+                podeSpawnarPaes=false;
+            }
+            if(podeSpawnarPaes==false&&nPaesAtivos<=0){
+                miniGameIsRunning=false;
+            }
+            if(miniGameAcabou==false&&miniGameIsRunning==false){
+                Debug.Log("MinigameAcabou");
+                miniGameAcabou=true;
+                TerminarMiniGame();
+            }
         }
         
 
@@ -69,10 +75,10 @@ public class ControllerMiniGamePao : MonoBehaviour
     void TerminarMiniGame(){
         tx_Acerto=(float)nAcertos/(float)nPaesSpawnados;
         tx_Perfeicao=(float)nPerfeitos/(float)nAcertos;
+        petiscosGanhos = (int)(100f * tx_Acerto * mod_dinheiro);
+        petiscosGanhos+= 5 *nPerfeitos;
         controllerUI.DisplayResultado();
-        //valor a ser recebido = alguma logica
-        //salario * tx_Acerto * mod_dificuldade
-        //Pagar o jogador
+        
     }
     public void Recomecar(){
         miniGameAcabou=false;
@@ -85,5 +91,27 @@ public class ControllerMiniGamePao : MonoBehaviour
         nErros=0;
         nPerfeitos=0;
         timer=0;
+    }
+    public void SetDificuldade(int dif){
+        switch(dif){
+            case 1: tempoEntreSpawn = 1f;energiaGasta=25f;mod_dinheiro=1f; break;
+            case 2: tempoEntreSpawn = 0.8f;energiaGasta=35f;mod_dinheiro=1.2f;break;
+            case 3: tempoEntreSpawn = 0.5f;energiaGasta=50f;mod_dinheiro=1.5f;break;
+            default: tempoEntreSpawn = 1f;energiaGasta=50f;mod_dinheiro=1f; break;
+        }
+        miniGameComecou=true;
+        miniGameIsRunning=true;
+        podeSpawnarPaes=true;
+        controllerUI.FecharPainelDificuldade();
+        inputBox.DefineCooldown(dif);
+        Pao.DefineSpeed(dif);
+        InvokeRepeating("SpawnarPao",delaySpawn,tempoEntreSpawn);
+    }
+    public void AtualizarBarrinhas(){
+        GameManager.Instance.petiscos += petiscosGanhos;
+        GameManager.Instance.energia -= energiaGasta;
+        GameManager.Instance.social += 10;
+        GameManager.Instance.higiene -= 40;
+        GameManager.Instance.felicidade -= 30;
     }
 }

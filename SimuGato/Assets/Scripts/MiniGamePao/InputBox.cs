@@ -13,12 +13,6 @@ public class InputBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch(ControllerMiniGamePao.controllerMiniGamePao.dificuldade){
-            case 1: cooldownInput = .5f;break;
-            case 2: cooldownInput = .3f;break;
-            case 3: cooldownInput = .1f;break;
-            default: cooldownInput= .1f;break;
-        }
         aceitaInput=true;
     }
 
@@ -106,6 +100,15 @@ public class InputBox : MonoBehaviour
                 }
             }
         }
+    }
+    public void DefineCooldown(int dif){
+        switch(dif){
+            case 1: cooldownInput=0.5f;break;
+            case 2: cooldownInput=0.3f;break;
+            case 3: cooldownInput=0.1f;break;
+            default: break;
+        }
+        
     }
     void OnTriggerEnter(Collider colidido){
         if(colidido.CompareTag("Pao")){
