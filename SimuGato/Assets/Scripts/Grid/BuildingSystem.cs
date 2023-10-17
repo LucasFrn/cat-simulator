@@ -13,9 +13,6 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private Tilemap MainTilemap;
     [SerializeField] private TileBase whiteTile;
 
-    public GameObject prefab1;
-    public GameObject prefab2;
-
     private PlacebleObject objectToPlace;
 
     private void Awake()
@@ -24,27 +21,13 @@ public class BuildingSystem : MonoBehaviour
         grid = gridLayout.gameObject.GetComponent<Grid>();
     }
 
-    public void PlaceObjectA(GameObject g)
-    {
-        InitializeWithObject(g);
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            InitializeWithObject(prefab1);
-            GameManager.Instance.petiscos -= 10;
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            InitializeWithObject(prefab2);
-            GameManager.Instance.petiscos -= 10;
-        }
+ 
 
         if (!objectToPlace)
             return;
@@ -67,6 +50,12 @@ public class BuildingSystem : MonoBehaviour
             Destroy(objectToPlace.gameObject);
         }
 
+    }
+
+    public void CreateObject(GameObject g)
+    {
+        InitializeWithObject(g);
+        //GameManager.Instance.petiscos -= 10;
     }
 
     public static Vector3 GetMouseWorldPosition()
@@ -131,7 +120,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void InitializeWithObject(GameObject prefab)
     {
-        Vector3 position = SnapCordinateToGrid(Vector3.zero);
+        Vector3 position = SnapCordinateToGrid(new Vector3(0, 5, 0));
 
         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
         objectToPlace = obj.GetComponent<PlacebleObject>();
