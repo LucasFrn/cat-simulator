@@ -21,7 +21,7 @@ public class BarraDoJogador : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Input.GetButton("Fire1")){
+        if(Input.GetButton("Fire1")&&ControllerMiniGamePesca.controllerMiniGamePesca.miniGameRodando==true){
             rb.AddForce(Vector3.up*speed*Time.deltaTime,ForceMode.Impulse);
         }
     }
