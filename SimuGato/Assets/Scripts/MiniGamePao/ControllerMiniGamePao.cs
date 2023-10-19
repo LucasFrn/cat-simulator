@@ -31,6 +31,9 @@ public class ControllerMiniGamePao : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        GameManager.Instance.energia =100;
+
         miniGameComecou = false;
         //SetDificuldade(1);
         miniGameAcabou=false;

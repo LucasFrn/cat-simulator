@@ -17,7 +17,7 @@ public class UIMiniGamePao : MonoBehaviour
     void Start()
     {
         imprimeCooldown=false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
         
         if(GameManager.Instance.energia<energiaGastaDificil){
             buttonHard.interactable=false;

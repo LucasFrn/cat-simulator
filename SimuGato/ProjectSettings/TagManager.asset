@@ -10,6 +10,8 @@ TagManager:
   - PontoDeOnibus
   - Fisica
   - Seguravel
+  - BarreiraPesca
+  - BarraPescaJogador
   layers:
   - Default
   - TransparentFX
