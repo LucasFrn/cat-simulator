@@ -120,7 +120,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void InitializeWithObject(GameObject prefab)
     {
-        Vector3 position = SnapCordinateToGrid(new Vector3(0, 5, 0));
+        Vector3 position = SnapCordinateToGrid(new Vector3(0, 1, 0));
 
         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
         objectToPlace = obj.GetComponent<PlacebleObject>();
