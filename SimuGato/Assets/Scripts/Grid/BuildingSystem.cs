@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -13,7 +11,12 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private Tilemap MainTilemap;
     [SerializeField] private TileBase whiteTile;
 
+    [SerializeField] private LayerMask layer;
+
     private PlacebleObject objectToPlace;
+    private PlacebleObject selectObject;
+
+    [SerializeField] GameObject editCanvas;
 
     private void Awake()
     {
@@ -23,7 +26,7 @@ public class BuildingSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             SceneManager.LoadScene(0);
         }
@@ -34,7 +37,7 @@ public class BuildingSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (CanBePlaced(objectToPlace))
+            if (CanBePlaced(objectToPlace) && objectToPlace != null) 
             {
                 objectToPlace.Place();
                 Vector3Int start = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
@@ -47,7 +50,23 @@ public class BuildingSystem : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Destroy(objectToPlace.gameObject);
+            if (!objectToPlace.Placed)
+                Destroy(objectToPlace.gameObject);
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 100f, layer)) 
+            {
+                selectObject = raycastHit.collider.gameObject.GetComponent<PlacebleObject>();
+
+                if (selectObject.Placed)
+                    editCanvas.SetActive(true);
+                else
+                    selectObject = null;
+            }
         }
 
     }
@@ -120,6 +139,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void InitializeWithObject(GameObject prefab)
     {
+        editCanvas.SetActive(false);
         Vector3 position = SnapCordinateToGrid(new Vector3(0, 1, 0));
 
         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
@@ -127,4 +147,14 @@ public class BuildingSystem : MonoBehaviour
         obj.AddComponent<ObjectDrag>();
     }
 
+    public void RotateObj()
+    {
+        selectObject.Rotate();
+    }
+
+    public void RemoveObject()
+    {
+        Destroy(selectObject.gameObject);
+        editCanvas.SetActive(false);
+    }
 }
