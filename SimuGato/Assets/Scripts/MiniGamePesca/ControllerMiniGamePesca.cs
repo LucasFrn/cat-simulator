@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ControllerMiniGamePesca : MonoBehaviour
 {
     public static ControllerMiniGamePesca controllerMiniGamePesca;//Singleton
-    public int peixesPescados;//ficara obsolete -> remover depois
+    
     public GameObject peixe;//prefab
     //Variaveis de controle
     public bool barrinhaCompletudeLigada;
@@ -15,6 +15,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
     //Componentes visuais
     public RawImage telaMiniGame;
     public Slider barrinhaCompletude;
+    GameObject peixeDaVez;
     void Awake(){
         controllerMiniGamePesca = this;
         miniGameRodando=false;
@@ -37,9 +38,15 @@ public class ControllerMiniGamePesca : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F12)&&miniGameRodando==false){
             ComecaMiniGame();
         }
+        if(Input.GetKeyDown(KeyCode.Escape)&&miniGameRodando==true){
+            if(peixeDaVez!=null){
+                Destroy(peixeDaVez);
+            }
+            Perder();
+        }
         //Adicioanr depois opção do esq fechar o minigame
     }
-    public void Captura(int dificuldade){//mudar para fechar de uma vez
+    public void Captura(int dificuldade){
         //Adicionar um peixe ao jogador
         //Modificar barrinhas
         Debug.Log("Vc pescou um peixe");
@@ -53,12 +60,11 @@ public class ControllerMiniGamePesca : MonoBehaviour
         miniGameRodando=false;
         barrinhaCompletude.gameObject.SetActive(false);
         telaMiniGame.gameObject.SetActive(false);
-        barrinhaCompletudeLigada=false; 
+        barrinhaCompletudeLigada=false;
+        GameManager.Instance.janelaEmFoco=1;
     }
     void SpawnPeixe(){
-        if(peixesPescados<3){//mudar para pescar de verdade depois
-            Instantiate(peixe,transform.position,Quaternion.identity);
-        }
+        peixeDaVez= Instantiate(peixe,transform.position,Quaternion.identity);
     }
     void ComecaMiniGame(){
         miniGameRodando=true;
@@ -66,6 +72,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
         barrinhaCompletude.gameObject.SetActive(false);
         telaMiniGame.gameObject.SetActive(true);
         Invoke("SpawnPeixe",1f);
+        GameManager.Instance.janelaEmFoco=2;
     }
     public void DefinirMaxBarrinha(float valor){
         barrinhaCompletude.maxValue=valor;

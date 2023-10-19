@@ -41,37 +41,37 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.tag == "PontoDeOnibus")
+        if(!GameManager.Instance.jogoPausado){
+            if(GameManager.Instance.janelaEmFoco==1){
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    TransferStatus();
-                    SceneManager.LoadScene(1);
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.transform.tag == "PontoDeOnibus")
+                        {
+                            TransferStatus();
+                            SceneManager.LoadScene(1);
+                        }
+                        else if (hit.transform.tag == "Casa")
+                        {
+                            TransferStatus();
+                            SceneManager.LoadScene(2);
+                        }
+                    }
                 }
-                else if (hit.transform.tag == "Casa")
+                if (Input.GetButtonDown("Fire1"))
                 {
-                    TransferStatus();
-                    SceneManager.LoadScene(2);
+                    if (itemSegurado != null)
+                    {
+                        SoltaItem();
+                    }
                 }
-
             }
+            PassaTempo();
         }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (itemSegurado != null)
-            {
-                SoltaItem();
-            }
-        }
-
-
-        PassaTempo();
-
     }
 
     private void OnCollisionEnter(Collision collision)
