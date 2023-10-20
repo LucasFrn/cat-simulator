@@ -16,7 +16,8 @@ public class BuildingSystem : MonoBehaviour
     private PlacebleObject objectToPlace;
     private PlacebleObject selectObject;
 
-    [SerializeField] GameObject editCanvas;
+    [SerializeField] private GameObject editCanvas;
+    [SerializeField] private GameObject buildingCanvas;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class BuildingSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             SceneManager.LoadScene(0);
         }
@@ -47,11 +48,16 @@ public class BuildingSystem : MonoBehaviour
             {
                 Destroy(objectToPlace.gameObject);
             }
+
+            buildingCanvas.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!objectToPlace.Placed)
+            {
+                buildingCanvas.SetActive(true);
                 Destroy(objectToPlace.gameObject);
+            }
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -69,12 +75,6 @@ public class BuildingSystem : MonoBehaviour
             }
         }
 
-    }
-
-    public void CreateObject(GameObject g)
-    {
-        InitializeWithObject(g);
-        //GameManager.Instance.petiscos -= 10;
     }
 
     public static Vector3 GetMouseWorldPosition()
@@ -140,6 +140,8 @@ public class BuildingSystem : MonoBehaviour
     public void InitializeWithObject(GameObject prefab)
     {
         editCanvas.SetActive(false);
+        buildingCanvas.SetActive(false);
+
         Vector3 position = SnapCordinateToGrid(new Vector3(0, 1, 0));
 
         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
@@ -147,7 +149,7 @@ public class BuildingSystem : MonoBehaviour
         obj.AddComponent<ObjectDrag>();
     }
 
-    public void RotateObj()
+    public void RotateObject()
     {
         selectObject.Rotate();
     }
