@@ -120,6 +120,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  peixesDisponiveis:
+  - {fileID: 11400000, guid: 16eb7d4cafa483f418d5a94169f8464f, type: 2}
+  - {fileID: 11400000, guid: 045d0f8b843690147a7b7016580cf905, type: 2}
+  - {fileID: 11400000, guid: 0f45b07193dde4147b8f83a6010e05cf, type: 2}
+  - {fileID: 11400000, guid: 1fb3ef86cdc176049a50cc2fbf0139c7, type: 2}
   tempoNoPonto: 0
   timerDoPonto: 0
   chegueiNoPonto: 0

@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class ControllerMiniGamePesca : MonoBehaviour
 {
     public static ControllerMiniGamePesca controllerMiniGamePesca;//Singleton
-    
+    public PeixeItem[] peixesPossiveis;
+    public InventarioDePeixes inventarioJogador;
     public GameObject peixe;//prefab
     //Variaveis de controle
     public bool barrinhaCompletudeLigada;
@@ -44,15 +45,19 @@ public class ControllerMiniGamePesca : MonoBehaviour
             }
             Perder();
         }
-        //Adicioanr depois opção do esq fechar o minigame
     }
     public void Captura(int dificuldade){
         //Adicionar um peixe ao jogador
+        PeixeItem novoPeixe=peixesPossiveis[Random.Range(0,peixesPossiveis.Length)];
+        inventarioJogador.meusPeixes.Add(novoPeixe);
         //Modificar barrinhas
-        Debug.Log("Vc pescou um peixe");
+        GameManager.Instance.energia-=5f;//Mover isso para a logica de jogar a linha depois
+        GameManager.Instance.felicidade+=novoPeixe.felicidadeAoPescar;
+        Debug.Log("Vc pescou um peixe, um: "+ novoPeixe.FalaInfo());
         FecharMinigame();
     }
     public void Perder(){
+        GameManager.Instance.energia-=5f;
         Debug.Log("O peixe escapou");
         FecharMinigame();
     }
