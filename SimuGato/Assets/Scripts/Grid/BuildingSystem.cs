@@ -20,6 +20,7 @@ public class BuildingSystem : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.None;
         instance = this;
         grid = gridLayout.gameObject.GetComponent<Grid>();
     }
