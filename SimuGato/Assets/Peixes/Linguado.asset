@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a69687ad871339449685db10cf473fb, type: 3}
   m_Name: Linguado
   m_EditorClassIdentifier: 
-  nomePeixe: 
-  tamanho: 
-  valorVenda: 0
-  fomeRestauradaAoComer: 0
-  felicidadeAoPescar: 0
+  nomePeixe: Linguado
+  tamanho: 40cm
+  valorVenda: 20
+  fomeRestauradaAoComer: 5
+  felicidadeAoPescar: 5
