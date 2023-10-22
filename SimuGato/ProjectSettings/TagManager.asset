@@ -10,6 +10,8 @@ TagManager:
   - PontoDeOnibus
   - Fisica
   - Seguravel
+  - Pesca
+  - NPC
   layers:
   - Default
   - TransparentFX
