@@ -12,6 +12,8 @@ TagManager:
   - Seguravel
   - Pesca
   - NPC
+  - BarreiraPesca
+  - BarraPescaJogador
   layers:
   - Default
   - TransparentFX

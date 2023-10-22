@@ -64,9 +64,6 @@ public class CameraMovement : MonoBehaviour
             }
             else { cam.transform.eulerAngles = new Vector3(15, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z); }
         }
-        //Applying gravity to the controller
-        moveDirection.y -= gravity * Time.deltaTime;
-        //Making the character move
-        controller.Move(moveDirection * Time.deltaTime);
+        //Comando que ocorrem mesmo se o jogo esiver pausado
     }
 }
