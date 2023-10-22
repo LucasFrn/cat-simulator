@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -13,45 +11,35 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private Tilemap MainTilemap;
     [SerializeField] private TileBase whiteTile;
 
-    public GameObject prefab1;
-    public GameObject prefab2;
+    [SerializeField] private LayerMask layer;
 
     private PlacebleObject objectToPlace;
+    private PlacebleObject selectObject;
+
+    [SerializeField] private GameObject editCanvas;
+    [SerializeField] private GameObject buildingCanvas;
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.None;
         instance = this;
         grid = gridLayout.gameObject.GetComponent<Grid>();
     }
 
-    public void PlaceObjectA(GameObject g)
-    {
-        InitializeWithObject(g);
-    }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             SceneManager.LoadScene(0);
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            InitializeWithObject(prefab1);
-            GameManager.Instance.petiscos -= 10;
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            InitializeWithObject(prefab2);
-            GameManager.Instance.petiscos -= 10;
-        }
+ 
 
         if (!objectToPlace)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (CanBePlaced(objectToPlace))
+            if (CanBePlaced(objectToPlace) && objectToPlace != null) 
             {
                 objectToPlace.Place();
                 Vector3Int start = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
@@ -61,10 +49,31 @@ public class BuildingSystem : MonoBehaviour
             {
                 Destroy(objectToPlace.gameObject);
             }
+
+            buildingCanvas.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Destroy(objectToPlace.gameObject);
+            if (!objectToPlace.Placed)
+            {
+                buildingCanvas.SetActive(true);
+                Destroy(objectToPlace.gameObject);
+            }
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 100f, layer)) 
+            {
+                selectObject = raycastHit.collider.gameObject.GetComponent<PlacebleObject>();
+
+                if (selectObject.Placed)
+                    editCanvas.SetActive(true);
+                else
+                    selectObject = null;
+            }
         }
 
     }
@@ -131,11 +140,24 @@ public class BuildingSystem : MonoBehaviour
 
     public void InitializeWithObject(GameObject prefab)
     {
-        Vector3 position = SnapCordinateToGrid(Vector3.zero);
+        editCanvas.SetActive(false);
+        buildingCanvas.SetActive(false);
+
+        Vector3 position = SnapCordinateToGrid(new Vector3(0, 1, 0));
 
         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
         objectToPlace = obj.GetComponent<PlacebleObject>();
         obj.AddComponent<ObjectDrag>();
     }
 
+    public void RotateObject()
+    {
+        selectObject.Rotate();
+    }
+
+    public void RemoveObject()
+    {
+        Destroy(selectObject.gameObject);
+        editCanvas.SetActive(false);
+    }
 }

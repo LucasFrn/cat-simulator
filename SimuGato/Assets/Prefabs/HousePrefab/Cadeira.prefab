@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1756440426416392061}
   - component: {fileID: 1258595642896732146}
   - component: {fileID: 5719388497576465818}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cadeira
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +67,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b542c77d76f44c4886dfc299acedc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
+  editCnavas: {fileID: 0}
+  selectObject: {fileID: 0}
 --- !u!1001 &431975852748693053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: da1bf8c45ab0f684aa679f80dd8f27e7, type: 3}
       propertyPath: m_Name
       value: HouseCama2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: da1bf8c45ab0f684aa679f80dd8f27e7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

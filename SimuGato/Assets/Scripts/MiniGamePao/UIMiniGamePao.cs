@@ -11,7 +11,7 @@ public class UIMiniGamePao : MonoBehaviour
     public Text textoInfo;
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
         
         
         painelResultado.SetActive(false);

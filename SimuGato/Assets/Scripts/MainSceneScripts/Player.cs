@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     public Slider felicidadeSldr;
     public Slider socialSldr;
 
+    private int conversa = 0;
+    private int brinc = 0;
+    private int quebr = 0;
     private GameObject itemSegurado;
     private Rigidbody seguradoRB;
     public Transform boca;
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         petiscos = GameManager.Instance.petiscos;
         fome = GameManager.Instance.fome;
         energia = GameManager.Instance.energia;
@@ -39,28 +43,53 @@ public class Player : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.tag == "PontoDeOnibus")
             {
-                if (hit.transform.tag == "PontoDeOnibus")
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     TransferStatus();
                     SceneManager.LoadScene(1);
                 }
-                else if (hit.transform.tag == "Casa")
+
+            }
+            if (hit.transform.tag == "Casa")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     TransferStatus();
                     SceneManager.LoadScene(2);
                 }
+            }
+            if (hit.transform.tag == "Pesca")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+
+                }
+            }
+            if (hit.transform.tag == "NPC")
+            {
+                if (Input.GetKeyDown(KeyCode.E) && conversa < 3)
+                {
+                    conversa++;
+                    social += 10;
+                }
+                else if (Input.GetKeyDown(KeyCode.E))
+                {
+                    social -= 5;
+                }
 
             }
+
         }
+
         if (Input.GetButtonDown("Fire1"))
         {
             if (itemSegurado != null)
@@ -69,6 +98,14 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            energia = 100;
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            higiene = 100;
+        }
 
         PassaTempo();
 
@@ -76,9 +113,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Fisica")
+        if (collision.gameObject.tag == "Fisica" && quebr < 3)
         {
             felicidade += 5;
+            quebr++;
         }
 
     }
@@ -86,7 +124,12 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Seguravel")
         {
-            felicidade += 10;
+            if (brinc <3)
+            {
+                brinc++;
+                felicidade += 10;
+            }
+            
             PegaItem(collision.gameObject);
         }
     }

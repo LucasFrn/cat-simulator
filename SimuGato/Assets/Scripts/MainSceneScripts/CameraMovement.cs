@@ -12,14 +12,13 @@ public class CameraMovement : MonoBehaviour
     private float looker;
     public float sensitivity = 2;
     public GameObject cam;
+  
 
-    
 
     // Use this for initialization
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        
     }
 
     // Update is called once per frame
@@ -29,14 +28,19 @@ public class CameraMovement : MonoBehaviour
         // is the controller on the ground?
         if (controller.isGrounded)
         {
-            //Feed moveDirection with input.
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            //Multiply it by speed.
-            moveDirection *= speed;
+            
+                //Feed moveDirection with input.
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                moveDirection = transform.TransformDirection(moveDirection);
+                //Multiply it by speed.
+                moveDirection *= speed;
+
             //Jumping
-            if (Input.GetButton("Jump"))
+            if (Input.GetButtonDown("Jump"))
+            {
+                
                 moveDirection.y = jumpSpeed;
+            }
 
         }
         turner = Input.GetAxis("Mouse X") * sensitivity;
@@ -49,14 +53,14 @@ public class CameraMovement : MonoBehaviour
         if (looker != 0)
         {
             //Code for action on mouse moving right
-            
-            if (cam.transform.eulerAngles.x>=350 || cam.transform.eulerAngles.x <= 15)
+
+            if (cam.transform.eulerAngles.x >= 350 || cam.transform.eulerAngles.x <= 15)
             {
                 cam.transform.eulerAngles += new Vector3(looker, 0, 0);
             }
-            else if (transform.eulerAngles.x <350 && cam.transform.eulerAngles.x > 50)
+            else if (transform.eulerAngles.x < 350 && cam.transform.eulerAngles.x > 50)
             {
-                cam.transform.eulerAngles = new Vector3(350, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z) ;
+                cam.transform.eulerAngles = new Vector3(350, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
             }
             else { cam.transform.eulerAngles = new Vector3(15, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z); }
         }
