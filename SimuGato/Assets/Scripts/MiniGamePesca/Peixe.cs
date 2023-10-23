@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,7 +62,7 @@ public class Peixe : MonoBehaviour
                 if(timerPorcentagemPesca>0)
                     timerPorcentagemPesca-=Time.deltaTime;
             }
-            if(timerPorcentagemPesca>2f&&podePerder==false){
+            if(timerPorcentagemPesca>1f&&podePerder==false){
                 podePerder=true;
             }
             if(timerPorcentagemPesca>tempoPesca){

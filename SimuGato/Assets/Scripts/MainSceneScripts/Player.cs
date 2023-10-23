@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    int petiscos;
-    float fome, energia, higiene, felicidade, social;
+    public int petiscos;
+    public float fome, energia, higiene, felicidade, social;
 
     public Slider fomeSldr;
     public Slider energiaSldr;
@@ -28,56 +28,57 @@ public class Player : MonoBehaviour
     void Start()
     {
 
-        petiscos = GameManager.Instance.petiscos;
-        fome = GameManager.Instance.fome;
-        energia = GameManager.Instance.energia;
-        higiene = GameManager.Instance.higiene;
-        felicidade = GameManager.Instance.felicidade;
-        social = GameManager.Instance.social;
-
-        fomeSldr.value = fome;
-        energiaSldr.value = energia;
-        higieneSldr.value = higiene;
-        felicidadeSldr.value = felicidade;
-        socialSldr.value = social;
+        AtualizaSlidersComInfoDoManager();
 
     }
 
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.tag == "PontoDeOnibus")
-            {
         if(!GameManager.Instance.jogoPausado){
             if(GameManager.Instance.janelaEmFoco==1){
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    RaycastHit hit;
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "PontoDeOnibus")
                     {
-                        if (hit.transform.tag == "PontoDeOnibus")
+                        if (Input.GetKeyDown(KeyCode.E))
                         {
                             TransferStatus();
                             SceneManager.LoadScene(1);
                         }
-                        else if (hit.transform.tag == "Casa")
+                    }
+                    if (hit.transform.tag == "Casa")
+                    {
+                        if (Input.GetKeyDown(KeyCode.E))
                         {
                             TransferStatus();
                             SceneManager.LoadScene(2);
                         }
                     }
-                }
+                    if (hit.transform.tag == "Pesca")
+                    {
+                        if (Input.GetKeyDown(KeyCode.E)&&ControllerMiniGamePesca.controllerMiniGamePesca.miniGameRodando==false)
+                        {
+                            energia-=5f;
+                            ControllerMiniGamePesca.controllerMiniGamePesca.ComecaMiniGame();  
+                        }
+                    }
+                    if (hit.transform.tag == "NPC")
+                    {
+                        if (Input.GetKeyDown(KeyCode.E) && conversa < 3)
+                        {
+                            conversa++;
+                            social += 10;
+                        }
+                        else if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            social -= 5;
+                        }
 
-            }
-            if (hit.transform.tag == "Casa")
-            {
-                if (Input.GetKeyDown(KeyCode.E))
+                    }
+                }
                 if (Input.GetButtonDown("Fire1"))
                 {
                     if (itemSegurado != null)
@@ -85,49 +86,18 @@ public class Player : MonoBehaviour
                         SoltaItem();
                     }
                 }
-            }
-            if (hit.transform.tag == "Pesca")
-            {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-
+                    energia = 100;
                 }
-            }
-            if (hit.transform.tag == "NPC")
-            {
-                if (Input.GetKeyDown(KeyCode.E) && conversa < 3)
+                if (Input.GetKeyDown(KeyCode.B))
                 {
-                    conversa++;
-                    social += 10;
+                    higiene = 100;
                 }
-                else if (Input.GetKeyDown(KeyCode.E))
-                {
-                    social -= 5;
-                }
-
-            }
-
-        }
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (itemSegurado != null)
-            {
-                SoltaItem();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            energia = 100;
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            higiene = 100;
-        }
-
-        PassaTempo();
-
+            }//Fim do Janela em foco == 1
+            //O tempo passa com a pesca aberta, mas não com o jogo pausado
+            PassaTempo();
+        }//Fim do Jogo Pausado
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -175,6 +145,20 @@ public class Player : MonoBehaviour
         felicidadeSldr.value = (float)(felicidade);
         social -= 0.0001f;
         socialSldr.value = (float)(social);
+    }
+    public void AtualizaSlidersComInfoDoManager(){
+        petiscos = GameManager.Instance.petiscos;
+        fome = GameManager.Instance.fome;
+        energia = GameManager.Instance.energia;
+        higiene = GameManager.Instance.higiene;
+        felicidade = GameManager.Instance.felicidade;
+        social = GameManager.Instance.social;
+
+        fomeSldr.value = fome;
+        energiaSldr.value = energia;
+        higieneSldr.value = higiene;
+        felicidadeSldr.value = felicidade;
+        socialSldr.value = social;
     }
 
     void TransferStatus()

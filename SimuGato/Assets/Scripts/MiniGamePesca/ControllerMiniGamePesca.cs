@@ -14,9 +14,11 @@ public class ControllerMiniGamePesca : MonoBehaviour
     public bool barrinhaCompletudeLigada;
     public bool miniGameRodando;
     //Componentes visuais
+    public Text resultadoMiniGame;
     public RawImage telaMiniGame;
     public Slider barrinhaCompletude;
     GameObject peixeDaVez;
+    public Player player;
     void Awake(){
         controllerMiniGamePesca = this;
         miniGameRodando=false;
@@ -51,14 +53,16 @@ public class ControllerMiniGamePesca : MonoBehaviour
         PeixeItem novoPeixe=peixesPossiveis[Random.Range(0,peixesPossiveis.Length)];
         inventarioJogador.meusPeixes.Add(novoPeixe);
         //Modificar barrinhas
-        GameManager.Instance.energia-=5f;//Mover isso para a logica de jogar a linha depois
-        GameManager.Instance.felicidade+=novoPeixe.felicidadeAoPescar;
+        player.felicidade+=novoPeixe.felicidadeAoPescar;
+        resultadoMiniGame.text = "Vc pescou um peixe, um: "+ novoPeixe.FalaInfo();
+        resultadoMiniGame.gameObject.SetActive(true);
         Debug.Log("Vc pescou um peixe, um: "+ novoPeixe.FalaInfo());
         FecharMinigame();
     }
     public void Perder(){
-        GameManager.Instance.energia-=5f;
         Debug.Log("O peixe escapou");
+        resultadoMiniGame.text = "O peixe escapou!";
+        resultadoMiniGame.gameObject.SetActive(true);
         FecharMinigame();
     }
     public void FecharMinigame(){
@@ -67,11 +71,12 @@ public class ControllerMiniGamePesca : MonoBehaviour
         telaMiniGame.gameObject.SetActive(false);
         barrinhaCompletudeLigada=false;
         GameManager.Instance.janelaEmFoco=1;
+        Invoke("FechaResultado",3f);
     }
     void SpawnPeixe(){
         peixeDaVez= Instantiate(peixe,transform.position,Quaternion.identity);
     }
-    void ComecaMiniGame(){
+    public void ComecaMiniGame(){
         miniGameRodando=true;
         barrinhaCompletudeLigada=false;
         barrinhaCompletude.gameObject.SetActive(false);
@@ -81,5 +86,8 @@ public class ControllerMiniGamePesca : MonoBehaviour
     }
     public void DefinirMaxBarrinha(float valor){
         barrinhaCompletude.maxValue=valor;
+    }
+    public void FechaResultado(){
+        resultadoMiniGame.gameObject.SetActive(false);
     }
 }

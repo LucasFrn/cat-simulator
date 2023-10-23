@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventarioDePeixes : MonoBehaviour
 {
+    public Text mensagem;
     public List<PeixeItem> meusPeixes = new List<PeixeItem>();
     // Start is called before the first frame update
     void Start()
@@ -35,14 +37,23 @@ public class InventarioDePeixes : MonoBehaviour
             switch(acao)
             {
                 case 1:{
-                    GameManager.Instance.fome+=peixe.fomeRestauradaAoComer;
+                    ControllerMiniGamePesca.controllerMiniGamePesca.player.fome+=peixe.fomeRestauradaAoComer;
+                    mensagem.text = "Vc comeu um " + peixe.nomePeixe.ToString() + " e restaurou " + peixe.fomeRestauradaAoComer.ToString() + " de fome";
+                    mensagem.gameObject.SetActive(true);
+                    Invoke("FechaMensagem",3f);
                 }break;
                 case 2:{
-                    GameManager.Instance.petiscos+=peixe.valorVenda;
+                    ControllerMiniGamePesca.controllerMiniGamePesca.player.petiscos+=peixe.valorVenda;
+                    mensagem.text = "Vc vendeu um " + peixe.nomePeixe.ToString() + " e ganhou " + peixe.valorVenda.ToString() + " petiscos";
+                    mensagem.gameObject.SetActive(true);
+                    Invoke("FechaMensagem",3f);
                 }break;
             }
             meusPeixes.Remove(peixe);
         }
+    }
+    public void FechaMensagem(){
+        mensagem.gameObject.SetActive(false);
     }
 
 }
