@@ -664,7 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 134813971}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,6 +1075,7 @@ MonoBehaviour:
   higieneSldr: {fileID: 2086424215}
   felicidadeSldr: {fileID: 1128245608}
   socialSldr: {fileID: 269702705}
+  petiscoText: {fileID: 199898442}
   boca: {fileID: 343638332}
 --- !u!1 &269702704
 GameObject:
@@ -1379,7 +1380,7 @@ GameObject:
   - component: {fileID: 337489431}
   - component: {fileID: 337489430}
   - component: {fileID: 337489429}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BarraDoJogador
   m_TagString: BarraPescaJogador
   m_Icon: {fileID: 0}
@@ -1396,7 +1397,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 100, z: -0.5}
-  m_LocalScale: {x: 2, y: 5, z: 1}
+  m_LocalScale: {x: 6, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 447581990}
@@ -1695,7 +1696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 447581990}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MiniGamePesca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2112,7 +2113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 577212611}
   - component: {fileID: 577212613}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2231,7 +2232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 646165636}
   - component: {fileID: 646165637}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ControllerPesca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2270,6 +2271,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 045d0f8b843690147a7b7016580cf905, type: 2}
   - {fileID: 11400000, guid: 0f45b07193dde4147b8f83a6010e05cf, type: 2}
   - {fileID: 11400000, guid: 1fb3ef86cdc176049a50cc2fbf0139c7, type: 2}
+  - {fileID: 11400000, guid: f83cb6534d987744196e7dbba5a6f46f, type: 2}
   inventarioJogador: {fileID: 1478276078}
   peixe: {fileID: 7335555059511549294, guid: 446f809d535e4f2489ed2b08a618898e, type: 3}
   barrinhaCompletudeLigada: 0
@@ -2710,7 +2712,7 @@ GameObject:
   - component: {fileID: 865440851}
   - component: {fileID: 865440850}
   - component: {fileID: 865440849}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fundo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3913,7 +3915,7 @@ GameObject:
   - component: {fileID: 1069452993}
   - component: {fileID: 1069452992}
   - component: {fileID: 1069452991}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BarreiraSuperior
   m_TagString: BarreiraPesca
   m_Icon: {fileID: 0}
@@ -4304,7 +4306,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096197920}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4313,11 +4315,11 @@ RectTransform:
   - {fileID: 574571339}
   - {fileID: 979650020}
   m_Father: {fileID: 966150702}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 461, y: -377}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchoredPosition: {x: 659, y: 4}
+  m_SizeDelta: {x: 700, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1096197922
 MonoBehaviour:
@@ -4625,7 +4627,7 @@ GameObject:
   - component: {fileID: 1241634350}
   - component: {fileID: 1241634349}
   - component: {fileID: 1241634348}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BarreiraInferior
   m_TagString: BarreiraPesca
   m_Icon: {fileID: 0}
@@ -4762,7 +4764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1248518692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4780,7 +4782,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -336, y: 0}
-  m_SizeDelta: {x: 320, y: 700}
+  m_SizeDelta: {x: 120, y: 700}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1248518693
 MonoBehaviour:
@@ -5101,8 +5103,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23916905, y: 0.19407551, z: 0.09338872}
-  m_Center: {x: -0.001528883, y: -0.036743272, z: 0.046694335}
+  m_Size: {x: 0.17811425, y: 0.14287896, z: 0.070443526}
+  m_Center: {x: -0.00079046254, y: -0.011144991, z: 0.035221756}
 --- !u!1 &1432736927
 GameObject:
   m_ObjectHideFlags: 0
@@ -5405,7 +5407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478276077}
   - component: {fileID: 1478276078}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InventarioPeixes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7052,7 +7054,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128019705}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 358d1233f946d144c9bee952fd285770, type: 3}
   m_Name: 

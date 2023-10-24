@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     public Slider higieneSldr;
     public Slider felicidadeSldr;
     public Slider socialSldr;
+    public TextMeshProUGUI petiscoText;
 
     private int conversa = 0;
     private int brinc = 0;
@@ -106,6 +108,10 @@ public class Player : MonoBehaviour
         {
             felicidade += 5;
             quebr++;
+            //depois adicionar como que isso diminui
+        }
+        else{
+            felicidade -= 5;
         }
 
     }
@@ -145,6 +151,7 @@ public class Player : MonoBehaviour
         felicidadeSldr.value = (float)(felicidade);
         social -= 0.0001f;
         socialSldr.value = (float)(social);
+        petiscoText.text = petiscos.ToString();
     }
     public void AtualizaSlidersComInfoDoManager(){
         petiscos = GameManager.Instance.petiscos;
