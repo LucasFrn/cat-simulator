@@ -8,15 +8,10 @@ public class Pao : MonoBehaviour
     public KeyCode teclaCorreta;
     public SpriteRenderer minhaSprite;
     public Sprite upArrow,downArrow,leftArrow,rightArrow;
-    [SerializeField]float speed = 3f;
+    public static float speed = 3f;
     void Start()
     {
-        switch(ControllerMiniGamePao.controllerMiniGamePao.dificuldade){
-            case 1: speed = 4f;break;
-            case 2: speed = 6f;break;
-            case 3: speed = 8f;break;
-            default: speed = 8f;break;
-        }
+        
         int tecla=Random.Range(1,5);
         switch(tecla){
             case 1: teclaCorreta=KeyCode.UpArrow; minhaSprite.sprite=upArrow; break;
@@ -39,5 +34,13 @@ public class Pao : MonoBehaviour
     }
     void OnDestroy(){
         ControllerMiniGamePao.controllerMiniGamePao.nPaesAtivos--;
+    }
+    static public void DefineSpeed(int dif){
+        switch(dif){
+            case 1: speed = 4f;break;
+            case 2: speed = 6f;break;
+            case 3: speed = 8f;break;
+            default: speed = 8f;break;
+        }
     }
 }
