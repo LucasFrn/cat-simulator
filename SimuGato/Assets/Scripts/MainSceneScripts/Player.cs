@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.tag == "PontoDeOnibus")
             {
+
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     TransferStatus();
@@ -61,6 +63,8 @@ public class Player : MonoBehaviour
             }
             if (hit.transform.tag == "Casa")
             {
+
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     TransferStatus();
@@ -69,6 +73,8 @@ public class Player : MonoBehaviour
             }
             if (hit.transform.tag == "Pesca")
             {
+
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
 
@@ -76,6 +82,8 @@ public class Player : MonoBehaviour
             }
             if (hit.transform.tag == "NPC")
             {
+
+
                 if (Input.GetKeyDown(KeyCode.E) && conversa < 3)
                 {
                     conversa++;
