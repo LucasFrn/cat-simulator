@@ -353,6 +353,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &68782163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 68782164}
+  - component: {fileID: 68782165}
+  m_Layer: 0
+  m_Name: LakeL (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &68782164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68782163}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.22750118, z: 0, w: 0.9737779}
+  m_LocalPosition: {x: 285.7, y: 0, z: 368.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944497615}
+  m_LocalEulerAnglesHint: {x: 0, y: 26.3, z: 0}
+--- !u!114 &68782165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68782163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 27.210144, y: 17.077223, z: 62.58476}
+  m_Center: {x: 67.52182, y: 14.295154, z: 26.863413}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &75880911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,6 +1069,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199898440}
   m_CullTransparentMesh: 1
+--- !u!1 &201833197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 201833198}
+  - component: {fileID: 201833199}
+  m_Layer: 0
+  m_Name: LakeL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &201833198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201833197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.45709798, z: 0, w: 0.8894164}
+  m_LocalPosition: {x: 478.5, y: 0, z: 635}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944497615}
+  m_LocalEulerAnglesHint: {x: 0, y: 54.4, z: 0}
+--- !u!114 &201833199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201833197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 27.210144, y: 17.077223, z: 354.27762}
+  m_Center: {x: 67.52182, y: 14.295154, z: 37.902237}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &211048081
 GameObject:
   m_ObjectHideFlags: 0
@@ -2136,6 +2232,54 @@ MonoBehaviour:
   m_Center: {x: 396.71964, y: 29.570152, z: 134.52966}
   m_Area: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &527629449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 527629450}
+  - component: {fileID: 527629451}
+  m_Layer: 0
+  m_Name: LakeBottom (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &527629450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527629449}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.04100376, z: 0, w: 0.99915904}
+  m_LocalPosition: {x: 320.4, y: 0, z: 243.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944497615}
+  m_LocalEulerAnglesHint: {x: 0, y: -4.7, z: 0}
+--- !u!114 &527629451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527629449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 115.62814, y: 17.077223, z: 25.288073}
+  m_Center: {x: 111.73082, y: 14.295154, z: 8.215066}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &553341222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,7 +2871,7 @@ GameObject:
   - component: {fileID: 711460322}
   - component: {fileID: 711460323}
   m_Layer: 0
-  m_Name: Lake1
+  m_Name: LakeR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2741,13 +2885,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711460321}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.23777063, z: 0, w: 0.9713213}
+  m_LocalRotation: {x: 0, y: 0.19594607, z: 0, w: 0.98061466}
   m_LocalPosition: {x: 589, y: 0, z: 589}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1944497615}
-  m_LocalEulerAnglesHint: {x: 0, y: 27.51, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 22.6, z: 0}
 --- !u!114 &711460323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2760,8 +2904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 84.10119, y: 17.077223, z: 356.59247}
-  m_Center: {x: 40.050594, y: 14.295154, z: -29.610168}
+  m_Size: {x: 22.915077, y: 17.077223, z: 422.84634}
+  m_Center: {x: 69.66936, y: 14.295154, z: -73.74263}
   m_Area: 1
   m_AffectedAgents: ffffffff
 --- !u!1 &718479514
@@ -3333,6 +3477,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quebrado: {fileID: 919132149155446097, guid: 85f8568515131ca47bdf2f5e12a59f75, type: 3}
+--- !u!1 &913767993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913767994}
+  - component: {fileID: 913767995}
+  m_Layer: 0
+  m_Name: LakeBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &913767994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913767993}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.22750118, z: 0, w: 0.9737779}
+  m_LocalPosition: {x: 246.1, y: 0, z: 311.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944497615}
+  m_LocalEulerAnglesHint: {x: 0, y: 26.3, z: 0}
+--- !u!114 &913767995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913767993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 115.62814, y: 17.077223, z: 25.288073}
+  m_Center: {x: 111.73082, y: 14.295154, z: 8.215066}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &959950086
 GameObject:
   m_ObjectHideFlags: 0
@@ -5245,6 +5437,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297013208}
   m_CullTransparentMesh: 1
+--- !u!1 &1309946480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309946481}
+  - component: {fileID: 1309946482}
+  m_Layer: 0
+  m_Name: Coreto
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1309946481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309946480}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 164.4, y: 0, z: 248.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944497615}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1309946482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309946480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 209.42123, y: 48.646698, z: 176.47852}
+  m_Center: {x: -10.235764, y: 23.823349, z: -14.706558}
+  m_Area: 3
+  m_AffectedAgents: 00000000
 --- !u!1 &1343005812
 GameObject:
   m_ObjectHideFlags: 0
@@ -5257,6 +5497,7 @@ GameObject:
   - component: {fileID: 1343005815}
   - component: {fileID: 1343005814}
   - component: {fileID: 1343005813}
+  - component: {fileID: 1343005817}
   m_Layer: 0
   m_Name: Agua
   m_TagString: Pesca
@@ -5351,6 +5592,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1343005817
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343005812}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 50, y: 50, z: 50}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1369924171 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a3c93a99d8855cf41831c7270a3a1776, type: 3}
@@ -6120,6 +6377,54 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1766372707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1766372708}
+  - component: {fileID: 1766372709}
+  m_Layer: 0
+  m_Name: LakeL (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1766372708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766372707}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.31564897, z: 0, w: 0.9488761}
+  m_LocalPosition: {x: 322.4, y: 0, z: 503.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944497615}
+  m_LocalEulerAnglesHint: {x: 0, y: 36.8, z: 0}
+--- !u!114 &1766372709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766372707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 27.210144, y: 17.077223, z: 62.58476}
+  m_Center: {x: 67.52182, y: 14.295154, z: 26.863413}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1786583827
 GameObject:
   m_ObjectHideFlags: 0
@@ -6744,6 +7049,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1935878798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1935878799}
+  - component: {fileID: 1935878800}
+  m_Layer: 0
+  m_Name: LakeL (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1935878799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935878798}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.22750118, z: 0, w: 0.9737779}
+  m_LocalPosition: {x: 237.7, y: 0, z: 325.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944497615}
+  m_LocalEulerAnglesHint: {x: 0, y: 26.3, z: 0}
+--- !u!114 &1935878800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935878798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 27.210144, y: 17.077223, z: 62.58476}
+  m_Center: {x: 67.52182, y: 14.295154, z: 26.863413}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1941689673
 GameObject:
   m_ObjectHideFlags: 0
@@ -6810,10 +7163,18 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 711460322}
+  - {fileID: 201833198}
+  - {fileID: 68782164}
+  - {fileID: 1766372708}
+  - {fileID: 1935878799}
+  - {fileID: 913767994}
+  - {fileID: 527629450}
+  - {fileID: 2055315857}
   - {fileID: 114891603}
   - {fileID: 1075267140}
   - {fileID: 218052981}
   - {fileID: 516316012}
+  - {fileID: 1309946481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1958035847
@@ -6922,6 +7283,54 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2055315856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055315857}
+  - component: {fileID: 2055315858}
+  m_Layer: 0
+  m_Name: LakeBottom (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2055315857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055315856}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.1662525, z: 0, w: 0.9860832}
+  m_LocalPosition: {x: 395.1, y: 0, z: 237.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1944497615}
+  m_LocalEulerAnglesHint: {x: 0, y: -19.14, z: 0}
+--- !u!114 &2055315858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055315856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 102.80261, y: 17.077223, z: 25.288073}
+  m_Center: {x: 105.318054, y: 14.295154, z: 8.215066}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &2063064252
 GameObject:
   m_ObjectHideFlags: 0
