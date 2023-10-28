@@ -5,8 +5,8 @@ using UnityEngine.AI;
 public class VizitanteMovimento : MonoBehaviour
 {
     private NavMeshAgent m_Agent;
-    private LuzManager luz;
-    public GameObject manager;
+    //private LuzManager luz;
+    //public GameObject manager;
     public List<GameObject> bancos;
     public GameObject saida;
 
@@ -17,46 +17,46 @@ public class VizitanteMovimento : MonoBehaviour
     private void Awake()
     {
         m_Agent = GetComponent<NavMeshAgent>();
-        luz = manager.GetComponent<LuzManager>();
+        //luz = manager.GetComponent<LuzManager>();
 
     }
     private void FixedUpdate()
     {
-        if (luz.HoraDoDia<8 || luz.HoraDoDia>17)
+        //if (luz.HoraDoDia<8 || luz.HoraDoDia>17)
+        //{
+        //m_Agent.destination = saida.transform.position;
+        // }
+        // else
+        //{
+        //if (temporizador)
+        //{
+        // if (tempoRestante > 0)
+        // {
+        //tempoRestante -= Time.fixedDeltaTime;
+        //}
+        //else
+        // {
+        // temporizador = false;
+        // interagindo = false;
+        // tempoRestante = 20;
+        //}
+        //}
+        if (!interagindo)
         {
-            m_Agent.destination = saida.transform.position;
+            m_Agent.destination = bancos[index].transform.position;
         }
-        else
+        float distancia = Vector3.Distance(transform.position, m_Agent.destination);
+        if (distancia < 1)
         {
-            if (temporizador)
+            if (index <= bancos.Count - 1)
             {
-                if (tempoRestante > 0)
-                {
-                    tempoRestante -= Time.fixedDeltaTime;
-                }
-                else
-                {
-                    temporizador = false;
-                    interagindo = false;
-                    tempoRestante = 20;
-                }
+                index++;
             }
-            if (!interagindo)
+            else
             {
-                m_Agent.destination = bancos[index].transform.position;
+                index = 0;
             }
-            float distancia = Vector3.Distance(transform.position, m_Agent.destination);
-            if (distancia < 1)
-            {
-                if (index <= bancos.Count - 1)
-                {
-                    index++;
-                }
-                else
-                {
-                    index = 0;
-                }
-            }
+            // }
         }
     }
 
