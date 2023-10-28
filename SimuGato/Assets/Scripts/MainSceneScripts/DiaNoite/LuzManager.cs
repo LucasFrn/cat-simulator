@@ -7,7 +7,7 @@ public class LuzManager : MonoBehaviour
 {
     [SerializeField] private Light LuzDirecional;
     [SerializeField] private LuzPreset preset;
-    [SerializeField, Range(0, 24)] private float HoraDoDia;
+    [SerializeField, Range(0, 24)] public float HoraDoDia;
 
 
     private void FixedUpdate()
