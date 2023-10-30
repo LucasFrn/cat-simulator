@@ -48,12 +48,12 @@ public class Lixeiro : NPC
                 {
                     if (tempoRestante > 0)
                     {
-                        Debug.Log(tempoRestante);
+                       
                         tempoRestante -= Time.fixedDeltaTime;
                     }
                     else
                     {
-                        Debug.Log("Acabou");
+                        
                         temporizador = false;
                         interagindo = false;
                         tempoRestante = 5;
@@ -91,7 +91,7 @@ public class Lixeiro : NPC
 
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Gato");
+            
             gatoArea = true;
         }
     }
@@ -99,7 +99,7 @@ public class Lixeiro : NPC
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Saiu gato");
+            
             gatoArea = false;
         }
     }

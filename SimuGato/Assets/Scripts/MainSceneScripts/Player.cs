@@ -72,13 +72,15 @@ public class Player : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             NPC npc = hit.transform.GetComponent<NPC>();
-                            if (npc.trabalhando)
+                            if (!npc.trabalhando)
                             {
-                                npc.Vender(this.gameObject);
+                                social += npc.Conversar();
                             }
                             else
                             {
-                                social += npc.Conversar();
+                                Debug.Log(petiscos);
+                                npc.Vender(this.gameObject);
+                                Debug.Log(petiscos);                               
                             }
                             
                         }                       

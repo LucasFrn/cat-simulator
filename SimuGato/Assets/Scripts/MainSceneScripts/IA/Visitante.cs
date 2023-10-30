@@ -41,12 +41,12 @@ public class Visitante : NPC
                 {
                     if (tempoRestante > 0)
                     {
-                        Debug.Log(tempoRestante);
+                        
                         tempoRestante -= Time.fixedDeltaTime;
                     }
                     else
                     {
-                        Debug.Log("Acabou");
+                        
                         temporizador = false;
                         interagindo = false;
                         tempoRestante = 20;

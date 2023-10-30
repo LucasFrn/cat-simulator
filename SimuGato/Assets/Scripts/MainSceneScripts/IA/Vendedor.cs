@@ -11,7 +11,7 @@ public class Vendedor : NPC
     public GameObject banca;
     public GameObject saida;
 
-    
+
     private bool gatoArea = false;
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class Vendedor : NPC
             irritado = false;
             conversas = 0;
             m_Agent.SetDestination(saida.transform.position);
-            if(gatoArea)
+            if (gatoArea)
             {
                 m_Agent.SetDestination(transform.position);
             }
@@ -35,8 +35,8 @@ public class Vendedor : NPC
         else
         {
             trabalhando = true;
-                m_Agent.SetDestination(banca.transform.position);
-            
+            m_Agent.SetDestination(banca.transform.position);
+
         }
     }
 
@@ -45,7 +45,7 @@ public class Vendedor : NPC
 
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Gato");
+            
             gatoArea = true;
         }
     }
@@ -53,7 +53,7 @@ public class Vendedor : NPC
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Saiu gato");
+            
             gatoArea = false;
         }
     }
@@ -63,7 +63,9 @@ public class Vendedor : NPC
         Player gato = gameObject.GetComponent<Player>();
         if (gato.petiscos > 10)
         {
+            Debug.Log(gato.petiscos);
             gato.petiscos -= 10;
+            Debug.Log(gato.petiscos);
         }
     }
 
