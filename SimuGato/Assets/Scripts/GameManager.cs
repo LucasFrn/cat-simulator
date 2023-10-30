@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool jogoPausado;
     public int janelaEmFoco;// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
                             // Manter em 1 para quando for o parque
+                            // 2 é meu minigame de pesca e 3 o inventario de pesca
     public void Awake()
     {
         

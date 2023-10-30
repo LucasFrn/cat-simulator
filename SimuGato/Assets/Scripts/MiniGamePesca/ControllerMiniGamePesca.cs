@@ -51,7 +51,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
     public void Captura(int dificuldade){
         //Adicionar um peixe ao jogador
         PeixeItem novoPeixe=peixesPossiveis[Random.Range(0,peixesPossiveis.Length)];
-        inventarioJogador.meusPeixes.Add(novoPeixe);
+        inventarioJogador.AdicionarPeixe(novoPeixe);
         //Modificar barrinhas
         player.felicidade+=novoPeixe.felicidadeAoPescar;
         resultadoMiniGame.text = "Vc pescou um peixe, um: "+ novoPeixe.FalaInfo();
