@@ -69,16 +69,10 @@ public class Player : MonoBehaviour
                     }
                     if (hit.transform.tag == "NPC")
                     {
-                        if (Input.GetKeyDown(KeyCode.E) && conversa < 3)
+                        if (Input.GetKeyDown(KeyCode.E))
                         {
-                            conversa++;
-                            social += 10;
-                        }
-                        else if (Input.GetKeyDown(KeyCode.E))
-                        {
-                            social -= 5;
-                        }
-
+                            social += hit.transform.gameObject.GetComponent<NPC>().Conversar();
+                        }                       
                     }
                 }
                 if (Input.GetButtonDown("Fire1"))

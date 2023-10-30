@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Lixeiro : MonoBehaviour
+public class Lixeiro : NPC
 {
     private NavMeshAgent m_Agent;
     private LuzManager luz;
@@ -23,21 +23,23 @@ public class Lixeiro : MonoBehaviour
         m_Agent = GetComponent<NavMeshAgent>();
         luz = manager.GetComponent<LuzManager>();
         lixos = GameObject.FindGameObjectsWithTag("Lixo");
+        irritado = true;
     }
     private void FixedUpdate()
     {
         if (luz.HoraDoDia < 7 || luz.HoraDoDia > 18)
         {
-            if (luz.HoraDoDia>18)
-            {
-                limpou = false;
-            }
+            irritado = true;
+            conversas = 0;
+            limpou = false;
+
             m_Agent.SetDestination(saida.transform.position);
         }
         else
         {
             if (limpou)
             {
+                irritado = false;
                 m_Agent.SetDestination(lixeira.transform.position);
             }
             else
@@ -55,6 +57,7 @@ public class Lixeiro : MonoBehaviour
                         temporizador = false;
                         interagindo = false;
                         tempoRestante = 5;
+                        Destroy(lixos[index]);
                         if (index < lixos.Length - 1)
                         {
                             index++;
@@ -69,16 +72,11 @@ public class Lixeiro : MonoBehaviour
                 {
                     if (!interagindo)
                     {
-                            m_Agent.SetDestination(lixos[index].transform.position);
+                        m_Agent.SetDestination(lixos[index].transform.position);
                     }
                     float distancia = Vector3.Distance(transform.position, m_Agent.destination);
-                    if (distancia < 3)
+                    if (distancia < 2)
                     {
-                        if (index < lixos.Length)
-                        {
-                            Destroy(lixos[index]);
-
-                        }
                         temporizador = true;
                         interagindo = true;
 

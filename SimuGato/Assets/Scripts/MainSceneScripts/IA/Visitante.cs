@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class VizitanteMovimento : MonoBehaviour
+public class Visitante : NPC
 {
     private NavMeshAgent m_Agent;
     private LuzManager luz;
@@ -25,7 +25,8 @@ public class VizitanteMovimento : MonoBehaviour
     {
         if (luz.HoraDoDia < 8 || luz.HoraDoDia > 17)
         {
-            
+            irritado = false;
+            conversas = 0;
             m_Agent.SetDestination(saida.transform.position);
         }
         else
