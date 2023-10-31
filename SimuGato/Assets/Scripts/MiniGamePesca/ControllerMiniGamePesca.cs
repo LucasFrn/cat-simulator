@@ -41,6 +41,9 @@ public class ControllerMiniGamePesca : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F12)&&miniGameRodando==false){
             ComecaMiniGame();
         }
+        if(Input.GetKeyDown(KeyCode.F11)&&miniGameRodando==false){
+            Captura(1);
+        }
         if(Input.GetKeyDown(KeyCode.Escape)&&miniGameRodando==true){
             if(peixeDaVez!=null){
                 Destroy(peixeDaVez);
