@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:SimuGato/Assets/Materials/LeavesMaterial.mat.meta
 guid: 40ccaeed86989ca47b244c6be73ca7b9
+=======
+guid: 3fd303f469b0fe24da17f557ba6f3d52
+>>>>>>> Stashed changes:SimuGato/Assets/Prefabs/Buildings/vermelho.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

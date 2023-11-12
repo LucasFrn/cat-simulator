@@ -11,6 +11,9 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private Tilemap MainTilemap;
     [SerializeField] private TileBase whiteTile;
 
+    [Header("SaveGame")]
+    [SerializeField] private SaveHouse save;
+
     [SerializeField] private LayerMask layer;
 
     private PlacebleObject objectToPlace;
@@ -18,20 +21,32 @@ public class BuildingSystem : MonoBehaviour
 
     [SerializeField] private GameObject editCanvas;
     [SerializeField] private GameObject buildingCanvas;
+    [SerializeField] private GameObject house;
+
+    private Material material;
 
     private void Awake()
     {
+        
         instance = this;
-        grid = gridLayout.gameObject.GetComponent<Grid>();
+        material = GetComponent<MeshRenderer>().material;
+        //    gridLayout = house.GetComponentInChildren<GridLayout>();
+        //grid = gridLayout.gameObject.GetComponent<Grid>();
+        //MainTilemap = house.gameObject.GetComponentInChildren<Tilemap>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            SceneManager.LoadScene(0);
+            ExitMap();
         }
- 
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            save.house = null;
+        }
+
 
         if (!objectToPlace)
             return;
@@ -147,6 +162,7 @@ public class BuildingSystem : MonoBehaviour
         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
         objectToPlace = obj.GetComponent<PlacebleObject>();
         obj.AddComponent<ObjectDrag>();
+        obj.transform.SetParent(house.transform);
     }
 
     public void RotateObject()
@@ -158,5 +174,16 @@ public class BuildingSystem : MonoBehaviour
     {
         Destroy(selectObject.gameObject);
         editCanvas.SetActive(false);
+    }
+
+    public void ExitMap()
+    {
+        //Save();
+        SceneManager.LoadScene(0);       
+    }
+
+    public void Save()
+    {
+        save.house = house;
     }
 }
