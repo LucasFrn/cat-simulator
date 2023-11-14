@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public UIController uiController;
     public int petiscos = 100;
     public float fome = 50, energia = 50, higiene = 50, felicidade = 50, social = 50;
     //variaveis pra pausar
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int janelaEmFoco;// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
                             // Manter em 1 para quando for o parque
                             // 2 é meu minigame de pesca e 3 o inventario de pesca
+                            // 4 é o painel de confirmar se vai sair
     public void Awake()
     {
         
@@ -33,10 +35,12 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(janelaEmFoco==1){
                 if(jogoPausado){
+                    uiController.AlternaPainelPausa();
                     jogoPausado=false;
                     Time.timeScale=1f;
                 }
                 else{
+                    uiController.AlternaPainelPausa();
                     jogoPausado=true;
                     Time.timeScale=1f;
                 }
