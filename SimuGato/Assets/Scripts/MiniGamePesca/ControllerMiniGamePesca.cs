@@ -77,7 +77,8 @@ public class ControllerMiniGamePesca : MonoBehaviour
         Invoke("FechaResultado",3f);
     }
     void SpawnPeixe(){
-        peixeDaVez= Instantiate(peixe,transform.position,Quaternion.identity);
+        if(miniGameRodando==true)
+            peixeDaVez= Instantiate(peixe,transform.position,Quaternion.identity);
     }
     public void ComecaMiniGame(){
         miniGameRodando=true;

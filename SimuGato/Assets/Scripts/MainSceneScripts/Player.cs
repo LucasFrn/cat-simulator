@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             TransferStatus();
+                            GameManager.Instance.janelaEmFoco=5;
                             SceneManager.LoadScene(1);
                         }
                     }

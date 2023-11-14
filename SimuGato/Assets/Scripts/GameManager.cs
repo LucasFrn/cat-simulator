@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
                             // Manter em 1 para quando for o parque
                             // 2 é meu minigame de pesca e 3 o inventario de pesca
                             // 4 é o painel de confirmar se vai sair
+                            // 5 é o minigamepao
     public void Awake()
     {
         
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
                 else{
                     uiController.AlternaPainelPausa();
                     jogoPausado=true;
-                    Time.timeScale=1f;
+                    Time.timeScale=0f;
                 }
             }
         }

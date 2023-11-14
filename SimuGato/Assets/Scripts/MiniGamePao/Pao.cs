@@ -25,6 +25,9 @@ public class Pao : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.right*speed*Time.deltaTime,Space.World);
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Destroy(gameObject);
+        }
     }
     void OnTriggerEnter(Collider colidido){
         if(colidido.CompareTag("FinalEsteira")){
@@ -37,10 +40,10 @@ public class Pao : MonoBehaviour
     }
     static public void DefineSpeed(int dif){
         switch(dif){
-            case 1: speed = 4f;break;
-            case 2: speed = 6f;break;
-            case 3: speed = 8f;break;
-            default: speed = 8f;break;
+            case 1: speed = 8f;break;
+            case 2: speed = 10f;break;
+            case 3: speed = 12f;break;
+            default: speed = 12f;break;
         }
     }
 }

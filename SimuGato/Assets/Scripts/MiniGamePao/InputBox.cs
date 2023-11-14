@@ -23,7 +23,7 @@ public class InputBox : MonoBehaviour
             dir= paoAtual.gameObject.transform.position-transform.position;
             Debug.Log(dir.ToString());
         }*/
-        if(Input.GetKeyDown(KeyCode.UpArrow)&&aceitaInput){
+        if((Input.GetKeyDown(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.W))&&aceitaInput){
             aceitaInput=false;
             Invoke("LiberaInput",cooldownInput);
             if(paoAtual!=null){
@@ -42,7 +42,7 @@ public class InputBox : MonoBehaviour
                 }
             }
         }
-        if(Input.GetKeyDown(KeyCode.RightArrow)&&aceitaInput){
+        if((Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D))&&aceitaInput){
             aceitaInput=false;
             Invoke("LiberaInput",cooldownInput);
             if(paoAtual!=null){
@@ -62,7 +62,7 @@ public class InputBox : MonoBehaviour
                 }
             }
         }
-        if(Input.GetKeyDown(KeyCode.LeftArrow)&&aceitaInput){
+        if((Input.GetKeyDown(KeyCode.LeftArrow)||Input.GetKeyDown(KeyCode.A))&&aceitaInput){
             aceitaInput=false;
             Invoke("LiberaInput",cooldownInput);
             if(paoAtual!=null){
@@ -81,7 +81,7 @@ public class InputBox : MonoBehaviour
                 }
             }
         }
-        if(Input.GetKeyDown(KeyCode.DownArrow)&&aceitaInput){
+        if((Input.GetKeyDown(KeyCode.DownArrow)||Input.GetKeyDown(KeyCode.S))&&aceitaInput){
             aceitaInput=false;
             Invoke("LiberaInput",cooldownInput);
             if(paoAtual!=null){
