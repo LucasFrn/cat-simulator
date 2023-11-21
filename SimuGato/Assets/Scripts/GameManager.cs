@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
                             // 2 é meu minigame de pesca e 3 o inventario de pesca
                             // 4 é o painel de confirmar se vai sair
                             // 5 é o minigamepao
+                            // 6 é o menu
     public void Awake()
     {
         

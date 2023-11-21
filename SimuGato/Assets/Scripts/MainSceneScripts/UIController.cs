@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    bool painelPausaAberto;
-    public GameObject painelPausa,painelConfirmaSair;
+    bool painelPausaAberto,painelAudioAberto;
+    public GameObject painelPausa,painelConfirmaSair,painelAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +18,20 @@ public class UIController : MonoBehaviour
         if(painelConfirmaSair!=null){
             painelConfirmaSair.SetActive(false);
         }
+        if(painelAudio!=null){
+            painelAudio.SetActive(false);
+            painelAudioAberto=false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if(painelAudioAberto){
+                AlternaPainelAudio();
+            }
+        }
     }
     public void AlternaPainelPausa(){
         if(painelPausaAberto){
@@ -37,6 +45,18 @@ public class UIController : MonoBehaviour
             painelPausaAberto=true;
             Cursor.lockState=CursorLockMode.Confined;
             Cursor.visible=true;
+        }
+    }
+    public void AlternaPainelAudio(){
+        if(painelAudioAberto){
+            painelAudio.SetActive(false);
+            painelAudioAberto=false;
+            GameManager.Instance.janelaEmFoco=1;
+        }
+        else{
+            painelAudio.SetActive(true);
+            painelAudioAberto=true;
+            GameManager.Instance.janelaEmFoco=6; 
         }
     }
     public void AbreConfirmaSair(){
