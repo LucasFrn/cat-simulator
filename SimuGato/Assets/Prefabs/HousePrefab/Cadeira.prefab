@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756440426416392061}
-  - component: {fileID: 1258595642896732146}
   - component: {fileID: 5719388497576465818}
+  - component: {fileID: 1258595642896732146}
   m_Layer: 6
   m_Name: Cadeira
-  m_TagString: Untagged
+  m_TagString: ObjetosDaCasa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,6 +34,18 @@ Transform:
   - {fileID: 176791310674213334}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5719388497576465818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778542017785266901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b542c77d76f44c4886dfc299acedc2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1258595642896732146
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55,23 +67,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.1139364, y: 3.1938024, z: 2.67354}
   m_Center: {x: -0.00018447638, y: 1.595403, z: 0.017803669}
---- !u!114 &5719388497576465818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6778542017785266901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b542c77d76f44c4886dfc299acedc2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 64
-  editCnavas: {fileID: 0}
-  selectObject: {fileID: 0}
 --- !u!1001 &431975852748693053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: -537569882063886102, guid: 9a34209ff456a8344ace7166561c22a1, type: 3}
     - target: {fileID: 919132149155446097, guid: da1bf8c45ab0f684aa679f80dd8f27e7, type: 3}
       propertyPath: m_Name
-      value: HouseCama2
+      value: Cadeira
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: da1bf8c45ab0f684aa679f80dd8f27e7, type: 3}
       propertyPath: m_Layer

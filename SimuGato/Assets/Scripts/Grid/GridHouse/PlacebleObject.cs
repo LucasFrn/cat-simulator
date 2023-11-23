@@ -7,7 +7,14 @@ public class PlacebleObject : MonoBehaviour
 
     private Vector3[] Vertices;
 
+   [HideInInspector] public string _name;
+
     private void Start()
+    {
+        StartGameObject();
+    }
+
+    public void StartGameObject()
     {
         GetColliderVertexPositionsLocal();
         CalculaeSizeCells();
@@ -22,7 +29,6 @@ public class PlacebleObject : MonoBehaviour
         Vertices[1] = b.center + new Vector3(b.size.x, -b.size.y, -b.size.z) * 0.5f;
         Vertices[2] = b.center + new Vector3(b.size.x, -b.size.y, b.size.z) * 0.5f;
         Vertices[3] = b.center + new Vector3(-b.size.x, -b.size.y, b.size.z) * 0.5f;
-
     }
 
     private void CalculaeSizeCells()
@@ -48,8 +54,11 @@ public class PlacebleObject : MonoBehaviour
 
     public virtual void Place()
     {
-        ObjectDrag drag = gameObject.GetComponent<ObjectDrag>();
-        Destroy(drag);
+        if(gameObject.TryGetComponent<ObjectDrag>(out ObjectDrag j))
+        {
+            Destroy(j);
+        }
+
 
         Placed = true;
     }
