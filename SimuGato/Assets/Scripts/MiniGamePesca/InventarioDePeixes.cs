@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,11 +35,15 @@ public class InventarioDePeixes : MonoBehaviour
                 painelInventario.SetActive(true);
                 inventarioAberto=true;
                 GameManager.Instance.janelaEmFoco=3;
+                Cursor.lockState=CursorLockMode.Confined;
+                Cursor.visible=true;
             }
             if(Input.GetKeyDown(KeyCode.Escape)&&inventarioAberto==true){
                 painelInventario.SetActive(false);
                 inventarioAberto=false;
                 GameManager.Instance.janelaEmFoco=1;
+                Cursor.lockState=CursorLockMode.Locked;
+                Cursor.visible=false;
             }
             if(inventarioAberto){
                 //parte da UI
@@ -159,6 +164,14 @@ public class InventarioDePeixes : MonoBehaviour
         textoNome.text=nome;
         textoFome.text=fome.ToString();
         textoValor.text=valor.ToString();
+    }
+    public void Ordenar(int modo){
+        switch (modo){
+            case 1: meusPeixes.Sort(PeixeItem.SortaValorCres()); break;
+            case 2: meusPeixes.Sort(PeixeItem.SortaValorDec());break;
+            case 3: meusPeixes.Sort(PeixeItem.SortaFomeCres());break;
+            case 4: meusPeixes.Sort(PeixeItem.SortaFomeDec());break;
+        };
     }
 
 }
