@@ -48,9 +48,10 @@ public class UIMiniGamePao : MonoBehaviour
 
     public void Sair(){
         
-        ControllerMiniGamePao.controllerMiniGamePao.Recomecar();
-
+        //ControllerMiniGamePao.controllerMiniGamePao.Recomecar();
+        //Pq que isso ta assim? n faz sentido reiniciar o minigame e sair
         ControllerMiniGamePao.controllerMiniGamePao.AtualizarBarrinhas();
+        GameManager.Instance.janelaEmFoco=1;
         SceneManager.LoadScene(0);
     }
     void AtualizarInfo(){

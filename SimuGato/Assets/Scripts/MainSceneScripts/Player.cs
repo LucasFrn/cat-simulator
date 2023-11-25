@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private GameObject itemSegurado;
     private Rigidbody seguradoRB;
     public Transform boca;
+    public InventarioDePeixes inventarioDePeixes;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             TransferStatus();
+                            GameManager.Instance.janelaEmFoco=5;
                             SceneManager.LoadScene(1);
                         }
                     }
@@ -85,6 +87,9 @@ public class Player : MonoBehaviour
                 {
                     if (itemSegurado != null)
                     {
+                        if(itemSegurado.CompareTag("PeixePickupable")){
+                            inventarioDePeixes.peixeNaBoca=null;
+                        }
                         SoltaItem();
                     }
                 }
@@ -115,9 +120,9 @@ public class Player : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.tag == "Seguravel")
+        if (collider.gameObject.tag == "Seguravel")
         {
             if (brinc <3)
             {
@@ -125,7 +130,11 @@ public class Player : MonoBehaviour
                 felicidade += 10;
             }
             
-            PegaItem(collision.gameObject);
+            PegaItem(collider.gameObject);
+        }
+        if(collider.CompareTag("PeixePickupable")){
+            inventarioDePeixes.peixeNaBoca=collider.gameObject;
+            PegaItem(collider.gameObject);
         }
     }
     void PassaTempo()

@@ -41,6 +41,9 @@ public class ControllerMiniGamePesca : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F12)&&miniGameRodando==false){
             ComecaMiniGame();
         }
+        if(Input.GetKeyDown(KeyCode.F11)&&miniGameRodando==false){
+            Captura(1);
+        }
         if(Input.GetKeyDown(KeyCode.Escape)&&miniGameRodando==true){
             if(peixeDaVez!=null){
                 Destroy(peixeDaVez);
@@ -51,7 +54,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
     public void Captura(int dificuldade){
         //Adicionar um peixe ao jogador
         PeixeItem novoPeixe=peixesPossiveis[Random.Range(0,peixesPossiveis.Length)];
-        inventarioJogador.meusPeixes.Add(novoPeixe);
+        inventarioJogador.AdicionarPeixe(novoPeixe);
         //Modificar barrinhas
         player.felicidade+=novoPeixe.felicidadeAoPescar;
         resultadoMiniGame.text = "Vc pescou um peixe, um: "+ novoPeixe.FalaInfo();
@@ -74,7 +77,8 @@ public class ControllerMiniGamePesca : MonoBehaviour
         Invoke("FechaResultado",3f);
     }
     void SpawnPeixe(){
-        peixeDaVez= Instantiate(peixe,transform.position,Quaternion.identity);
+        if(miniGameRodando==true)
+            peixeDaVez= Instantiate(peixe,transform.position,Quaternion.identity);
     }
     public void ComecaMiniGame(){
         miniGameRodando=true;
