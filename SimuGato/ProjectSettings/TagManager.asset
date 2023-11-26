@@ -14,11 +14,13 @@ TagManager:
   - NPC
   - BarreiraPesca
   - BarraPescaJogador
+  - Banco
+  - Lixo
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - HouseObject
