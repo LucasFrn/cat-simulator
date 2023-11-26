@@ -16,6 +16,7 @@ TagManager:
   - BarraPescaJogador
   - Banco
   - Lixo
+  - Terra
   layers:
   - Default
   - TransparentFX

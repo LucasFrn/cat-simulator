@@ -24,27 +24,11 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CharacterController controller = GetComponent<CharacterController>();
+        
         if(!GameManager.Instance.jogoPausado){
             if(GameManager.Instance.janelaEmFoco==1){
-                // is the controller on the ground?
-                if (controller.isGrounded)
-                {
-
-                        //Feed moveDirection with input.
-                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-                        moveDirection = transform.TransformDirection(moveDirection);
-                        //Multiply it by speed.
-                        moveDirection *= speed;
-
-                    //Jumping
-                    if (Input.GetButtonDown("Jump"))
-                    {
-
-                        moveDirection.y = jumpSpeed;
-                    }
-
-                }
+                
+                
                 turner = Input.GetAxis("Mouse X") * sensitivity;
                 looker = -Input.GetAxis("Mouse Y") * sensitivity;
                 if (turner != 0)
@@ -66,10 +50,8 @@ public class CameraMovement : MonoBehaviour
                     }
                     else { cam.transform.eulerAngles = new Vector3(15, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z); }
                 }
-                //Applying gravity to the controller
-                moveDirection.y -= gravity * Time.deltaTime;
-                //Making the character move
-                controller.Move(moveDirection * Time.deltaTime);
+                
+               
             }
             //Comandos que ocorrem mesmo se a janela em foco n for a 1
         }
