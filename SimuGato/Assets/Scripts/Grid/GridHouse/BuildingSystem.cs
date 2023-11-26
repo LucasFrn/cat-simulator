@@ -10,18 +10,24 @@ public class BuildingSystem : MonoBehaviour
     private Grid grid;
     [SerializeField] private Tilemap MainTilemap;
     [SerializeField] private TileBase whiteTile;
+    [SerializeField] private TileBase eraseTile;
 
     [SerializeField] private LayerMask layer;
 
     private PlacebleObject objectToPlace;
     private PlacebleObject selectObject;
 
+    [Header("UI")]
     [SerializeField] private GameObject editCanvas;
     [SerializeField] private GameObject buildingCanvas;
+    [SerializeField] private GameObject buttonConfirmBuilding;
+
+    [SerializeField] private GameObject arrow;
+
+    bool _IsBuilding = false;
 
     private void Awake()
-    {
-        Cursor.lockState = CursorLockMode.None;
+    {   
         instance = this;
         grid = gridLayout.gameObject.GetComponent<Grid>();
     }
@@ -30,9 +36,9 @@ public class BuildingSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            SceneManager.LoadScene(0);
+            ExitMap();
         }
- 
+
 
         if (!objectToPlace)
             return;
@@ -41,9 +47,8 @@ public class BuildingSystem : MonoBehaviour
         {
             if (CanBePlaced(objectToPlace) && objectToPlace != null) 
             {
-                objectToPlace.Place();
-                Vector3Int start = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
-                TakeArea(start, objectToPlace.Size);
+               
+                LocateObject(objectToPlace);
             }
             else
             {
@@ -63,19 +68,52 @@ public class BuildingSystem : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            if (_IsBuilding)
+                return;
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit raycastHit, 100f, layer)) 
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 100f, layer))  
             {
                 selectObject = raycastHit.collider.gameObject.GetComponent<PlacebleObject>();
 
                 if (selectObject.Placed)
+                {
                     editCanvas.SetActive(true);
+                    Vector3 v = selectObject.transform.position;
+                    arrow.SetActive(true);
+                    arrow.transform.position = new Vector3(v.x, 6f, v.z);
+                }
+                    
                 else
                     selectObject = null;
             }
         }
+    }
 
+    public void ConfirmBuilding()
+    {
+        if (CanBePlaced(objectToPlace) && objectToPlace != null)
+        {
+            LocateObject(objectToPlace);
+        }
+        else
+        {
+            Destroy(objectToPlace.gameObject);
+        }
+
+        buildingCanvas.SetActive(true);
+    }
+
+    private void LocateObject(PlacebleObject placebleObject)
+    {
+        buttonConfirmBuilding.SetActive(false);
+        placebleObject.StartGameObject();
+        placebleObject.Place();
+        Vector3Int start = gridLayout.WorldToCell(placebleObject.GetStartPosition());
+        TakeArea(start, placebleObject.Size, whiteTile);
+
+        _IsBuilding = false;
     }
 
     public static Vector3 GetMouseWorldPosition()
@@ -133,31 +171,72 @@ public class BuildingSystem : MonoBehaviour
         return true;
     }
 
-    public void TakeArea(Vector3Int start,Vector3Int size)
-    {
-        MainTilemap.BoxFill(start, whiteTile, start.x, start.y, start.x + size.x, start.y + size.y);
+    public void TakeArea(Vector3Int start,Vector3Int size,TileBase tile)
+    {      
+        MainTilemap.BoxFill(start, tile, start.x, start.y, start.x + size.x, start.y + size.y);       
     }
 
-    public void InitializeWithObject(GameObject prefab)
+    public void InitializeWithObject(GameObject prefab,Vector3 vec,Vector3 rotation, bool canDrag)
     {
         editCanvas.SetActive(false);
         buildingCanvas.SetActive(false);
 
-        Vector3 position = SnapCordinateToGrid(new Vector3(0, 1, 0));
+        Vector3 position = SnapCordinateToGrid(vec);
 
-        GameObject obj = Instantiate(prefab, position, Quaternion.identity);
+        GameObject obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
         objectToPlace = obj.GetComponent<PlacebleObject>();
-        obj.AddComponent<ObjectDrag>();
+
+        objectToPlace._name = prefab.name;
+
+        if (canDrag)
+        {
+            obj.AddComponent<ObjectDrag>();
+            buttonConfirmBuilding.SetActive(true);
+            _IsBuilding = true;
+            
+        }
+        else
+        {
+            LocateObject(objectToPlace);
+            buildingCanvas.SetActive(true);
+        }
+            
     }
 
     public void RotateObject()
     {
+        if (selectObject == null)
+            return;
+
         selectObject.Rotate();
     }
 
     public void RemoveObject()
     {
+        if (selectObject == null)
+            return;
+
+        Vector3Int start = gridLayout.WorldToCell(selectObject.GetStartPosition());
+        TakeArea(start, selectObject.Size, eraseTile);
         Destroy(selectObject.gameObject);
         editCanvas.SetActive(false);
+        arrow.SetActive(false);
+    }
+
+    public void ExitMap()
+    {
+        //Save();
+        SceneManager.LoadScene(0);       
+    }
+
+    public void Clear()
+    {
+        arrow.SetActive(false);
+        MainTilemap.ClearAllTiles();
+    }
+
+    public void Save()
+    {
+        
     }
 }

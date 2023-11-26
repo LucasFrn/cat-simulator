@@ -3,28 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Pao
-  - FinalEsteira
-  - Casa
-  - PontoDeOnibus
-  - Fisica
-  - Seguravel
-  - Pesca
-  - NPC
-  - BarreiraPesca
-  - BarraPescaJogador
-  - Banco
-  - Lixo
-  - Terra
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - HouseObject
+  - 
   - 
   - 
   - 
