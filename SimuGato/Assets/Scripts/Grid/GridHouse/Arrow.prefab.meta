@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:SimuGato/Assets/Scripts/Grid/GridHouse/Arrow.prefab.meta
 guid: d33c9856ed773c541967c966c49779cd
+========
+guid: 048f315effab7c1428cf6b856eb06181
+>>>>>>>> main:SimuGato/Assets/Prefabs/Buildings/Building_A 1.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

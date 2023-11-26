@@ -12,57 +12,49 @@ public class CameraMovement : MonoBehaviour
     private float looker;
     public float sensitivity = 2;
     public GameObject cam;
+  
 
-    
 
     // Use this for initialization
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        CharacterController controller = GetComponent<CharacterController>();
-        // is the controller on the ground?
-        if (controller.isGrounded)
-        {
-            //Feed moveDirection with input.
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            //Multiply it by speed.
-            moveDirection *= speed;
-            //Jumping
-            if (Input.GetButton("Jump"))
-                moveDirection.y = jumpSpeed;
+        
+        if(!GameManager.Instance.jogoPausado){
+            if(GameManager.Instance.janelaEmFoco==1){
+                
+                
+                turner = Input.GetAxis("Mouse X") * sensitivity;
+                looker = -Input.GetAxis("Mouse Y") * sensitivity;
+                if (turner != 0)
+                {
+                    //Code for action on mouse moving right
+                    transform.eulerAngles += new Vector3(0, turner, 0);
+                }
+                if (looker != 0)
+                {
+                    //Code for action on mouse moving right
 
-        }
-        turner = Input.GetAxis("Mouse X") * sensitivity;
-        looker = -Input.GetAxis("Mouse Y") * sensitivity;
-        if (turner != 0)
-        {
-            //Code for action on mouse moving right
-            transform.eulerAngles += new Vector3(0, turner, 0);
-        }
-        if (looker != 0)
-        {
-            //Code for action on mouse moving right
-            
-            if (cam.transform.eulerAngles.x>=350 || cam.transform.eulerAngles.x <= 15)
-            {
-                cam.transform.eulerAngles += new Vector3(looker, 0, 0);
+                    if (cam.transform.eulerAngles.x >= 350 || cam.transform.eulerAngles.x <= 15)
+                    {
+                        cam.transform.eulerAngles += new Vector3(looker, 0, 0);
+                    }
+                    else if (transform.eulerAngles.x < 350 && cam.transform.eulerAngles.x > 50)
+                    {
+                        cam.transform.eulerAngles = new Vector3(350, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
+                    }
+                    else { cam.transform.eulerAngles = new Vector3(15, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z); }
+                }
+                
+               
             }
-            else if (transform.eulerAngles.x <350 && cam.transform.eulerAngles.x > 50)
-            {
-                cam.transform.eulerAngles = new Vector3(350, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z) ;
-            }
-            else { cam.transform.eulerAngles = new Vector3(15, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z); }
+            //Comandos que ocorrem mesmo se a janela em foco n for a 1
         }
-        //Applying gravity to the controller
-        moveDirection.y -= gravity * Time.deltaTime;
-        //Making the character move
-        controller.Move(moveDirection * Time.deltaTime);
+        //Comando que ocorrem mesmo se o jogo esiver pausado
     }
 }
