@@ -15,7 +15,7 @@ public class InventarioDePeixes : MonoBehaviour
     public GameObject peixePickupablePref;
     //Coisas da UI
     public Text textoNome, textoValor, textoFome;
-    public GameObject setinhaVenda, setinhaComer;
+    public GameObject setinhaVenda, setinhaComer,setinhaSobe,setinhaDesce;
     public int iteradorInventario;
     public int iteradorSetinha;
     public List<PeixeItem> meusPeixes = new List<PeixeItem>();
@@ -63,6 +63,18 @@ public class InventarioDePeixes : MonoBehaviour
                     else{
                         peixeIndicador=meusPeixes[iteradorInventario];
                         AlteraTexto(peixeIndicador.nomePeixe,peixeIndicador.fomeRestauradaAoComer,peixeIndicador.valorVenda);
+                    }
+                    if(iteradorInventario==0){
+                        setinhaSobe.SetActive(false);
+                    }
+                    else{
+                        setinhaSobe.SetActive(true);
+                    }
+                    if(iteradorInventario==meusPeixes.Count-1||meusPeixes.Count<=1){
+                        setinhaDesce.SetActive(false);
+                    }
+                    else{
+                        setinhaDesce.SetActive(true);
                     }
                 }
                 if(iteradorSetinha==0){
@@ -171,6 +183,7 @@ public class InventarioDePeixes : MonoBehaviour
             case 2: meusPeixes.Sort(PeixeItem.SortaValorDec());break;
             case 3: meusPeixes.Sort(PeixeItem.SortaFomeCres());break;
             case 4: meusPeixes.Sort(PeixeItem.SortaFomeDec());break;
+            default: meusPeixes.Sort(); break;
         };
     }
 
