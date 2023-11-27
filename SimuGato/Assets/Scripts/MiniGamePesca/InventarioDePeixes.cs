@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class InventarioDePeixes : MonoBehaviour
 {
+    public static InventarioDePeixes meuInventarioDePeixes;
     public Text mensagem;
     public GameObject painelInventario;
     public bool inventarioAberto;
@@ -19,7 +20,15 @@ public class InventarioDePeixes : MonoBehaviour
     public int iteradorInventario;
     public int iteradorSetinha;
     public List<PeixeItem> meusPeixes = new List<PeixeItem>();
-    // Start is called before the first frame update
+    void Awake(){
+        if(meuInventarioDePeixes==null){
+            meuInventarioDePeixes=this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else{
+            Destroy(this);
+        }
+    }
     void Start()
     {
         iteradorInventario=0;
@@ -185,6 +194,24 @@ public class InventarioDePeixes : MonoBehaviour
             case 4: meusPeixes.Sort(PeixeItem.SortaFomeDec());break;
             default: meusPeixes.Sort(); break;
         };
+    }
+    public void InputSetinhaLista(bool sobe){
+        if(sobe){
+            if(meusPeixes.Count>0){
+                    if(iteradorInventario==0)
+                        iteradorInventario=0;
+                    else
+                        iteradorInventario--;
+                }
+        }
+        else{
+            if(meusPeixes.Count>0){
+                if(iteradorInventario>=meusPeixes.Count-1)
+                    iteradorInventario=meusPeixes.Count-1;
+                else
+                    iteradorInventario++;
+            }
+        }
     }
 
 }

@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Parque.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/NavMeshtest/TestNavMesh.unity
+    guid: 9ade6921755272e4db267dcfed2b0de4
   - enabled: 1
     path: Assets/Scenes/MiniGamePao.unity
     guid: 1957fae6db2b5b04c85b93da87bac901
   - enabled: 1
     path: Assets/Scenes/Grid.unity
     guid: 655180000aa65e64cafaf30ffcffd563
+  - enabled: 1
+    path: Assets/Scenes/Parque.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
