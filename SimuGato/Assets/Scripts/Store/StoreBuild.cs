@@ -6,9 +6,7 @@ public class StoreBuild : MonoBehaviour
 {
     [Header("Buttons")]
     [SerializeField] private GameObject buttonPrefab;
-    [SerializeField] private GameObject buttonPurchasedItem;
-    [SerializeField] private Transform buttonPurchasedItemPosition;
-
+    [Header("Itens")]
     [SerializeField] private List<StoreItens> itens;
 
     void Start()
@@ -20,19 +18,7 @@ public class StoreBuild : MonoBehaviour
             Button button = buttonGameObject.gameObject.GetComponent<Button>();
             button.GetComponentInChildren<Text>().text = item.name;
 
-            button.onClick.AddListener(delegate { BuyItem(item, buttonGameObject); });
+            button.onClick.AddListener(delegate { BuildingSystem.instance.InitializeWithObject(item.prefabIten, new Vector3(0, 1, 0), Vector3.zero, true); });
         }
-    }
-
-    void BuyItem(StoreItens item,GameObject thisGameObject)
-    {
-        GameObject buttonGameObject = Instantiate(buttonPurchasedItem, buttonPurchasedItemPosition);
-
-        Button button = buttonGameObject.gameObject.GetComponent<Button>();
-        button.GetComponentInChildren<Text>().text = item.name;
-
-        button.onClick.AddListener(delegate { BuildingSystem.instance.InitializeWithObject(item.prefabIten); });
-
-        thisGameObject.SetActive(false);
     }
 }

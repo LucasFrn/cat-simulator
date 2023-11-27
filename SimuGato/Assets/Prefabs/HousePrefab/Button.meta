@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:SimuGato/Assets/Prefabs/HousePrefab/Button.meta
 guid: 6ab0f942f3402ff4f9eff969b9828cd4
+========
+guid: 6acca8c07ee88164397b42f53857286f
+>>>>>>>> main:SimuGato/Assets/Audio.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:SimuGato/Assets/Prefabs/HousePrefab/Button/ButtonPurchased.prefab.meta
+guid: f76284b9ee7cb7b4db38b234f21d0c6a
+========
 guid: e64f114d33fe07049b34e0ebbebdd49b
+>>>>>>>> main:SimuGato/Assets/Prefabs/Buildings/Building_A.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

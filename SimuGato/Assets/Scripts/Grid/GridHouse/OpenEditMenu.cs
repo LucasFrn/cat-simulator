@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OpenEditMenu : MonoBehaviour
+public class MenuEdit : MonoBehaviour
 {
     GameObject canvas;
 

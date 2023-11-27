@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:SimuGato/Assets/Materials/AlfaMaterial.mat.meta
+guid: 6a92e8420eb5c904db301ef3381c89a2
+========
 guid: 1af22fef40112ef479ff1f64e63cf565
+>>>>>>>> main:SimuGato/Assets/Prefabs/Buildings/vermelho.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
