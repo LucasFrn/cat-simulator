@@ -19,6 +19,8 @@ public class InventarioDePeixes : MonoBehaviour
     public GameObject setinhaVenda, setinhaComer,setinhaSobe,setinhaDesce;
     public int iteradorInventario;
     public int iteradorSetinha;
+    public float modPowerUpDinheiro = 1f, modPowerUpFome =1f;
+    public bool powerUpDinheiroComprado, powerUpFomeComprado;
     public List<PeixeItem> meusPeixes = new List<PeixeItem>();
     void Awake(){
         if(meuInventarioDePeixes==null){
@@ -62,7 +64,9 @@ public class InventarioDePeixes : MonoBehaviour
                     }
                     else{
                         PeixePickupable pxpick = peixeNaBoca.GetComponent<PeixePickupable>();
-                        AlteraTexto(pxpick.peixe.nomePeixe,pxpick.peixe.fomeRestauradaAoComer,pxpick.peixe.valorVenda);
+                        float fome = pxpick.peixe.fomeRestauradaAoComer*modPowerUpFome;
+                        int dinheiro =(int)((float) pxpick.peixe.valorVenda*modPowerUpDinheiro);
+                        AlteraTexto(pxpick.peixe.nomePeixe,fome,dinheiro);
                     }
                 }
                 else{
@@ -71,7 +75,9 @@ public class InventarioDePeixes : MonoBehaviour
                     }
                     else{
                         peixeIndicador=meusPeixes[iteradorInventario];
-                        AlteraTexto(peixeIndicador.nomePeixe,peixeIndicador.fomeRestauradaAoComer,peixeIndicador.valorVenda);
+                        float fome = peixeIndicador.fomeRestauradaAoComer*modPowerUpFome;
+                        int dinheiro = (int)((float) peixeIndicador.valorVenda*modPowerUpDinheiro);
+                        AlteraTexto(peixeIndicador.nomePeixe,fome,dinheiro);
                     }
                     if(iteradorInventario==0){
                         setinhaSobe.SetActive(false);
@@ -163,14 +169,16 @@ public class InventarioDePeixes : MonoBehaviour
             switch(acao)
             {
                 case 0:{
-                    ControllerMiniGamePesca.controllerMiniGamePesca.player.fome+=peixe.fomeRestauradaAoComer;
-                    mensagem.text = "Vc comeu um " + peixe.nomePeixe.ToString() + " e restaurou " + peixe.fomeRestauradaAoComer.ToString() + " de fome";
+                    float fome =peixe.fomeRestauradaAoComer*modPowerUpFome;
+                    ControllerMiniGamePesca.controllerMiniGamePesca.player.fome+=fome;
+                    mensagem.text = "Vc comeu um " + peixe.nomePeixe.ToString() + " e restaurou " + fome.ToString() + " de fome";
                     mensagem.gameObject.SetActive(true);
                     Invoke("FechaMensagem",3f);
                 }break;
                 case 1:{
-                    ControllerMiniGamePesca.controllerMiniGamePesca.player.petiscos+=peixe.valorVenda;
-                    mensagem.text = "Vc vendeu um " + peixe.nomePeixe.ToString() + " e ganhou " + peixe.valorVenda.ToString() + " petiscos";
+                    int dinheiro =(int) ((float)peixe.valorVenda*modPowerUpDinheiro);
+                    ControllerMiniGamePesca.controllerMiniGamePesca.player.petiscos+= dinheiro;
+                    mensagem.text = "Vc vendeu um " + peixe.nomePeixe.ToString() + " e ganhou " + dinheiro.ToString() + " petiscos";
                     mensagem.gameObject.SetActive(true);
                     Invoke("FechaMensagem",3f);
                 }break;
@@ -212,6 +220,14 @@ public class InventarioDePeixes : MonoBehaviour
                     iteradorInventario++;
             }
         }
+    }
+    public void AtivaPowerUpDinehiro(){
+        powerUpDinheiroComprado=true;
+        modPowerUpDinheiro=1.25f;
+    }
+    public void AtivaPowerUpFome(){
+        powerUpFomeComprado=true;
+        modPowerUpFome=1.25f;
     }
 
 }

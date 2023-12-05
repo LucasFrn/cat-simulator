@@ -18,11 +18,13 @@ public class NPC : MonoBehaviour
         }
         if (irritado)
         {
+            //TODO UI abaixar amizade
             amizade -= 5;
             return -10;
         }
         else
         {
+            //TODO subir amizade
             amizade += 5;
             return 10;
         }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dbd9ecfdc9e2941aca2c9d79e4716c, type: 3}
+  m_Name: PeixesGordos
+  m_EditorClassIdentifier: 
+  filhoEsq: {fileID: 11400000, guid: 043bc59d8e4b9a341997d3890aba15ba, type: 2}
+  filhoDir: {fileID: 11400000, guid: b428ff3074d6fc04290aceff8990236d, type: 2}
+  cod: 0
+  custoExp: 100
+  Descricao: Peixes restauram 25% mais fome.

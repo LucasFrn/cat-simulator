@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NavMeshtest/TestNavMesh.unity
+    path: Assets/Scenes/NavMeshtest/JogoPrincipal.unity
     guid: 9ade6921755272e4db267dcfed2b0de4
   - enabled: 1
     path: Assets/Scenes/MiniGamePao.unity

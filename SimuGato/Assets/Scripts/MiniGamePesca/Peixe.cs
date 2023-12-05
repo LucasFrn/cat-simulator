@@ -17,9 +17,14 @@ public class Peixe : MonoBehaviour
     public float timerPorcentagemPesca;
     float tempoPesca = 15f; //tempo necessario pra capturar o peixe
     bool podePerder;
+    //Poderzinho
+    public static bool skillPescaRapidaComprada;
     // Start is called before the first frame update
     void Start()
     {
+        if(skillPescaRapidaComprada){
+            tempoPesca=7.5f;
+        }
         ControllerMiniGamePesca.controllerMiniGamePesca.DefinirMaxBarrinha(tempoPesca);
         podePerder=false;
         timerPorcentagemPesca=0;

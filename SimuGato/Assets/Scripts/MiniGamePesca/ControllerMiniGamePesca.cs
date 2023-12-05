@@ -9,6 +9,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
     public static ControllerMiniGamePesca controllerMiniGamePesca;//Singleton
     public PeixeItem[] peixesPossiveis;
     public InventarioDePeixes inventarioJogador;
+    public BarraDoJogador minhaBarraDoJogador;
     public GameObject peixe;//prefab
     //Variaveis de controle
     public bool barrinhaCompletudeLigada;
@@ -17,8 +18,15 @@ public class ControllerMiniGamePesca : MonoBehaviour
     public Text resultadoMiniGame;
     public RawImage telaMiniGame;
     public Slider barrinhaCompletude;
+    public Text textoExp;
+    public Text textoSkillBuy;
+    public Slider barrinhaExp;
+    //Outros
+    int level = 0;
     GameObject peixeDaVez;
     public Player player;
+    public int exp = 0;
+    public int pontosSkill=0;
     void Awake(){
         controllerMiniGamePesca = this;
         miniGameRodando=false;
@@ -50,6 +58,9 @@ public class ControllerMiniGamePesca : MonoBehaviour
             }
             Perder();
         }
+        if(Input.GetKeyDown(KeyCode.F10)){
+            exp+=100;
+        }
     }
     public void Captura(int dificuldade){
         //Adicionar um peixe ao jogador
@@ -60,6 +71,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
         resultadoMiniGame.text = "Vc pescou um peixe, um: "+ novoPeixe.FalaInfo();
         resultadoMiniGame.gameObject.SetActive(true);
         Debug.Log("Vc pescou um peixe, um: "+ novoPeixe.FalaInfo());
+        ControleExp();
         FecharMinigame();
     }
     public void Perder(){
@@ -93,5 +105,39 @@ public class ControllerMiniGamePesca : MonoBehaviour
     }
     public void FechaResultado(){
         resultadoMiniGame.gameObject.SetActive(false);
+    }
+    public void AtivaHabilidade(int habilidades){
+        switch(habilidades){
+            case 0://25% mais fome
+                inventarioJogador.AtivaPowerUpFome();
+            break;
+            case 1://Aumenta a barra
+                minhaBarraDoJogador.AtivaHabilidade();
+            break;
+            case 2://25% mais dinheiro
+                inventarioJogador.AtivaPowerUpDinehiro();
+            break;
+            case 3://Pesca em metade do tempo
+                Peixe.skillPescaRapidaComprada=true;
+            break;
+            case 4://Acha o peixe mais rapido
+                //Implementar
+            break;
+            default: return;
+        }
+    }
+    public void ControleExp(){//chamado ao pescar, cuida od exp e já atualiza a info na UI
+        exp+=10;
+        if(exp>=100){
+            pontosSkill++;
+            exp=0;
+            level++;
+        }
+        UIExp();
+    }
+    public void UIExp(){
+        barrinhaExp.value=exp;
+        textoExp.text="Level... "+level.ToString();
+        textoSkillBuy.text="Pontos para gastar: "+ pontosSkill.ToString();
     }
 }

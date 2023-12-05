@@ -7,6 +7,7 @@ public class LuzManager : MonoBehaviour
 {
     [SerializeField] private Light LuzDirecional;
     [SerializeField] private LuzPreset preset;
+    int ratioPassagemDoTempo = 20;//diminuir ao tomar banho
     [SerializeField, Range(0, 24)] public float HoraDoDia;
 
 
@@ -16,7 +17,7 @@ public class LuzManager : MonoBehaviour
         { return; }
         if (Application.isPlaying)
         {
-            HoraDoDia += Time.fixedDeltaTime/20;
+            HoraDoDia += Time.fixedDeltaTime/ratioPassagemDoTempo;
             HoraDoDia %= 24;
             AtualizaLuz(HoraDoDia);
         }
