@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 249dbbd4a77179b4188c85157517ab1b, type: 3}
-  m_Name: Chair
+  m_Name: Cadeira2
   m_EditorClassIdentifier: 
-  Name: Chair
-  Cost: 10
-  prefabIten: {fileID: 6778542017785266901, guid: 86af2a242c8034846b4e7c2346207a27, type: 3}
+  _name: 
+  _cost: 0
+  prefabIten: {fileID: 6153933815470102900, guid: 057709b258d0e1740bb81f43718307e1, type: 3}

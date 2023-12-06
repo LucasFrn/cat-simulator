@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 692789367}
   - component: {fileID: 692789369}
   - component: {fileID: 692789370}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BuildManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ MonoBehaviour:
   eraseTile: {fileID: 11400000, guid: 47ffebf7cff92204da6a97024a627982, type: 2}
   layer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1
   editCanvas: {fileID: 1668610303}
   buildingCanvas: {fileID: 792576170}
   buttonConfirmBuilding: {fileID: 1588952868}
@@ -593,10 +593,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   houseObjects:
-  - {fileID: 4772974252396692118, guid: 3a7a702f468625041acc592290565121, type: 3}
-  - {fileID: 6778542017785266901, guid: 6b14b75fa028d7e4ca24a99efbc4ceaa, type: 3}
-  - {fileID: 6778542017785266901, guid: b32a5f80773041e4986dcd4013dd2314, type: 3}
-  - {fileID: 6778542017785266901, guid: 86af2a242c8034846b4e7c2346207a27, type: 3}
+  - {fileID: 6324366790639308737, guid: 94833e109957c4547a37d029d6a6e663, type: 3}
+  - {fileID: 3265173551058505381, guid: 1ee80451e5506304781a2d7de2b90c34, type: 3}
+  - {fileID: 1212205584769018602, guid: 7cff30ac43838d44fa56ed5dcc3c9b3b, type: 3}
+  - {fileID: 4987772305095486887, guid: 983268634cbd14b49b9b03e245cb050a, type: 3}
+  - {fileID: 6153933815470102900, guid: 057709b258d0e1740bb81f43718307e1, type: 3}
+  - {fileID: 8817913054067037864, guid: 747c8c942b09bbb49b104b5437ede02b, type: 3}
+  - {fileID: 2051894704824874649, guid: 062c185fb1757b14997ec75e83232c74, type: 3}
+  - {fileID: 3366693108330158222, guid: ba9231c9a22cce44db6c88e97ccb0517, type: 3}
+  - {fileID: 6098885564026869168, guid: 7920250e8486d0548ac000e0d2938b00, type: 3}
+  - {fileID: 6151982082989375141, guid: 2301cc5f442152345985dd2c66dda75f, type: 3}
+  - {fileID: 694844300513612382, guid: 014919604fdfba14f989a4f6a91a1cfd, type: 3}
+  - {fileID: 6862982042600797048, guid: 571adcc3fc3ee6c41a689e5ea5606080, type: 3}
+  - {fileID: 6418178635229487351, guid: bf1fae87fa5102e429ced4d23e5768e2, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +996,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 117
+  field of view: 100
   orthographic: 0
   orthographic size: 23.45
   m_Depth: -1
@@ -1166,7 +1175,7 @@ GameObject:
   - component: {fileID: 1163853048}
   m_Layer: 0
   m_Name: Content
-  m_TagString: Untagged
+  m_TagString: ObjetosDaCasa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1230,10 +1239,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 8562591344158965053, guid: 07e7cc46b903f37469a7ae126d7875b4, type: 3}
   itens:
+  - {fileID: 11400000, guid: b1e15dfc2fef40d4080485d2c75c9cbc, type: 2}
+  - {fileID: 11400000, guid: 25166ac1f66f1a04cb7e6170f491af4e, type: 2}
   - {fileID: 11400000, guid: 20c198141a6b38b4483062efb2ecb0ae, type: 2}
+  - {fileID: 11400000, guid: d75c61881c3eb95429e34ea3aac3af4d, type: 2}
   - {fileID: 11400000, guid: d032045e89404ca47a381cba20ad335b, type: 2}
   - {fileID: 11400000, guid: 85255e57991f88d4d99cf8e45553a489, type: 2}
+  - {fileID: 11400000, guid: 73af831a3570b384eae3aa3586af0365, type: 2}
   - {fileID: 11400000, guid: 51f05049c8ec363428c743f6c25d4ada, type: 2}
+  - {fileID: 11400000, guid: 5e8ad9ddcd8774e4384d9d579db2ac78, type: 2}
+  - {fileID: 11400000, guid: e913766e50db80647bd3f64207ad3e17, type: 2}
+  - {fileID: 11400000, guid: 60708021a97928c4c9a8c1cd89a43aa8, type: 2}
 --- !u!1 &1225590305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1588952869
 RectTransform:
   m_ObjectHideFlags: 0
