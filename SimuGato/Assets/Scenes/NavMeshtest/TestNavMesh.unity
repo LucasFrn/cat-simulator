@@ -5236,7 +5236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -1000, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &533584933
@@ -7100,13 +7100,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717957400}
+  - component: {fileID: 717957401}
   m_Layer: 0
   m_Name: Vaga-Lume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &717957400
 Transform:
   m_ObjectHideFlags: 0
@@ -7123,6 +7124,22 @@ Transform:
   - {fileID: 1023901262}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717957401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717957399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8180e497f18cab947927733d5fd92b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTime: 18
+  endTime: 6
+  luzManager: {fileID: 1895885603}
+  vagalume: {fileID: 1023901261}
 --- !u!1001 &723509001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10034,7 +10051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.4683838, y: 6.461609}
+  m_AnchoredPosition: {x: 1.4685059, y: 6.46167}
   m_SizeDelta: {x: -670.9404, y: -347.7052}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &986049802
