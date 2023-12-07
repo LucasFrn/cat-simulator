@@ -74,7 +74,7 @@ public class UIController : MonoBehaviour
 
     public void Jogar() 
     {
-        SceneManager.LoadScene("TestNavMesh");
+        SceneManager.LoadScene("JogoPrincipal");
 
     }
 }
