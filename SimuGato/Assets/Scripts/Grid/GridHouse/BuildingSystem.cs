@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class BuildingSystem : MonoBehaviour
 {
     public static BuildingSystem instance;
 
+    [SerializeField] private HouseTutorial tutorial;
+
+    [Header("Grid")]
     public GridLayout gridLayout;
     private Grid grid;
     [SerializeField] private Tilemap MainTilemap;
@@ -21,8 +25,11 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private GameObject editCanvas;
     [SerializeField] private GameObject buildingCanvas;
     [SerializeField] private GameObject buttonConfirmBuilding;
+    [SerializeField] private Text moneyTxt;
 
     [SerializeField] private GameObject arrow;
+
+    
 
     bool _IsBuilding = false;
 
@@ -30,6 +37,11 @@ public class BuildingSystem : MonoBehaviour
     {   
         instance = this;
         grid = gridLayout.gameObject.GetComponent<Grid>();
+    }
+
+    private void Start()
+    {
+        moneyTxt.text = GameManager.Instance.petiscos.ToString(); 
     }
 
     private void Update()
@@ -46,8 +58,7 @@ public class BuildingSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (CanBePlaced(objectToPlace) && objectToPlace != null) 
-            {
-               
+            {         
                 LocateObject(objectToPlace);
             }
             else
@@ -107,6 +118,11 @@ public class BuildingSystem : MonoBehaviour
 
     private void LocateObject(PlacebleObject placebleObject)
     {
+        if (tutorial)
+        {
+            tutorial.NextStep();
+        }
+
         buttonConfirmBuilding.SetActive(false);
         placebleObject.StartGameObject();
         placebleObject.Place();
@@ -176,8 +192,21 @@ public class BuildingSystem : MonoBehaviour
         MainTilemap.BoxFill(start, tile, start.x, start.y, start.x + size.x, start.y + size.y);       
     }
 
-    public void InitializeWithObject(GameObject prefab,Vector3 vec,Vector3 rotation, bool canDrag)
+    public void InitializeWithObject(GameObject prefab, int price, Vector3 vec, Vector3 rotation, bool canDrag)
     {
+        if (tutorial)
+        {
+            tutorial.NextStep();
+        }
+
+
+        if (GameManager.Instance.petiscos < price)
+            return;
+
+        GameManager.Instance.petiscos -= price;
+
+        moneyTxt.text = GameManager.Instance.petiscos.ToString();
+
         editCanvas.SetActive(false);
         buildingCanvas.SetActive(false);
 

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cadeira2
   m_EditorClassIdentifier: 
   _name: 
-  _cost: 0
+  _cost: 10
   prefabIten: {fileID: 6153933815470102900, guid: 057709b258d0e1740bb81f43718307e1, type: 3}

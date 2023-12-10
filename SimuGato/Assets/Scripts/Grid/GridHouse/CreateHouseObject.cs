@@ -20,6 +20,6 @@ public class CreateHouseObject : MonoBehaviour
     }
     public void InstantiateObject(ObjectData data)
     {
-        buildingSystem.InitializeWithObject(houseObjectsDictonary[data.objectName], data.position, data.rotation, false);
+        buildingSystem.InitializeWithObject(houseObjectsDictonary[data.objectName], 0, data.position, data.rotation, false);
     }
 }

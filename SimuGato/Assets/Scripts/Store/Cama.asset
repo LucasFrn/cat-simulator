@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cama
   m_EditorClassIdentifier: 
   _name: 
-  _cost: 0
+  _cost: 10
   prefabIten: {fileID: 3366693108330158222, guid: ba9231c9a22cce44db6c88e97ccb0517, type: 3}

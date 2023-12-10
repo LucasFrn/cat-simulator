@@ -18,7 +18,7 @@ public class StoreBuild : MonoBehaviour
             Button button = buttonGameObject.gameObject.GetComponent<Button>();
             button.GetComponentInChildren<Text>().text = item.name;
 
-            button.onClick.AddListener(delegate { BuildingSystem.instance.InitializeWithObject(item.prefabIten, new Vector3(0, 1, 0), Vector3.zero, true); });
+            button.onClick.AddListener(delegate { BuildingSystem.instance.InitializeWithObject(item.prefabIten,item._cost, new Vector3(0, 1, 0), Vector3.zero, true); });
         }
     }
 }
