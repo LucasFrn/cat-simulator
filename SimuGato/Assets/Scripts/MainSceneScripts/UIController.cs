@@ -28,10 +28,8 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(painelAudioAberto){
-                AlternaPainelAudio();
-            }
+        if(Input.GetKeyDown(KeyCode.Escape)&&painelAudioAberto){
+            AlternaPainelAudio();
         }
     }
     public void AlternaPainelPausa(){

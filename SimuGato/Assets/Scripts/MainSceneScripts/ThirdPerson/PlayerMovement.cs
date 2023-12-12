@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float moveSpeed = 2;
+    float moveSpeed = 3;
     float rotationSpeed = 4;
     float runningSpeed;
     float vaxis, haxis;
     public bool isJumping, isJumpingAlt, isGrounded = false;
     Vector3 movement;
+    Rigidbody rb;
+    Animator animator;
 
     void Start()
     {
         Debug.Log("Initialized: (" + this.name + ")");
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        if(animator==null){
+            Debug.LogError("Personagem sem animator");
+        }
     }
 
 
@@ -42,14 +49,16 @@ public class PlayerMovement : MonoBehaviour
                 {
                     movement *= 0.70f;                                      // Dampen the movement vector while mid-air
                 }
-
-                GetComponent<Rigidbody>().AddForce(movement * moveSpeed);   // Movement Force
-
+                if(rb.velocity.magnitude<5)
+                    rb.AddForce(movement.normalized*3,ForceMode.Impulse);//impurrão ver se o gato sobe moro
+                rb.AddForce(movement * moveSpeed);   // Movement Force
+                
 
                 if ((isJumping || isJumpingAlt) && isGrounded)
                 {
                     Debug.Log(this.ToString() + " isJumping = " + isJumping);
-                    GetComponent<Rigidbody>().AddForce(Vector3.up * 150);
+                    animator.SetTrigger("Pulei");
+                    rb.AddForce(Vector3.up * 150);
                 }
 
 
@@ -69,18 +78,28 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Entered");
-        if (collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca") || collision.gameObject.CompareTag("Banco"))
+        if (collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca") || collision.gameObject.CompareTag("Banco")|| collision.gameObject.CompareTag("ObjetosDaCasa"))
         {
             isGrounded = true;
+            animator.ResetTrigger("Pulei");
         }
     }
+    void OnCollisionStay(Collision collision){
+        if(collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca")|| collision.gameObject.CompareTag("ObjetosDaCasa")){
+            isGrounded=true;
+        }
+    } //Podre, corrigir a maneira como o gato sabe se está no chão no futuro
 
     void OnCollisionExit(Collision collision)
     {
         Debug.Log("Exited");
-        if (collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca"))
+        if (collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca")|| collision.gameObject.CompareTag("ObjetosDaCasa"))
         {
             isGrounded = false;
+            /*  Logica incorreta!
+                Na borda do lago o gato colide ambos com a terra e com o lago, e ai ao sair de uma das colisoes
+                ele já entrou no OnCollisionEnter da outra, e ele perde a capacidade de dar Input.
+                Devido a isso foi necessario um OnCollisionStay */
         }
     }
 }
