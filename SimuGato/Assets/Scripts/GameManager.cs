@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public float fome = 50, energia = 50, higiene = 50, felicidade = 50, social = 50;
     //variaveis pra pausar
     public bool jogoPausado;
+    public int tempo = 1;
+    public GameObject cameraMiniMapa;
+    public float minimapaTamanho;
     public int janelaEmFoco;// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
                             // Manter em 1 para quando for o parque
                             // 2 é meu minigame de pesca
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     }
     public void Start(){
+        Time.timeScale=1f;
         janelaEmFoco=1;//ISSO SUPOE QUE O JOGO COMEÇA NO PARQUE
     }
     void Update(){

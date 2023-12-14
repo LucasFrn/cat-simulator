@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mail;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -27,10 +28,8 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(painelAudioAberto){
-                AlternaPainelAudio();
-            }
+        if(Input.GetKeyDown(KeyCode.Escape)&&painelAudioAberto){
+            AlternaPainelAudio();
         }
     }
     public void AlternaPainelPausa(){
@@ -69,5 +68,11 @@ public class UIController : MonoBehaviour
     }
     public void Sair(){
         Application.Quit();
+    }
+
+    public void Jogar() 
+    {
+        SceneManager.LoadScene("JogoPrincipal");
+
     }
 }

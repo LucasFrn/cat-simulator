@@ -1,8 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,7 +17,18 @@ public class Player : MonoBehaviour
     public Slider felicidadeSldr;
     public Slider socialSldr;
     public TextMeshProUGUI petiscoText;
-
+    //Coisas para dormir
+    bool dormindo;
+    float timerDormindo;
+    float tempoDormir = 5f;
+    //fim coisas dormir
+    //Coisas para benho
+    bool banho;
+    float timerBanho;
+    float tempoBanho = 5f;
+    //fim coisas banho
+    //modificadores barrinhas (valor a ser multiplicado pelo rate, vlaores positivos diminuem a barra)
+    float modEnergia = 10;
     private int conversa = 0;
     private int brinc = 0;
     private int quebr = 0;
@@ -26,26 +36,43 @@ public class Player : MonoBehaviour
     private Rigidbody seguradoRB;
     public Transform boca;
     public InventarioDePeixes inventarioDePeixes;
+    public LuzManager luzManager;
+    LayerMask mask;
+    public Transform rayCastOrigin;
+    [Header("Painel Interação")]
+    public GameObject painelInteracao;
+    public TextMeshProUGUI textoInteracao;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
+        if(animator==null){
+            Debug.LogError("Personagem sem animator");
+        }
+        painelInteracao.SetActive(false);
+        mask = LayerMask.GetMask("Interactable");
+        Debug.Log("Minha mask é" + mask.value);
+        timerDormindo=tempoDormir;
         AtualizaSlidersComInfoDoManager();
 
     }
-
+    
     void Update()
     {
         if(!GameManager.Instance.jogoPausado){
             if(GameManager.Instance.janelaEmFoco==1){
                 RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out hit))
+                //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(rayCastOrigin.position,rayCastOrigin.TransformDirection(Vector3.forward), out hit,3f,mask))
                 {
+                    painelInteracao.SetActive(true);
+                    textoInteracao.text="Aperte E para interagir"; 
+                    //Debug.Log("Estou olhando um "+ hit.transform.name);
                     if (hit.transform.tag == "PontoDeOnibus")
                     {
+                        textoInteracao.text="Aperte E para ir trabalhar";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             TransferStatus();
@@ -55,6 +82,7 @@ public class Player : MonoBehaviour
                     }
                     if (hit.transform.tag == "Casa")
                     {
+                        textoInteracao.text="Aperte E para entrar em casa";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             TransferStatus();
@@ -63,6 +91,7 @@ public class Player : MonoBehaviour
                     }
                     if (hit.transform.tag == "Pesca")
                     {
+                        textoInteracao.text="Aperte E para pescar";
                         if (Input.GetKeyDown(KeyCode.E)&&ControllerMiniGamePesca.controllerMiniGamePesca.miniGameRodando==false)
                         {
                             energia-=5f;
@@ -71,6 +100,7 @@ public class Player : MonoBehaviour
                     }
                     if (hit.transform.tag == "NPC")
                     {
+                        textoInteracao.text="Aperte E para interagir";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             NPC npc = hit.transform.GetComponent<NPC>();
@@ -87,6 +117,44 @@ public class Player : MonoBehaviour
                             
                         }                       
                     }
+                    if (hit.transform.CompareTag("ObjetosDaCasa"))
+                    {
+                        if(hit.transform.name == "HouseCama3"){
+                            textoInteracao.text="Aperte E para dormir";
+                            if (Input.GetKeyDown(KeyCode.E)){
+                                Dormir(hit.transform);
+                            }
+                        }
+                        if(hit.transform.name == "HouseArranhador"){
+                            textoInteracao.text="Aperte E para brincar";
+                            if (Input.GetKeyDown(KeyCode.E)){
+                                felicidade+=5;
+                            }
+                        }
+                    }
+                    if (hit.transform.CompareTag("Interactable"))
+                    {
+                        if(hit.transform.name == "ParkVendingMachine"){
+                            textoInteracao.text="Aperte E para comprar um Energético";
+                            if (Input.GetKeyDown(KeyCode.E)){
+                                if(petiscos>=20){
+                                    petiscos-=20;
+                                    energia+=10;
+                                }
+                            }
+                        }
+                        if(hit.transform.name == "LixeiraGrande"){
+                            textoInteracao.text="Aperte E para brincar com o lixo";
+                            if (Input.GetKeyDown(KeyCode.E)){
+                                felicidade+=10;
+                                higiene-=20;
+                            }
+                        }
+                    }
+                    
+                }
+                else{
+                    painelInteracao.SetActive(false);
                 }
                 if (Input.GetButtonDown("Fire1"))
                 {
@@ -98,30 +166,45 @@ public class Player : MonoBehaviour
                         SoltaItem();
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    energia = 100;
-                }
                 if (Input.GetKeyDown(KeyCode.B))
                 {
-                    higiene = 100;
+                    TomarBanho();
                 }
             }//Fim do Janela em foco == 1
             //O tempo passa com a pesca aberta, mas não com o jogo pausado
-            PassaTempo();
+            AlteraValoresBarrinhas();
+            //Passagem do tempo quando estiver dormindo, migue pra n usar corotina
+            if(dormindo){
+                if(timerDormindo>0){
+                    timerDormindo-=Time.deltaTime;
+                }
+                else{
+                    Acordar();
+                }
+            }
+            if(banho){
+                if(timerBanho>0){
+                    timerBanho-=Time.deltaTime;
+                }
+                else{
+                    TerminarBanho();
+                }
+            }
         }//Fim do Jogo Pausado
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Fisica" && quebr < 3)
-        {
-            felicidade += 5;
-            quebr++;
+        if (collision.gameObject.tag == "Fisica"){
+            if(quebr < 3)
+            {
+                felicidade += 5;
+                quebr++;
             //depois adicionar como que isso diminui
-        }
-        else{
-            felicidade -= 5;
+            }
+            else{
+                felicidade -= 5;
+                }
         }
 
     }
@@ -142,8 +225,11 @@ public class Player : MonoBehaviour
             PegaItem(collider.gameObject);
         }
     }
-    void PassaTempo()
+    void AlteraValoresBarrinhas()
     {
+        if(luzManager==null) //Controle Para as barrinhas não serem alteradas se não ouver um
+        return;              //luz manager na cena que foi passado como parametro ao jogador
+        float ratioPassagemDoTempo= luzManager.ratioPassagemDoTempo;
         if (fome > 100) fome = 100;
         else if (fome < 0) fome = 0;
         if (energia > 100) energia = 100;
@@ -155,16 +241,17 @@ public class Player : MonoBehaviour
         if (social > 100) social = 100;
         else if (social < 0) social = 0;
 
-        fome -= 0.0001f;
-        fomeSldr.value = (float)fome;
-        energia -= 0.0001f;
-        energiaSldr.value = (float)energia;
-        higiene -= 0.0001f;
-        higieneSldr.value = (float)(higiene);
-        felicidade -= 0.0001f;
-        felicidadeSldr.value = (float)(felicidade);
-        social -= 0.0001f;
-        socialSldr.value = (float)(social);
+        //fome -= 0.0001f; //chamado todo frame, portanto valor*60= quantidade por segundos
+        fome = fome - 25* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
+        fomeSldr.value =fome;
+        energia -= modEnergia* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
+        energiaSldr.value =energia;
+        higiene -= 5* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
+        higieneSldr.value = higiene;
+        felicidade -= 5* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
+        felicidadeSldr.value =felicidade;
+        social -= 5* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
+        socialSldr.value = social;
         petiscoText.text = petiscos.ToString();
     }
     public void AtualizaSlidersComInfoDoManager(){
@@ -211,5 +298,36 @@ public class Player : MonoBehaviour
         itemSegurado.transform.SetParent(null);
         seguradoRB.AddForce(boca.right * -20f, ForceMode.Impulse);
         itemSegurado = null;
+    }
+    void Dormir(Transform cama){
+        GameManager.Instance.janelaEmFoco=-1;//basta ser difente de 1
+        dormindo=true;
+        luzManager.ratioPassagemDoTempo=1;
+        modEnergia=-400;
+        animator.SetTrigger("Dormi");
+        animator.ResetTrigger("Acordei");
+    }
+    void Acordar(){
+        dormindo=false;
+        timerDormindo = tempoDormir;
+        modEnergia=10;
+        luzManager.ratioPassagemDoTempo=20;
+        GameManager.Instance.janelaEmFoco=1;
+        animator.ResetTrigger("Dormi");
+        animator.SetTrigger("Acordei");
+    }
+    void TomarBanho(){
+        GameManager.Instance.janelaEmFoco=-1;//basta ser difente de 1
+        banho=true;
+        luzManager.ratioPassagemDoTempo=1;
+        animator.SetTrigger("Banho");
+    }
+    void TerminarBanho(){
+        banho=false;
+        timerBanho=tempoBanho;
+        luzManager.ratioPassagemDoTempo=20;
+        GameManager.Instance.janelaEmFoco=1;
+        higiene=100;
+        animator.ResetTrigger("Banho");
     }
 }
