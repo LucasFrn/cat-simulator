@@ -16,15 +16,16 @@ public class HouseTutorial : MonoBehaviour
 
     public void NextStep()
     {
-        if (explaning.Length >= index)
+        index++;
+        if (explaning.Length <= index)
         {
-            index++;
-
-            tutorialText.text = explaning[index];
+            
+            tutorialText.enabled = false;
+            this.enabled = false;
         }
         else
         {
-            this.enabled = false;
+            tutorialText.text = explaning[index];
         }
         
     }

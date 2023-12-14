@@ -254,7 +254,6 @@ public class BuildingSystem : MonoBehaviour
 
     public void ExitMap()
     {
-        //Save();
         SceneManager.LoadScene(0);       
     }
 
@@ -262,10 +261,5 @@ public class BuildingSystem : MonoBehaviour
     {
         arrow.SetActive(false);
         MainTilemap.ClearAllTiles();
-    }
-
-    public void Save()
-    {
-        
     }
 }

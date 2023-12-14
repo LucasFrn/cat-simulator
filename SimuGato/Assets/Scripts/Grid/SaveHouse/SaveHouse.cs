@@ -16,6 +16,7 @@ public class SaveHouse : MonoBehaviour
     private void Awake()
     {
         path = Application.dataPath + "/saveHouse.txt";
+        Load();
     }
 
     public void Save()
