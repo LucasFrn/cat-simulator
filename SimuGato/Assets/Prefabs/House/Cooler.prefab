@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4006322405306827686}
   - component: {fileID: 2105468974760355320}
   m_Layer: 0
-  m_Name: HouseGeladeira
+  m_Name: Cooler
   m_TagString: ObjetosDaCasa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,8 +66,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.08, y: 1.3190829, z: 1.3}
-  m_Center: {x: 0.033587694, y: 0.65076095, z: 0}
+  m_Size: {x: 2.4457493, y: 1.3190829, z: 1.6514064}
+  m_Center: {x: 0.015658677, y: 0.65076095, z: -0.02510041}
 --- !u!1001 &3950312599392004239
 PrefabInstance:
   m_ObjectHideFlags: 0

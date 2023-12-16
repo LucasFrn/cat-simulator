@@ -41,7 +41,9 @@ public class BuildingSystem : MonoBehaviour
 
     private void Start()
     {
-        moneyTxt.text = GameManager.Instance.petiscos.ToString(); 
+        moneyTxt.text = GameManager.Instance.petiscos.ToString();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void Update()
@@ -192,7 +194,7 @@ public class BuildingSystem : MonoBehaviour
         MainTilemap.BoxFill(start, tile, start.x, start.y, start.x + size.x, start.y + size.y);       
     }
 
-    public void InitializeWithObject(GameObject prefab, int price, Vector3 vec, Vector3 rotation, bool canDrag)
+    public void InitializeWithObject(StoreItens item, Vector3 vec, Vector3 rotation, bool canDrag)
     {
         if (tutorial)
         {
@@ -200,10 +202,10 @@ public class BuildingSystem : MonoBehaviour
         }
 
 
-        if (GameManager.Instance.petiscos < price)
+        if (GameManager.Instance.petiscos < item._cost)
             return;
 
-        GameManager.Instance.petiscos -= price;
+        GameManager.Instance.petiscos -= item._cost;
 
         moneyTxt.text = GameManager.Instance.petiscos.ToString();
 
@@ -212,10 +214,10 @@ public class BuildingSystem : MonoBehaviour
 
         Vector3 position = SnapCordinateToGrid(vec);
 
-        GameObject obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
+        GameObject obj = Instantiate(item.prefabItem, position, Quaternion.Euler(rotation));
         objectToPlace = obj.GetComponent<PlacebleObject>();
 
-        objectToPlace._name = prefab.name;
+        objectToPlace._name = item.name;
 
         if (canDrag)
         {
@@ -250,6 +252,11 @@ public class BuildingSystem : MonoBehaviour
         Destroy(selectObject.gameObject);
         editCanvas.SetActive(false);
         arrow.SetActive(false);
+        selectObject = null;
+
+        GameManager.Instance.petiscos += 10;
+
+        moneyTxt.text = GameManager.Instance.petiscos.ToString();
     }
 
     public void ExitMap()

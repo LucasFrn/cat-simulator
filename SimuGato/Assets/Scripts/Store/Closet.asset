@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249dbbd4a77179b4188c85157517ab1b, type: 3}
   m_Name: Closet
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Closet
   _cost: 10
-  prefabIten: {fileID: 3265173551058505381, guid: 1ee80451e5506304781a2d7de2b90c34, type: 3}
+  prefabItem: {fileID: 1212205584769018602, guid: 7cff30ac43838d44fa56ed5dcc3c9b3b, type: 3}

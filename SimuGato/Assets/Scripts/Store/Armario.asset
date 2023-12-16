@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249dbbd4a77179b4188c85157517ab1b, type: 3}
   m_Name: Armario
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Armario
   _cost: 10
-  prefabIten: {fileID: 6324366790639308737, guid: 94833e109957c4547a37d029d6a6e663, type: 3}
+  prefabItem: {fileID: 6324366790639308737, guid: 94833e109957c4547a37d029d6a6e663, type: 3}

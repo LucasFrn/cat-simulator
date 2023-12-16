@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249dbbd4a77179b4188c85157517ab1b, type: 3}
   m_Name: Cooler
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Cooler
   _cost: 10
-  prefabIten: {fileID: 8817913054067037864, guid: 747c8c942b09bbb49b104b5437ede02b, type: 3}
+  prefabItem: {fileID: 6151982082989375141, guid: 2301cc5f442152345985dd2c66dda75f, type: 3}

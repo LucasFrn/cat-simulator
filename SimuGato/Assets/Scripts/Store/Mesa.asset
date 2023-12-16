@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249dbbd4a77179b4188c85157517ab1b, type: 3}
   m_Name: Mesa
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Mesa
   _cost: 10
-  prefabIten: {fileID: 2051894704824874649, guid: 062c185fb1757b14997ec75e83232c74, type: 3}
+  prefabItem: {fileID: 6862982042600797048, guid: 571adcc3fc3ee6c41a689e5ea5606080, type: 3}

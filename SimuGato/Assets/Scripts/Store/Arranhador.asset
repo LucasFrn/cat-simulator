@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249dbbd4a77179b4188c85157517ab1b, type: 3}
   m_Name: Arranhador
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Arranhador
   _cost: 10
-  prefabIten: {fileID: 4987772305095486887, guid: 983268634cbd14b49b9b03e245cb050a, type: 3}
+  prefabItem: {fileID: 4987772305095486887, guid: 983268634cbd14b49b9b03e245cb050a, type: 3}
