@@ -6,6 +6,7 @@ using UnityEngine;
 public class LuzManager : MonoBehaviour
 {
     [SerializeField] private Light LuzDirecional;
+    [SerializeField] private MusicaController musica;
     [SerializeField] private LuzPreset preset;
     public float ratioPassagemDoTempo = 20f;//ratio = 20 resulta em cada hora durando 20 segundos e etc
                                             //diminuir ao tomar banho
@@ -26,6 +27,8 @@ public class LuzManager : MonoBehaviour
         {
             AtualizaLuz(HoraDoDia);
         }
+        if (HoraDoDia >= 18 || HoraDoDia <= 6) musica.Noite();
+        else musica.Dia();
     }
     private void AtualizaLuz(float tempo)
     {
