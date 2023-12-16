@@ -9,7 +9,7 @@ public class MusicaController : MonoBehaviour
     public AudioClip[] fundos;
     public AudioClip[] efeitos;
     private bool diaTocando = false, noiteTocando = false;
-    void Start()
+    void Awake()
     {
         audioSourceFundo.clip = fundos[0];
         audioSourceFundo.Play();
