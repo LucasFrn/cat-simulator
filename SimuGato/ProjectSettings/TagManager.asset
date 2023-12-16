@@ -14,6 +14,9 @@ TagManager:
   - Pesca
   - ObjetosDaCasa
   - Interactable
+  - Casa
+  - Undefined
+  - Pao
   layers:
   - Default
   - TransparentFX

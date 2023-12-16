@@ -98,6 +98,9 @@ public class ControllerMiniGamePao : MonoBehaviour
             petiscosGanhos = (int)(100f * tx_Acerto * mod_dinheiro);
             petiscosGanhos+= 5 *nPerfeitos;
         }
+        if(GameManager.Instance.felicidade<=20){
+            petiscosGanhos-=30;
+        }
         controllerUI.DisplayResultado();
         
     }
@@ -117,7 +120,7 @@ public class ControllerMiniGamePao : MonoBehaviour
         switch(dif){
             case 1: tempoEntreSpawn = 0.8f;energiaGasta=25f;mod_dinheiro=1f; break;
             case 2: tempoEntreSpawn = 0.65f;energiaGasta=35f;mod_dinheiro=1.5f;break;
-            case 3: tempoEntreSpawn = 0.5f;energiaGasta=50f;mod_dinheiro=2f;break;
+            case 3: tempoEntreSpawn = 0.65f;energiaGasta=50f;mod_dinheiro=2f;break;
             default: tempoEntreSpawn = 1f;energiaGasta=50f;mod_dinheiro=1f; break;
         }
         miniGameComecou=true;
@@ -131,9 +134,9 @@ public class ControllerMiniGamePao : MonoBehaviour
     public void AtualizarBarrinhas(){
         GameManager.Instance.petiscos += petiscosGanhos;
         GameManager.Instance.energia -= energiaGasta;
-        GameManager.Instance.fome -= 30;
+        GameManager.Instance.fome += 30;
         GameManager.Instance.higiene -= 40;
         GameManager.Instance.felicidade -= 30;
-        GameManager.Instance.social += 10;
+        GameManager.Instance.social += 20;
     }
 }

@@ -8,7 +8,8 @@ public class StayInsideMiniMap : MonoBehaviour{
 	public float MinimapSize;
 	Vector3 TempV3;
     void Start(){
-        MinimapCam=GameManager.Instance.cameraMiniMapa.transform;
+		if(GameManager.Instance.cameraMiniMapa!=null)
+        	MinimapCam=GameManager.Instance.cameraMiniMapa.transform;
         MinimapSize=GameManager.Instance.minimapaTamanho;
     }
 
@@ -20,30 +21,35 @@ public class StayInsideMiniMap : MonoBehaviour{
 
 	void LateUpdate () {
 		// Center of Minimap
-		Vector3 centerPosition = MinimapCam.transform.localPosition;
-
-		// Just to keep a distance between Minimap camera and this Object (So that camera don't clip it out)
-		centerPosition.y -= 0.5f;
-
-		// Distance from the gameObject to Minimap
-		float Distance = Vector3.Distance(transform.position, centerPosition);
-
-		// If the Distance is less than MinimapSize, it is within the Minimap view and we don't need to do anything
-		// But if the Distance is greater than the MinimapSize, then do this
-		if (Distance > MinimapSize)
-		{
-            transform.localScale=new Vector3(.5f,.5f,0);
-			// Gameobject - Minimap
-			Vector3 fromOriginToObject = transform.position - centerPosition;
-
-			// Multiply by MinimapSize and Divide by Distance
-			fromOriginToObject *= MinimapSize / Distance;
-
-			// Minimap + above calculation
-			transform.position = centerPosition + fromOriginToObject;
+		if(MinimapCam==null){
+			MinimapCam=GameManager.Instance.cameraMiniMapa.transform;
 		}
-        else{
-            transform.localScale=new Vector3(1,1,0);
-        }
+		else{
+			Vector3 centerPosition = MinimapCam.localPosition;
+
+			// Just to keep a distance between Minimap camera and this Object (So that camera don't clip it out)
+			centerPosition.y -= 0.5f;
+
+			// Distance from the gameObject to Minimap
+			float Distance = Vector3.Distance(transform.position, centerPosition);
+
+			// If the Distance is less than MinimapSize, it is within the Minimap view and we don't need to do anything
+			// But if the Distance is greater than the MinimapSize, then do this
+			if (Distance > MinimapSize)
+			{
+        	    transform.localScale=new Vector3(.5f,.5f,0);
+				// Gameobject - Minimap
+				Vector3 fromOriginToObject = transform.position - centerPosition;
+
+				// Multiply by MinimapSize and Divide by Distance
+				fromOriginToObject *= MinimapSize / Distance;
+
+				// Minimap + above calculation
+				transform.position = centerPosition + fromOriginToObject;
+			}
+        	else{
+        	    transform.localScale=new Vector3(1,1,0);
+        	}
+		}
 	}
 }

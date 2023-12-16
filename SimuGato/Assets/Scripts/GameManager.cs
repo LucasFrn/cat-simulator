@@ -10,9 +10,12 @@ public class GameManager : MonoBehaviour
     public float fome = 50, energia = 50, higiene = 50, felicidade = 50, social = 50;
     //variaveis pra pausar
     public bool jogoPausado;
-    public int tempo = 1;
     public GameObject cameraMiniMapa;
-    public float minimapaTamanho;
+    public float minimapaTamanho = 39;
+    public Transform spawnGatoNoLoad; //receber o "Spawn Do Gato" dentro do prefab da casa
+    public Vector3 posGatoNoLoad = Vector3.zero;//recebe a pos ao trocar de cena
+    public Quaternion rotGatoNoLoad;//recebe a rot gato ao trocar de cena
+    public float HoraDoDiaAoTrocarCena = 6;
     public int janelaEmFoco;// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
                             // Manter em 1 para quando for o parque
                             // 2 é meu minigame de pesca

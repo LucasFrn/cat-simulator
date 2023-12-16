@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [ExecuteAlways]
@@ -11,7 +12,9 @@ public class LuzManager : MonoBehaviour
                                             //diminuir ao tomar banho
     [SerializeField, Range(0, 24)] public float HoraDoDia;
 
-
+    void Start(){
+        HoraDoDia=GameManager.Instance.HoraDoDiaAoTrocarCena;
+    }
     private void FixedUpdate()
     {
         if (preset == null)
