@@ -22,8 +22,9 @@ public class GameManager : MonoBehaviour
                             // 3 o inventario de pesca
                             // 4 é o painel de confirmar se vai sair
                             // 5 é o minigamepao
-                            // 6 é o menu
+                            // 6 é o menu audio
                             // 7 é a skilltree
+                            // 8 é o tutorial
     public void Awake()
     {
         
