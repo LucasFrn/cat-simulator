@@ -18,6 +18,7 @@ public class UIMiniGamePao : MonoBehaviour
     {
         imprimeCooldown=false;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible=true;
         
         if(GameManager.Instance.energia<energiaGastaDificil){
             buttonHard.interactable=false;
@@ -44,6 +45,7 @@ public class UIMiniGamePao : MonoBehaviour
     public void DisplayResultado(){
         AtualizarInfo();
         painelResultado.SetActive(true);
+        Cursor.visible=true;
     }
 
     public void Sair(){

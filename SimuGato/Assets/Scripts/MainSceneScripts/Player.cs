@@ -101,8 +101,10 @@ public class Player : MonoBehaviour
                         textoInteracao.text="Aperte E para pescar";
                         if (Input.GetKeyDown(KeyCode.E)&&ControllerMiniGamePesca.controllerMiniGamePesca.miniGameRodando==false)
                         {
-                            energia-=5f;
-                            ControllerMiniGamePesca.controllerMiniGamePesca.ProcuraPeixe();  
+                            if(energia>5f){
+                                energia-=5f;
+                                ControllerMiniGamePesca.controllerMiniGamePesca.ProcuraPeixe();  
+                            }
                         }
                     }
                     if (hit.transform.tag == "NPC")
