@@ -41,7 +41,7 @@ public class SkillTree : MonoBehaviour
                 Cursor.visible=true;
             }
             else{
-                if(Input.GetKeyDown(KeyCode.M)&&skillTreeOpen==true){
+                if(Input.GetKeyDown(KeyCode.Escape)&&skillTreeOpen==true){
                     painelSkillTree.SetActive(false);
                     skillTreeOpen=false;
                     GameManager.Instance.janelaEmFoco=1;

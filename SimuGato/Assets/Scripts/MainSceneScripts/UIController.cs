@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    bool painelPausaAberto,painelAudioAberto;
-    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota;
+    bool painelPausaAberto,painelAudioAberto,painelTutorialAberto;
+    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota,painelTutorial;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +26,10 @@ public class UIController : MonoBehaviour
         if(painelDerrota!=null){
             painelDerrota.SetActive(false);
         }
+        if(painelTutorial!=null){
+            painelTutorial.SetActive(false);
+            painelTutorialAberto=false;
+        }
     }
 
     // Update is called once per frame
@@ -33,6 +37,9 @@ public class UIController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape)&&painelAudioAberto){
             AlternaPainelAudio();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape)&&painelTutorialAberto){
+            AlternaPainelTutorial();
         }
     }
     public void AlternaPainelPausa(){
@@ -82,5 +89,17 @@ public class UIController : MonoBehaviour
         painelDerrota.SetActive(true);
         Cursor.lockState=CursorLockMode.Confined;
         Cursor.visible=true;
+    }
+    public void AlternaPainelTutorial(){
+        if(painelTutorialAberto){
+            painelTutorial.SetActive(false);
+            painelTutorialAberto=false;
+            GameManager.Instance.janelaEmFoco=1;
+        }
+        else{
+            painelTutorial.SetActive(true);
+            painelTutorialAberto=true;
+            GameManager.Instance.janelaEmFoco=8; 
+        }
     }
 }
