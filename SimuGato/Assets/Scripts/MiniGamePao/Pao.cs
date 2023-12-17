@@ -41,8 +41,8 @@ public class Pao : MonoBehaviour
     static public void DefineSpeed(int dif){
         switch(dif){
             case 1: speed = 8f;break;
-            case 2: speed = 10f;break;
-            case 3: speed = 12f;break;
+            case 2: speed = 9f;break;
+            case 3: speed = 11f;break;
             default: speed = 12f;break;
         }
     }

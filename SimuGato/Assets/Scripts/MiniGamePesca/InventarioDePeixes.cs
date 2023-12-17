@@ -22,7 +22,7 @@ public class InventarioDePeixes : MonoBehaviour
     public float modPowerUpDinheiro = 1f, modPowerUpFome =1f;
     public bool powerUpDinheiroComprado, powerUpFomeComprado;
     public List<PeixeItem> meusPeixes = new List<PeixeItem>();
-    void Awake(){
+    /*void Awake(){
         if(meuInventarioDePeixes==null){
             meuInventarioDePeixes=this;
             DontDestroyOnLoad(gameObject);
@@ -30,7 +30,7 @@ public class InventarioDePeixes : MonoBehaviour
         else{
             Destroy(this);
         }
-    }
+    }*/
     void Start()
     {
         iteradorInventario=0;

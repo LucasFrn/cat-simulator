@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
                         textoInteracao.text="Aperte E para ir trabalhar";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            TrocaCena(1);
+                            TrocaCena(2);
                             GameManager.Instance.janelaEmFoco=5;
                         }
                     }
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
                         textoInteracao.text="Aperte E para entrar em casa";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            TrocaCena(2);
+                            TrocaCena(3);
                             GameManager.Instance.janelaEmFoco=20;
                         }
                     }
@@ -101,8 +101,10 @@ public class Player : MonoBehaviour
                         textoInteracao.text="Aperte E para pescar";
                         if (Input.GetKeyDown(KeyCode.E)&&ControllerMiniGamePesca.controllerMiniGamePesca.miniGameRodando==false)
                         {
-                            energia-=5f;
-                            ControllerMiniGamePesca.controllerMiniGamePesca.ProcuraPeixe();  
+                            if(energia>5f){
+                                energia-=5f;
+                                ControllerMiniGamePesca.controllerMiniGamePesca.ProcuraPeixe();  
+                            }
                         }
                     }
                     if (hit.transform.tag == "NPC")
@@ -178,6 +180,40 @@ public class Player : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.B))
                 {
                     TomarBanho();
+                }
+                if(Input.GetKey(KeyCode.F9)){
+                    if(Input.GetKeyDown(KeyCode.Alpha1)){
+                        fome+=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha2)){
+                        energia+=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha3)){
+                        higiene+=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha4)){
+                        felicidade+=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha5)){
+                        social+=50;
+                    }
+                }
+                if(Input.GetKey(KeyCode.F8)){
+                    if(Input.GetKeyDown(KeyCode.Alpha1)){
+                        fome-=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha2)){
+                        energia-=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha3)){
+                        higiene-=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha4)){
+                        felicidade-=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha5)){
+                        social-=50;
+                    }
                 }
             }//Fim do Janela em foco == 1
             //O tempo passa com a pesca aberta, mas não com o jogo pausado

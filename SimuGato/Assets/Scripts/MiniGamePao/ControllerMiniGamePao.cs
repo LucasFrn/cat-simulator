@@ -129,6 +129,7 @@ public class ControllerMiniGamePao : MonoBehaviour
         controllerUI.FecharPainelDificuldade();
         inputBox.DefineCooldown(dif);
         Pao.DefineSpeed(dif);
+        Cursor.visible=false;
         InvokeRepeating("SpawnarPao",delaySpawn,tempoEntreSpawn);
     }
     public void AtualizarBarrinhas(){

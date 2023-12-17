@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class BuildingSystem : MonoBehaviour
 {
     public static BuildingSystem instance;
 
+    [SerializeField] private HouseTutorial tutorial;
+
+    [Header("Grid")]
     public GridLayout gridLayout;
     private Grid grid;
     [SerializeField] private Tilemap MainTilemap;
@@ -21,8 +25,11 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private GameObject editCanvas;
     [SerializeField] private GameObject buildingCanvas;
     [SerializeField] private GameObject buttonConfirmBuilding;
+    [SerializeField] private Text moneyTxt;
 
     [SerializeField] private GameObject arrow;
+
+    
 
     bool _IsBuilding = false;
 
@@ -30,6 +37,13 @@ public class BuildingSystem : MonoBehaviour
     {   
         instance = this;
         grid = gridLayout.gameObject.GetComponent<Grid>();
+    }
+
+    private void Start()
+    {
+        moneyTxt.text = GameManager.Instance.petiscos.ToString();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void Update()
@@ -46,8 +60,7 @@ public class BuildingSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (CanBePlaced(objectToPlace) && objectToPlace != null) 
-            {
-               
+            {         
                 LocateObject(objectToPlace);
             }
             else
@@ -107,6 +120,11 @@ public class BuildingSystem : MonoBehaviour
 
     private void LocateObject(PlacebleObject placebleObject)
     {
+        if (tutorial)
+        {
+            tutorial.NextStep();
+        }
+
         buttonConfirmBuilding.SetActive(false);
         placebleObject.StartGameObject();
         placebleObject.Place();
@@ -176,17 +194,30 @@ public class BuildingSystem : MonoBehaviour
         MainTilemap.BoxFill(start, tile, start.x, start.y, start.x + size.x, start.y + size.y);       
     }
 
-    public void InitializeWithObject(GameObject prefab,Vector3 vec,Vector3 rotation, bool canDrag)
+    public void InitializeWithObject(StoreItens item, Vector3 vec, Vector3 rotation, bool canDrag)
     {
+        if (tutorial)
+        {
+            tutorial.NextStep();
+        }
+
+
+        if (GameManager.Instance.petiscos < item._cost)
+            return;
+
+        GameManager.Instance.petiscos -= item._cost;
+
+        moneyTxt.text = GameManager.Instance.petiscos.ToString();
+
         editCanvas.SetActive(false);
         buildingCanvas.SetActive(false);
 
         Vector3 position = SnapCordinateToGrid(vec);
 
-        GameObject obj = Instantiate(prefab, position, Quaternion.Euler(rotation));
+        GameObject obj = Instantiate(item.prefabItem, position, Quaternion.Euler(rotation));
         objectToPlace = obj.GetComponent<PlacebleObject>();
 
-        objectToPlace._name = prefab.name;
+        objectToPlace._name = item.name;
 
         if (canDrag)
         {
@@ -221,22 +252,22 @@ public class BuildingSystem : MonoBehaviour
         Destroy(selectObject.gameObject);
         editCanvas.SetActive(false);
         arrow.SetActive(false);
+        selectObject = null;
+
+        GameManager.Instance.petiscos += 10;
+
+        moneyTxt.text = GameManager.Instance.petiscos.ToString();
     }
 
     public void ExitMap()
     {
-        //Save();
-        SceneManager.LoadScene(0);       
+        GameManager.Instance.janelaEmFoco=1;
+        SceneManager.LoadScene(1);       
     }
 
     public void Clear()
     {
         arrow.SetActive(false);
         MainTilemap.ClearAllTiles();
-    }
-
-    public void Save()
-    {
-        
     }
 }

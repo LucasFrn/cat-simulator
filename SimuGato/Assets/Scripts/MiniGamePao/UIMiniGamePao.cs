@@ -18,6 +18,7 @@ public class UIMiniGamePao : MonoBehaviour
     {
         imprimeCooldown=false;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible=true;
         
         if(GameManager.Instance.energia<energiaGastaDificil){
             buttonHard.interactable=false;
@@ -44,6 +45,7 @@ public class UIMiniGamePao : MonoBehaviour
     public void DisplayResultado(){
         AtualizarInfo();
         painelResultado.SetActive(true);
+        Cursor.visible=true;
     }
 
     public void Sair(){
@@ -53,7 +55,7 @@ public class UIMiniGamePao : MonoBehaviour
         ControllerMiniGamePao.controllerMiniGamePao.AtualizarBarrinhas();
         GameManager.Instance.HoraDoDiaAoTrocarCena+=4f;
         GameManager.Instance.janelaEmFoco=1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     void AtualizarInfo(){
         sliderTaxaAcerto.value=ControllerMiniGamePao.controllerMiniGamePao.tx_Acerto;

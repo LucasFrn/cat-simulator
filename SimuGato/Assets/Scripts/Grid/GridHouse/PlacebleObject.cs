@@ -7,8 +7,7 @@ public class PlacebleObject : MonoBehaviour
 
     private Vector3[] Vertices;
 
-   [HideInInspector] public string _name;
-
+   public string _name;
     private void Start()
     {
         StartGameObject();

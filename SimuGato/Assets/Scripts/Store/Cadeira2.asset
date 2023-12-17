@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249dbbd4a77179b4188c85157517ab1b, type: 3}
   m_Name: Cadeira2
   m_EditorClassIdentifier: 
-  _name: 
-  _cost: 0
-  prefabIten: {fileID: 6153933815470102900, guid: 057709b258d0e1740bb81f43718307e1, type: 3}
+  _name: CadeiraAzul
+  _cost: 10
+  prefabItem: {fileID: 8817913054067037864, guid: 747c8c942b09bbb49b104b5437ede02b, type: 3}

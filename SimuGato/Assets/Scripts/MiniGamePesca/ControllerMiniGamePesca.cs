@@ -11,6 +11,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
     public InventarioDePeixes inventarioJogador;
     public BarraDoJogador minhaBarraDoJogador;
     public GameObject peixe;//prefab
+    public MusicaController efeito;
     //Variaveis de controle
     public bool barrinhaCompletudeLigada;
     public bool miniGameRodando;
@@ -74,6 +75,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
                 if(timerProcura>randProcura-0.5&&conseguePescar==false){
                     conseguePescar=true;
                     //tocar audio
+                    efeito.Atencao();
                     AtivaPainelExclamacao();
                 }
                 if(conseguePescar){
@@ -85,6 +87,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
             }
             else{
                 resultadoMiniGame.text = "O peixe escapou!";
+                efeito.Erro();
                 resultadoMiniGame.gameObject.SetActive(true);
                 Invoke("FechaResultado",2f);
                 GameManager.Instance.janelaEmFoco=1;
@@ -93,6 +96,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
     }
     public void Captura(int dificuldade){
         //Adicionar um peixe ao jogador
+        efeito.Sucesso();
         PeixeItem novoPeixe=peixesPossiveis[Random.Range(0,peixesPossiveis.Length)];
         inventarioJogador.AdicionarPeixe(novoPeixe);
         //Modificar barrinhas
@@ -104,6 +108,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
         FecharMinigame();
     }
     public void Perder(){
+        efeito.Erro();
         Debug.Log("O peixe escapou");
         resultadoMiniGame.text = "O peixe escapou!";
         resultadoMiniGame.gameObject.SetActive(true);

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249dbbd4a77179b4188c85157517ab1b, type: 3}
   m_Name: GatoCama
   m_EditorClassIdentifier: 
-  _name: 
-  _cost: 0
-  prefabIten: {fileID: 6098885564026869168, guid: 7920250e8486d0548ac000e0d2938b00, type: 3}
+  _name: CamaGato
+  _cost: 10
+  prefabItem: {fileID: 6098885564026869168, guid: 7920250e8486d0548ac000e0d2938b00, type: 3}
