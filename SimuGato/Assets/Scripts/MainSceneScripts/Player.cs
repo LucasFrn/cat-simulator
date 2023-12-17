@@ -181,6 +181,40 @@ public class Player : MonoBehaviour
                 {
                     TomarBanho();
                 }
+                if(Input.GetKey(KeyCode.F9)){
+                    if(Input.GetKeyDown(KeyCode.Alpha1)){
+                        fome+=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha2)){
+                        energia+=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha3)){
+                        higiene+=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha4)){
+                        felicidade+=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha5)){
+                        social+=50;
+                    }
+                }
+                if(Input.GetKey(KeyCode.F8)){
+                    if(Input.GetKeyDown(KeyCode.Alpha1)){
+                        fome-=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha2)){
+                        energia-=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha3)){
+                        higiene-=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha4)){
+                        felicidade-=50;
+                    }
+                    if(Input.GetKeyDown(KeyCode.Alpha5)){
+                        social-=50;
+                    }
+                }
             }//Fim do Janela em foco == 1
             //O tempo passa com a pesca aberta, mas não com o jogo pausado
             AlteraValoresBarrinhas();
