@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: c5149bdba545d3348a076338dce3030b
+guid: 8892544b09c71c54dbfa5a054cea5670
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LeavesTemp
-    second: {fileID: 2100000, guid: a23e5943e8eec08458ea8422acf1ae5e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TrunkTemp
-    second: {fileID: 2100000, guid: 56cceac1259ac294ca0e6c64cfe727b3, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -44,10 +34,7 @@ ModelImporter:
     clipAnimations: []
     isReadable: 0
   meshes:
-    lODScreenPercentages:
-    - 0.25
-    - 0.125
-    - 0.01
+    lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c5149bdba545d3348a076338dce3030b
+guid: 1cbf81721efdfd84192ed12ae2f925aa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: LeavesTemp
-    second: {fileID: 2100000, guid: a23e5943e8eec08458ea8422acf1ae5e, type: 2}
+    second: {fileID: 2100000, guid: b19c3415142ac4d43be1f91c9c5891a2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -44,10 +44,7 @@ ModelImporter:
     clipAnimations: []
     isReadable: 0
   meshes:
-    lODScreenPercentages:
-    - 0.25
-    - 0.125
-    - 0.01
+    lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
