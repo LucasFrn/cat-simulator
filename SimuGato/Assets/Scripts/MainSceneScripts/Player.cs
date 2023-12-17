@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -44,6 +45,10 @@ public class Player : MonoBehaviour
     public GameObject painelInteracao;
     public TextMeshProUGUI textoInteracao;
     Animator animator;
+    //variaveis de morte
+    bool isMorrendo=false;
+    float timerMorte=0f;
+    public GameObject fundoMorrendo;
 
 
     // Start is called before the first frame update
@@ -194,6 +199,19 @@ public class Player : MonoBehaviour
                     TerminarBanho();
                 }
             }
+            if(isMorrendo){
+                if(timerMorte<=20f){
+                    timerMorte+=Time.deltaTime;
+                }
+                else{
+                    GameManager.Instance.Perder();
+                }
+                if(felicidade>=5&&fome>=5){
+                    isMorrendo=false;
+                    timerMorte=0;
+                    fundoMorrendo.SetActive(false);
+                }
+            }
         }//Fim do Jogo Pausado
     }
 
@@ -235,13 +253,13 @@ public class Player : MonoBehaviour
         return;              //luz manager na cena que foi passado como parametro ao jogador
         float ratioPassagemDoTempo= luzManager.ratioPassagemDoTempo;
         if (fome > 100) fome = 100;
-        else if (fome < 0) fome = 0;
+        else if (fome < 0){CountDown("fome"); fome = 0;}
         if (energia > 100) energia = 100;
-        else if (energia < 0) energia = 0;
+        else if (energia < 0){Desmaiar(); energia = 0;}
         if (higiene > 100) higiene = 100;
         else if (higiene < 0) higiene = 0;
         if (felicidade > 100) felicidade = 100;
-        else if (felicidade < 0) felicidade = 0;
+        else if (felicidade < 0) {CountDown("felicidade"); felicidade = 0;}
         if (social > 100) social = 100;
         else if (social < 0) social = 0;
 
@@ -306,6 +324,7 @@ public class Player : MonoBehaviour
     void Dormir(Transform cama){
         GameManager.Instance.janelaEmFoco=-1;//basta ser difente de 1
         dormindo=true;
+        transform.position=cama.position;
         luzManager.ratioPassagemDoTempo=1;
         modEnergia=-400;
         animator.SetTrigger("Dormi");
@@ -359,5 +378,21 @@ public class Player : MonoBehaviour
                 transform.rotation= Quaternion.Euler(new Vector3(0,-90,0));
             }
         }
+    }
+    void Desmaiar(){
+        Dormir(transform);
+        petiscos-=100;
+        if(petiscos<0){
+            petiscos=0;
+        }
+    }
+    void CountDown(string barrinha){
+        if(barrinha=="fome"){
+            isMorrendo=true;
+        }
+        if(barrinha=="felicidade"){
+            isMorrendo=true;
+        }
+        fundoMorrendo.SetActive(true);
     }
 }

@@ -58,4 +58,9 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void Perder(){
+        Time.timeScale=0f;
+        janelaEmFoco=-1;
+        uiController.Perder();
+    }
 }

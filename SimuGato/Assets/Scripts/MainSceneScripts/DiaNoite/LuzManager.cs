@@ -13,7 +13,8 @@ public class LuzManager : MonoBehaviour
     [SerializeField, Range(0, 24)] public float HoraDoDia;
 
     void Start(){
-        HoraDoDia=GameManager.Instance.HoraDoDiaAoTrocarCena;
+        if(GameManager.Instance!=null)
+            HoraDoDia=GameManager.Instance.HoraDoDiaAoTrocarCena;
     }
     private void FixedUpdate()
     {
