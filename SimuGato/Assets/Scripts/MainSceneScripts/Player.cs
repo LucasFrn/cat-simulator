@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     //fim coisas banho
     //modificadores barrinhas (valor a ser multiplicado pelo rate, vlaores positivos diminuem a barra)
     float modEnergia = 10;
+    float ModHigiene = 5;
     private int conversa = 0;
     private int brinc = 0;
     private int quebr = 0;
@@ -43,10 +45,16 @@ public class Player : MonoBehaviour
     public GameObject painelInteracao;
     public TextMeshProUGUI textoInteracao;
     Animator animator;
+    //variaveis de morte
+    bool isMorrendo=false;
+    float timerMorte=0f;
+    public GameObject fundoMorrendo;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        SpawnaNoLocal();
         animator = GetComponent<Animator>();
         if(animator==null){
             Debug.LogError("Personagem sem animator");
@@ -75,9 +83,8 @@ public class Player : MonoBehaviour
                         textoInteracao.text="Aperte E para ir trabalhar";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            TransferStatus();
+                            TrocaCena(1);
                             GameManager.Instance.janelaEmFoco=5;
-                            SceneManager.LoadScene(1);
                         }
                     }
                     if (hit.transform.tag == "Casa")
@@ -85,8 +92,8 @@ public class Player : MonoBehaviour
                         textoInteracao.text="Aperte E para entrar em casa";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            TransferStatus();
-                            SceneManager.LoadScene(2);
+                            TrocaCena(2);
+                            GameManager.Instance.janelaEmFoco=20;
                         }
                     }
                     if (hit.transform.tag == "Pesca")
@@ -95,7 +102,7 @@ public class Player : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.E)&&ControllerMiniGamePesca.controllerMiniGamePesca.miniGameRodando==false)
                         {
                             energia-=5f;
-                            ControllerMiniGamePesca.controllerMiniGamePesca.ComecaMiniGame();  
+                            ControllerMiniGamePesca.controllerMiniGamePesca.ProcuraPeixe();  
                         }
                     }
                     if (hit.transform.tag == "NPC")
@@ -128,6 +135,7 @@ public class Player : MonoBehaviour
                         if(hit.transform.name == "HouseArranhador"){
                             textoInteracao.text="Aperte E para brincar";
                             if (Input.GetKeyDown(KeyCode.E)){
+                                energia-=5;
                                 felicidade+=5;
                             }
                         }
@@ -139,13 +147,14 @@ public class Player : MonoBehaviour
                             if (Input.GetKeyDown(KeyCode.E)){
                                 if(petiscos>=20){
                                     petiscos-=20;
-                                    energia+=10;
+                                    energia+=20;
                                 }
                             }
                         }
                         if(hit.transform.name == "LixeiraGrande"){
                             textoInteracao.text="Aperte E para brincar com o lixo";
                             if (Input.GetKeyDown(KeyCode.E)){
+                                energia-=5;
                                 felicidade+=10;
                                 higiene-=20;
                             }
@@ -190,6 +199,19 @@ public class Player : MonoBehaviour
                     TerminarBanho();
                 }
             }
+            if(isMorrendo){
+                if(timerMorte<=20f){
+                    timerMorte+=Time.deltaTime;
+                }
+                else{
+                    GameManager.Instance.Perder();
+                }
+                if(felicidade>=5&&fome>=5){
+                    isMorrendo=false;
+                    timerMorte=0;
+                    fundoMorrendo.SetActive(false);
+                }
+            }
         }//Fim do Jogo Pausado
     }
 
@@ -231,13 +253,13 @@ public class Player : MonoBehaviour
         return;              //luz manager na cena que foi passado como parametro ao jogador
         float ratioPassagemDoTempo= luzManager.ratioPassagemDoTempo;
         if (fome > 100) fome = 100;
-        else if (fome < 0) fome = 0;
+        else if (fome < 0){CountDown("fome"); fome = 0;}
         if (energia > 100) energia = 100;
-        else if (energia < 0) energia = 0;
+        else if (energia < 0){Desmaiar(); energia = 0;}
         if (higiene > 100) higiene = 100;
         else if (higiene < 0) higiene = 0;
         if (felicidade > 100) felicidade = 100;
-        else if (felicidade < 0) felicidade = 0;
+        else if (felicidade < 0) {CountDown("felicidade"); felicidade = 0;}
         if (social > 100) social = 100;
         else if (social < 0) social = 0;
 
@@ -246,7 +268,7 @@ public class Player : MonoBehaviour
         fomeSldr.value =fome;
         energia -= modEnergia* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
         energiaSldr.value =energia;
-        higiene -= 5* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
+        higiene -= ModHigiene* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
         higieneSldr.value = higiene;
         felicidade -= 5* Time.fixedDeltaTime/(ratioPassagemDoTempo*12);
         felicidadeSldr.value =felicidade;
@@ -302,6 +324,7 @@ public class Player : MonoBehaviour
     void Dormir(Transform cama){
         GameManager.Instance.janelaEmFoco=-1;//basta ser difente de 1
         dormindo=true;
+        transform.position=cama.position;
         luzManager.ratioPassagemDoTempo=1;
         modEnergia=-400;
         animator.SetTrigger("Dormi");
@@ -320,6 +343,8 @@ public class Player : MonoBehaviour
         GameManager.Instance.janelaEmFoco=-1;//basta ser difente de 1
         banho=true;
         luzManager.ratioPassagemDoTempo=1;
+        ModHigiene=-400f;
+        modEnergia=20f;
         animator.SetTrigger("Banho");
     }
     void TerminarBanho(){
@@ -327,7 +352,47 @@ public class Player : MonoBehaviour
         timerBanho=tempoBanho;
         luzManager.ratioPassagemDoTempo=20;
         GameManager.Instance.janelaEmFoco=1;
-        higiene=100;
+        ModHigiene=5f;
+        modEnergia=10;
         animator.ResetTrigger("Banho");
+    }
+    void TrocaCena(int cena){//obs: ao chamar vc precisa mudar seu proprio janela em foco
+        TransferStatus();
+        GameManager.Instance.posGatoNoLoad=transform.position;
+        GameManager.Instance.rotGatoNoLoad=transform.rotation;
+        GameManager.Instance.HoraDoDiaAoTrocarCena=luzManager.HoraDoDia;
+        SceneManager.LoadScene(cena);
+    }
+    void SpawnaNoLocal(){
+        if(GameManager.Instance.posGatoNoLoad!=Vector3.zero){
+            transform.position = GameManager.Instance.posGatoNoLoad;
+            transform.rotation = GameManager.Instance.rotGatoNoLoad;
+        }
+        else{
+            if(GameManager.Instance.spawnGatoNoLoad!=null){
+                transform.position = GameManager.Instance.spawnGatoNoLoad.position;
+                transform.rotation = GameManager.Instance.spawnGatoNoLoad.rotation;
+            }
+            else{//na frente da casa, contantando que a casa n seja movida
+                transform.position = new Vector3(120.94f,14.93f,437.48f);
+                transform.rotation= Quaternion.Euler(new Vector3(0,-90,0));
+            }
+        }
+    }
+    void Desmaiar(){
+        Dormir(transform);
+        petiscos-=100;
+        if(petiscos<0){
+            petiscos=0;
+        }
+    }
+    void CountDown(string barrinha){
+        if(barrinha=="fome"){
+            isMorrendo=true;
+        }
+        if(barrinha=="felicidade"){
+            isMorrendo=true;
+        }
+        fundoMorrendo.SetActive(true);
     }
 }

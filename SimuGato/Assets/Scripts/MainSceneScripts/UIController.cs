@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     bool painelPausaAberto,painelAudioAberto;
-    public GameObject painelPausa,painelConfirmaSair,painelAudio;
+    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +22,9 @@ public class UIController : MonoBehaviour
         if(painelAudio!=null){
             painelAudio.SetActive(false);
             painelAudioAberto=false;
+        }
+        if(painelDerrota!=null){
+            painelDerrota.SetActive(false);
         }
     }
 
@@ -74,5 +77,10 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("JogoPrincipal");
 
+    }
+    public void Perder(){
+        painelDerrota.SetActive(true);
+        Cursor.lockState=CursorLockMode.Confined;
+        Cursor.visible=true;
     }
 }
