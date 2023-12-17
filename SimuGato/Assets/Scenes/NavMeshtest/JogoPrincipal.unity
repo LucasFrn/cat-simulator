@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13714,6 +13714,7 @@ MonoBehaviour:
   inventarioJogador: {fileID: 1212889872}
   minhaBarraDoJogador: {fileID: 1418764278}
   peixe: {fileID: 7335555059511549294, guid: 446f809d535e4f2489ed2b08a618898e, type: 3}
+  efeito: {fileID: 2068388138}
   barrinhaCompletudeLigada: 0
   miniGameRodando: 0
   resultadoMiniGame: {fileID: 485078570}

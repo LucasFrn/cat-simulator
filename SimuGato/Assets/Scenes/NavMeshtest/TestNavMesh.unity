@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4893,6 +4893,12 @@ MonoBehaviour:
   felicidade: 50
   social: 50
   jogoPausado: 0
+  cameraMiniMapa: {fileID: 0}
+  minimapaTamanho: 39
+  spawnGatoNoLoad: {fileID: 0}
+  posGatoNoLoad: {x: 0, y: 0, z: 0}
+  rotGatoNoLoad: {x: 0, y: 0, z: 0, w: 0}
+  HoraDoDiaAoTrocarCena: 6
   janelaEmFoco: 0
 --- !u!4 &517924243
 Transform:
@@ -17143,6 +17149,8 @@ MonoBehaviour:
   player: {fileID: 3901992162958770870}
   exp: 0
   pontosSkill: 0
+  tempoMaxProcura: 10
+  painelExclamacao: {fileID: 0}
 --- !u!1 &1212889869
 GameObject:
   m_ObjectHideFlags: 0
@@ -21799,6 +21807,7 @@ MonoBehaviour:
   painelPausa: {fileID: 530635349}
   painelConfirmaSair: {fileID: 1324244753}
   painelAudio: {fileID: 120962060}
+  painelDerrota: {fileID: 0}
 --- !u!4 &1685723242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7835a30c18817d6429893d8755a2234e, type: 3}
@@ -23342,6 +23351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LuzDirecional: {fileID: 1529931413}
+  musica: {fileID: 0}
   preset: {fileID: 11400000, guid: dad1b6f9d9e202c45b930478a46baf91, type: 2}
   ratioPassagemDoTempo: 20
   HoraDoDia: 6.5
