@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
                         textoInteracao.text="Aperte E para ir trabalhar";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            TrocaCena(1);
+                            TrocaCena(2);
                             GameManager.Instance.janelaEmFoco=5;
                         }
                     }
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
                         textoInteracao.text="Aperte E para entrar em casa";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            TrocaCena(2);
+                            TrocaCena(3);
                             GameManager.Instance.janelaEmFoco=20;
                         }
                     }

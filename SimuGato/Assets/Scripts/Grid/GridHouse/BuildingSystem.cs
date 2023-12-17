@@ -262,7 +262,7 @@ public class BuildingSystem : MonoBehaviour
     public void ExitMap()
     {
         GameManager.Instance.janelaEmFoco=1;
-        SceneManager.LoadScene(0);       
+        SceneManager.LoadScene(1);       
     }
 
     public void Clear()

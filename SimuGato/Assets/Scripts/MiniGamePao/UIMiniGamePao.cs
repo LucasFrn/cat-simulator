@@ -55,7 +55,7 @@ public class UIMiniGamePao : MonoBehaviour
         ControllerMiniGamePao.controllerMiniGamePao.AtualizarBarrinhas();
         GameManager.Instance.HoraDoDiaAoTrocarCena+=4f;
         GameManager.Instance.janelaEmFoco=1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     void AtualizarInfo(){
         sliderTaxaAcerto.value=ControllerMiniGamePao.controllerMiniGamePao.tx_Acerto;
