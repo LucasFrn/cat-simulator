@@ -89,7 +89,7 @@ public class UIController : MonoBehaviour
 
     public void Jogar() 
     {
-        SceneManager.LoadScene("JogoPrincipal");
+        SceneManager.LoadScene("Intro");
 
     }
     public void Perder(){
