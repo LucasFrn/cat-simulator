@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    bool painelPausaAberto,painelAudioAberto,painelTutorialAberto;
-    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota,painelTutorial;
+    bool painelPausaAberto,painelAudioAberto,painelTutorialAberto,painelCreditosAberto;
+    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota,painelTutorial,painelCreditos;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,10 @@ public class UIController : MonoBehaviour
             painelTutorial.SetActive(false);
             painelTutorialAberto=false;
         }
+        if(painelCreditos!=null){
+            painelCreditos.SetActive(false);
+            painelCreditosAberto=false;
+        }
     }
 
     // Update is called once per frame
@@ -40,6 +44,9 @@ public class UIController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Escape)&&painelTutorialAberto){
             AlternaPainelTutorial();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape)&&painelCreditosAberto){
+            AlternaPainelCreditos();
         }
     }
     public void AlternaPainelPausa(){
@@ -100,6 +107,18 @@ public class UIController : MonoBehaviour
             painelTutorial.SetActive(true);
             painelTutorialAberto=true;
             GameManager.Instance.janelaEmFoco=8; 
+        }
+    }
+    public void AlternaPainelCreditos(){
+        if(painelCreditosAberto){
+            painelCreditos.SetActive(false);
+            painelCreditosAberto=false;
+            GameManager.Instance.janelaEmFoco=1;
+        }
+        else{
+            painelCreditos.SetActive(true);
+            painelCreditosAberto=true;
+            GameManager.Instance.janelaEmFoco=9; 
         }
     }
 }

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
                             // 6 é o menu audio
                             // 7 é a skilltree
                             // 8 é o tutorial
+                            // 9 é os creditos
     public void Awake()
     {
         
