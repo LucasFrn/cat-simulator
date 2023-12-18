@@ -410,7 +410,7 @@ public class Player : MonoBehaviour
                 transform.rotation = GameManager.Instance.spawnGatoNoLoad.rotation;
             }
             else{//na frente da casa, contantando que a casa n seja movida
-                transform.position = new Vector3(120.94f,14.93f,437.48f);
+                transform.position = new Vector3(288.5f,16.3899994f,311.200012f);
                 transform.rotation= Quaternion.Euler(new Vector3(0,-90,0));
             }
         }

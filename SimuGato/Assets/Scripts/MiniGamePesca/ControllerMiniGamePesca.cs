@@ -35,6 +35,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
     float randProcura;
     bool conseguePescar;
     public GameObject painelExclamacao;
+    public GameObject painelResultado;
     void Awake(){
         controllerMiniGamePesca = this;
         miniGameRodando=false;
@@ -89,6 +90,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
                 resultadoMiniGame.text = "O peixe escapou!";
                 efeito.Erro();
                 resultadoMiniGame.gameObject.SetActive(true);
+                painelResultado.gameObject.SetActive(true);
                 Invoke("FechaResultado",2f);
                 GameManager.Instance.janelaEmFoco=1;
             }
@@ -103,6 +105,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
         player.felicidade+=novoPeixe.felicidadeAoPescar;
         resultadoMiniGame.text = "Vc pescou um peixe, um: "+ novoPeixe.FalaInfo();
         resultadoMiniGame.gameObject.SetActive(true);
+        painelResultado.gameObject.SetActive(true);
         Debug.Log("Vc pescou um peixe, um: "+ novoPeixe.FalaInfo());
         ControleExp();
         FecharMinigame();
@@ -112,6 +115,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
         Debug.Log("O peixe escapou");
         resultadoMiniGame.text = "O peixe escapou!";
         resultadoMiniGame.gameObject.SetActive(true);
+        painelResultado.gameObject.SetActive(true);
         FecharMinigame();
     }
     public void FecharMinigame(){
@@ -139,6 +143,7 @@ public class ControllerMiniGamePesca : MonoBehaviour
     }
     public void FechaResultado(){
         resultadoMiniGame.gameObject.SetActive(false);
+        painelResultado.gameObject.SetActive(false);
     }
     public void AtivaHabilidade(int habilidades){
         switch(habilidades){

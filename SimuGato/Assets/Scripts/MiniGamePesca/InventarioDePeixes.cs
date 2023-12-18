@@ -8,6 +8,7 @@ public class InventarioDePeixes : MonoBehaviour
 {
     public static InventarioDePeixes meuInventarioDePeixes;
     public Text mensagem;
+    public GameObject painelMensagem;
     public GameObject painelInventario;
     public bool inventarioAberto;
     PeixeItem peixeIndicador;
@@ -173,6 +174,7 @@ public class InventarioDePeixes : MonoBehaviour
                     ControllerMiniGamePesca.controllerMiniGamePesca.player.fome+=fome;
                     mensagem.text = "Vc comeu um " + peixe.nomePeixe.ToString() + " e restaurou " + fome.ToString() + " de fome";
                     mensagem.gameObject.SetActive(true);
+                    painelMensagem.SetActive(true);
                     Invoke("FechaMensagem",3f);
                 }break;
                 case 1:{
@@ -180,6 +182,7 @@ public class InventarioDePeixes : MonoBehaviour
                     ControllerMiniGamePesca.controllerMiniGamePesca.player.petiscos+= dinheiro;
                     mensagem.text = "Vc vendeu um " + peixe.nomePeixe.ToString() + " e ganhou " + dinheiro.ToString() + " petiscos";
                     mensagem.gameObject.SetActive(true);
+                    painelMensagem.SetActive(true);
                     Invoke("FechaMensagem",3f);
                 }break;
             }
@@ -188,6 +191,7 @@ public class InventarioDePeixes : MonoBehaviour
     }
     public void FechaMensagem(){
         mensagem.gameObject.SetActive(false);
+        painelMensagem.SetActive(false);
     }
     public void AlteraTexto(string nome, float fome, int valor){
         textoNome.text=nome;
