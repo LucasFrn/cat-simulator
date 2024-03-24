@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b1b8668f0cd8d4c944416d4a6df00f, type: 3}
+  m_Name: Parsnip
+  m_EditorClassIdentifier: 
+  <Nome>k__BackingField: Parsnip
+  <ID>k__BackingField: 0
+  <NFases>k__BackingField: 3
+  <prefabs>k__BackingField:
+  - {fileID: 3041003957587862677, guid: b4b0f7e41f501474cafed5143f86e37f, type: 3}
+  - {fileID: 5249124686064998572, guid: 6b9b16ace6dd49744a4b60ac0afe2ddc, type: 3}
+  - {fileID: 5501500903096660751, guid: 0516c5e7f1adeaf478ed5816c73ba65f, type: 3}

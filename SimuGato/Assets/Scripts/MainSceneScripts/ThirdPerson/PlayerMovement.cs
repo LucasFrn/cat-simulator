@@ -78,14 +78,15 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Entered");
-        if (collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca") || collision.gameObject.CompareTag("Banco")|| collision.gameObject.CompareTag("ObjetosDaCasa"))
+        if (collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca") || collision.gameObject.CompareTag("Banco")|| collision.gameObject.CompareTag("ObjetosDaCasa")||collision.gameObject.CompareTag("Garden"))
         {
             isGrounded = true;
             animator.ResetTrigger("Pulei");
         }
+        
     }
     void OnCollisionStay(Collision collision){
-        if(collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca")|| collision.gameObject.CompareTag("ObjetosDaCasa")){
+        if(collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca")|| collision.gameObject.CompareTag("ObjetosDaCasa")||collision.gameObject.CompareTag("Garden")){
             isGrounded=true;
         }
     } //Podre, corrigir a maneira como o gato sabe se está no chão no futuro
@@ -93,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionExit(Collision collision)
     {
         Debug.Log("Exited");
-        if (collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca")|| collision.gameObject.CompareTag("ObjetosDaCasa"))
+        if (collision.gameObject.CompareTag("Terra") || collision.gameObject.CompareTag("Pesca")|| collision.gameObject.CompareTag("ObjetosDaCasa")||collision.gameObject.CompareTag("Garden"))
         {
             isGrounded = false;
             /*  Logica incorreta!
