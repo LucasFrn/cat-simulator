@@ -92,7 +92,7 @@ public class GardenInfo
         {
             pos=item.Key;
             meuTile=item.Value;
-            if(meuTile.Watered == true){
+            if(meuTile.Watered == true){//adicionar logica que confere se tem uma planta né
                 if(meuTile.plantInfo.FaseAtual<meuTile.plantInfo.FasesParaCrescer){
                     meuTile.plantInfo.FaseAtual++;
                     GameObject.Destroy(meuTile.plantPrefab.gameObject);
@@ -158,9 +158,9 @@ public class TileInfo{
         floorPrefab = null;
         plantPrefab = null;
     }
-    public void AvancarEstagio(BibliotecaPlantas bibliotecaPlantas){
+    //public void AvancarEstagio(BibliotecaPlantas bibliotecaPlantas){
         
-    }
+    //}
 }
 
 public class PlantInfo{
