@@ -10,13 +10,13 @@ public class NoiteState : IState
         this.ambMachine=am;
     }
     public void Enter(){
-        if(DebugManager.debugManager.DEBUG)
-            Debug.Log("Ficou de noite");
+        //if(DebugManager.debugManager.DEBUG)
+        //    Debug.Log("Ficou de noite");
     }
     public void Exit()
     {
-        if(DebugManager.debugManager.DEBUG)
-            Debug.Log("Fim da noite");
+        //if(DebugManager.debugManager.DEBUG)
+        //   Debug.Log("Fim da noite");
     }
     public void Update()
     {

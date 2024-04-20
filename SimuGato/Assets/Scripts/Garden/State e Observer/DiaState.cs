@@ -13,16 +13,14 @@ public class DiaState : IState
     {
         //Canto do galo
         SubjectPlayer.instance.NotifyObserver();//Cresce as plantas
-        if(DebugManager.debugManager.DEBUG)
-            Debug.Log("Ficou de dia");
+        //if(DebugManager.debugManager.DEBUG)
+            //Debug.Log("Ficou de dia");
     }
-
     public void Exit()
     {
-        if(DebugManager.debugManager.DEBUG)
-            Debug.Log("Fim do dia");
+        //if(DebugManager.debugManager.DEBUG)
+        //    //Debug.Log("Fim do dia");
     }
-
     public void Update()
     {
         timer-=Time.deltaTime;

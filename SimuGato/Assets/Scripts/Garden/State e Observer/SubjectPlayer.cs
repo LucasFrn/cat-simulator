@@ -23,5 +23,4 @@ public class SubjectPlayer : MonoBehaviour
             obs.NotifyObserver();
         }
     }
-    //Colocar no Enter do state dia notify
 }
