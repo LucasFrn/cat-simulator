@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "plantaExe",menuName ="Planta",order = 4)]
+[CreateAssetMenu(fileName = "plantaExe",menuName ="ScriptableObjects/Planta",order = 2)]
 public class PlantaSO:ScriptableObject {
     [field: SerializeField]
     public string Nome {get; private set;}
