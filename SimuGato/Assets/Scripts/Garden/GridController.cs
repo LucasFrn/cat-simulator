@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GridController : MonoBehaviour
+public class GridController : MonoBehaviour,IObserver
 {
     [SerializeField]
     Transform cuboGuia;
@@ -19,6 +19,7 @@ public class GridController : MonoBehaviour
     void Start()
     {
         gardenInfo = new(grid,bibliotecaChao,bibliotecaPlantas);
+        SubjectPlayer.instance.AddObserver(this);
     }
 
     // Update is called once per frame
@@ -46,11 +47,15 @@ public class GridController : MonoBehaviour
             gardenInfo.RegarAt(lastCellPos);
         }
         if(Input.GetKeyDown(KeyCode.Alpha4)){
-            gardenInfo.CrescerPlantas();
+            //gardenInfo.CrescerPlantas();
+            SubjectPlayer.instance.NotifyObserver();
         }
         if(Input.GetKeyDown(KeyCode.Alpha5)){
             gardenInfo.ColherAt(lastCellPos);
         }
+    }
+     public void NotifyObserver(){
+        gardenInfo.CrescerPlantas();
     }
     
 }
