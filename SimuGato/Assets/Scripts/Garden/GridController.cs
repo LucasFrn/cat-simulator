@@ -41,7 +41,7 @@ public class GridController : MonoBehaviour,IObserver
             gardenInfo.HoeAt(lastCellPos);
         }
         if(Input.GetKeyDown(KeyCode.Alpha2)){
-            gardenInfo.PlantAt(lastCellPos,0);
+            gardenInfo.PlantAt(lastCellPos,1);
         }
         if(Input.GetKeyDown(KeyCode.Alpha3)){
             gardenInfo.RegarAt(lastCellPos);

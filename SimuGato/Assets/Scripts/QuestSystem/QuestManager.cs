@@ -99,6 +99,6 @@ public class QuestManager : MonoBehaviour
         ChangeQuestState(quest.info.id,QuestState.FINISHED);
     }
     private void ClaimRewards(Quest quest){
-
+        //Eviar eventos de recompensa, ou literalmente qualquer outra coisa kkkkk
     }
 }

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9db473146656b0045a0ab423169f0a8f, type: 3}
-  m_Name: BibliotecaPlantas
+  m_Script: {fileID: 11500000, guid: 48b1b8668f0cd8d4c944416d4a6df00f, type: 3}
+  m_Name: Abobora
   m_EditorClassIdentifier: 
-  catalogoPlantas:
-  - {fileID: 11400000, guid: e18eb8e878bbd35439d7d784be4a6bd0, type: 2}
-  - {fileID: 11400000, guid: e4b5d2cb07711664bb8b91c44d1c857a, type: 2}
+  <Nome>k__BackingField: Abobora
+  <ID>k__BackingField: 1
+  <NFases>k__BackingField: 3
+  <prefabs>k__BackingField:
+  - {fileID: 7110473767991199686, guid: a819984e110226f43a3eaf41574e8b1a, type: 3}
