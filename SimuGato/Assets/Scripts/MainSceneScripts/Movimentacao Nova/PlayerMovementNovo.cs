@@ -6,7 +6,8 @@ public class PlayerMovementNovo : MonoBehaviour
 {   
     [Header("Movement")]
     [SerializeField] Transform orientation;
-    [SerializeField] float moveSpeed;
+    [SerializeField] float moveSpeedRegular; //eu gosto de 8
+    float moveSpeed;
     [SerializeField] float groundDrag;
     [SerializeField]float jumpForce;
     [SerializeField]float jumpCoolDown;
@@ -29,6 +30,7 @@ public class PlayerMovementNovo : MonoBehaviour
         rb.freezeRotation=true;
         movimentHelper = rb.mass * 10;
         readyToJump=true;
+        moveSpeed=moveSpeedRegular;
     }
 
     // Update is called once per frame
@@ -79,5 +81,12 @@ public class PlayerMovementNovo : MonoBehaviour
     }
     void ResetJump(){
         readyToJump = true;
+    }
+
+    public void ChangeVelocity(float vel){
+        moveSpeed=vel;
+    }
+    public void ResetMoveSpeed(){
+        ChangeVelocity(moveSpeedRegular);
     }
 }

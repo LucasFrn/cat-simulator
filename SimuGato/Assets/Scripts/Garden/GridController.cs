@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GridController : MonoBehaviour,IObserver
+public class GridController : MonoBehaviour, IDataPersistance
 {
     [SerializeField]
     Transform cuboGuia;
@@ -15,11 +15,28 @@ public class GridController : MonoBehaviour,IObserver
     [SerializeField] GardenInfo gardenInfo;
     [SerializeField] BibliotecaChao bibliotecaChao;
     [SerializeField] BibliotecaPlantas bibliotecaPlantas;
-    // Start is called before the first frame update
+
+    public void LoadData(GameData data)
+    {
+        if(data.gardenDatas!=null){
+            Debug.Log($"garden datas tem tamanho {data.gardenDatas.Length}");
+            if(data.gardenDatas.Length!=0)
+                gardenInfo.LoadData(data.gardenDatas);
+        }
+    }
+
+    public void SaveData(GameData data)
+    {
+        Debug.Log("Grid controller vai tentar salvar");
+        gardenInfo.SaveData(data);
+    }
+
+    void Awake(){
+        gardenInfo = new(grid,bibliotecaChao,bibliotecaPlantas);
+    }
     void Start()
     {
-        gardenInfo = new(grid,bibliotecaChao,bibliotecaPlantas);
-        SubjectPlayer.instance.AddObserver(this);
+        
     }
 
     // Update is called once per frame
@@ -41,21 +58,17 @@ public class GridController : MonoBehaviour,IObserver
             gardenInfo.HoeAt(lastCellPos);
         }
         if(Input.GetKeyDown(KeyCode.Alpha2)){
-            gardenInfo.PlantAt(lastCellPos,1);
+            gardenInfo.PlantAt(lastCellPos,0);
         }
         if(Input.GetKeyDown(KeyCode.Alpha3)){
             gardenInfo.RegarAt(lastCellPos);
         }
         if(Input.GetKeyDown(KeyCode.Alpha4)){
-            //gardenInfo.CrescerPlantas();
-            SubjectPlayer.instance.NotifyObserver();
+            gardenInfo.CrescerPlantas();
         }
         if(Input.GetKeyDown(KeyCode.Alpha5)){
             gardenInfo.ColherAt(lastCellPos);
         }
-    }
-     public void NotifyObserver(){
-        gardenInfo.CrescerPlantas();
     }
     
 }
