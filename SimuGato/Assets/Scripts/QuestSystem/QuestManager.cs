@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
+    [Header("Config")]
+    [SerializeField]private bool loadQuestState = true;
     private Dictionary<string, Quest> questMap;
 
     private int currentPlayerLevel;
@@ -17,16 +19,21 @@ public class QuestManager : MonoBehaviour
         GameEventsManager.instance.questEvents.onAdvanceQuest+=AdvanceQuest;
         GameEventsManager.instance.questEvents.onFinishQuest+=FinishQuest;
         GameEventsManager.instance.playerEvents.onPlayerLevelChange += PlayerLevelChange;
+        GameEventsManager.instance.questEvents.onQuestStepStateChange += QuestStepStateChange;
     }
     void OnDisable(){
         GameEventsManager.instance.questEvents.onStartQuest-=StartQuest;
         GameEventsManager.instance.questEvents.onAdvanceQuest-=AdvanceQuest;
         GameEventsManager.instance.questEvents.onFinishQuest-=FinishQuest;
         GameEventsManager.instance.playerEvents.onPlayerLevelChange -= PlayerLevelChange;
+        GameEventsManager.instance.questEvents.onQuestStepStateChange -= QuestStepStateChange;
     }
     void Start(){
         //avisar o estado inicial da quest pra todo mundo ao iniciar
         foreach( Quest quest in questMap.Values){
+            if(quest.state==QuestState.IN_PROGRESS){
+                quest.InstantiateCurrentQuestStep(this.transform);
+            }
             GameEventsManager.instance.questEvents.QuestStateChange(quest);
         }
     }
@@ -38,7 +45,7 @@ public class QuestManager : MonoBehaviour
             if(idToQuestMap.ContainsKey(questInfo.id)){
                 Debug.LogWarning("Duplicate ID found when creating quest map: "+ questInfo.id);
             }
-            idToQuestMap.Add(questInfo.id,new Quest(questInfo));
+            idToQuestMap.Add(questInfo.id,LoadQuest(questInfo));
         }
         return idToQuestMap;
     }
@@ -65,6 +72,7 @@ public class QuestManager : MonoBehaviour
         foreach(QuestInfoSO prerequisiteQuestInfo in quest.info.questPrerequisites){
             if((GetQuestByID(prerequisiteQuestInfo.id)).state != QuestState.FINISHED){
                 meetsRequirements=false;
+                break;
             }
         }
         return meetsRequirements;
@@ -100,5 +108,47 @@ public class QuestManager : MonoBehaviour
     }
     private void ClaimRewards(Quest quest){
         //Eviar eventos de recompensa, ou literalmente qualquer outra coisa kkkkk
+    }
+    private void QuestStepStateChange(string id,int stepIndex, QuestStepState questStepState){
+        Quest quest = GetQuestByID(id);
+        quest.StoreQuestStepState(questStepState, stepIndex);
+        ChangeQuestState(id,quest.state);
+    }
+    private void OnApplicationQuit(){
+        foreach(Quest quest in questMap.Values){
+            SaveQuest(quest);
+        }
+    }
+    private void SaveQuest(Quest quest){
+        try{
+            QuestData questData = quest.GetQuestData();
+            //Serialize using JsonUtility, but use whatever you like, o mano recomendou JSON.NET
+            string serializedData = JsonUtility.ToJson(questData);
+            //saving to playerPrefs is just a quick exemple
+            //PlayerPrefs.SetString(quest.info.id,serializedData);
+            Debug.Log(serializedData);
+        }
+        catch(System.Exception e){
+            Debug.Log("Failed to save quest with id "+ quest.info.id+ ": "+ e);
+        }
+    }
+    private Quest LoadQuest(QuestInfoSO questInfo){
+        Quest quest = null;
+        try{
+            //Load quest from saved data
+            if(PlayerPrefs.HasKey(questInfo.id)&&loadQuestState)//NÃO FOI IMPLEMENTADO ASSIM
+            {
+                string serializedData = PlayerPrefs.GetString(questInfo.id);
+                QuestData questData = JsonUtility.FromJson<QuestData>(serializedData);
+                quest= new Quest(questInfo,questData.state,questData.questStepIndex,questData.questStepStates);
+            }
+            else{
+                quest = new Quest(questInfo);
+            }
+        }
+        catch (System.Exception e){
+            Debug.LogError("Failed to load quest with id: "+quest.info.id +": "+ e);
+        }
+        return quest;
     }
 }
