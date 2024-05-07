@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour
+public class QuestManager : MonoBehaviour,IDataPersistance
 {
     [Header("Config")]
     [SerializeField]private bool loadQuestState = true;
     private Dictionary<string, Quest> questMap;
+    private Dictionary<string,QuestData> questsLoadadas;
 
     private int currentPlayerLevel;
 
-    private void Awake(){
+    /* private void Awake(){
         questMap= CreateQuestMap();
         
-    }
+    } */
     void OnEnable(){
         GameEventsManager.instance.questEvents.onStartQuest+=StartQuest;
         GameEventsManager.instance.questEvents.onAdvanceQuest+=AdvanceQuest;
@@ -29,6 +31,7 @@ public class QuestManager : MonoBehaviour
         GameEventsManager.instance.questEvents.onQuestStepStateChange -= QuestStepStateChange;
     }
     void Start(){
+        questMap= CreateQuestMap();
         //avisar o estado inicial da quest pra todo mundo ao iniciar
         foreach( Quest quest in questMap.Values){
             if(quest.state==QuestState.IN_PROGRESS){
@@ -114,12 +117,12 @@ public class QuestManager : MonoBehaviour
         quest.StoreQuestStepState(questStepState, stepIndex);
         ChangeQuestState(id,quest.state);
     }
-    private void OnApplicationQuit(){
+    /* private void OnApplicationQuit(){
         foreach(Quest quest in questMap.Values){
             SaveQuest(quest);
         }
-    }
-    private void SaveQuest(Quest quest){
+    } */
+    /* private void SaveQuest(Quest quest, GameData data){
         try{
             QuestData questData = quest.GetQuestData();
             //Serialize using JsonUtility, but use whatever you like, o mano recomendou JSON.NET
@@ -131,8 +134,8 @@ public class QuestManager : MonoBehaviour
         catch(System.Exception e){
             Debug.Log("Failed to save quest with id "+ quest.info.id+ ": "+ e);
         }
-    }
-    private Quest LoadQuest(QuestInfoSO questInfo){
+    } */
+    /* private Quest LoadQuest(QuestInfoSO questInfo){
         Quest quest = null;
         try{
             //Load quest from saved data
@@ -150,5 +153,38 @@ public class QuestManager : MonoBehaviour
             Debug.LogError("Failed to load quest with id: "+quest.info.id +": "+ e);
         }
         return quest;
+    } */
+    private Quest LoadQuest(QuestInfoSO questInfo){
+        Quest quest=null;
+        if(questsLoadadas.ContainsKey(questInfo.id)&&loadQuestState){
+            QuestData questData = questsLoadadas[questInfo.id];
+            quest = new Quest(questInfo,questData.state,questData.questStepIndex,questData.questStepStates);
+        }
+        else{
+            quest = new Quest(questInfo);
+        }
+        return quest;
+    }
+
+    public void LoadData(GameData data)
+    {
+        Dictionary<string,QuestData> questsLoadadas = new Dictionary<string, QuestData>();
+        foreach(QuestData questData in data.questsData){
+            questsLoadadas.Add(questData.id,questData);
+        }
+        this.questsLoadadas=questsLoadadas;
+    }
+
+    public void SaveData(GameData data)
+    {
+        QuestData myQuest;
+        QuestData[] newQuestDatas = new QuestData[questMap.Count];
+        int i=0;
+        foreach(Quest quest in questMap.Values){
+            myQuest = quest.GetQuestData();
+            newQuestDatas[i]=myQuest;
+            i++;
+        }
+        data.questsData=newQuestDatas;
     }
 }

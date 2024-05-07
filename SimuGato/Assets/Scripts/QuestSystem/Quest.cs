@@ -66,6 +66,6 @@ public class Quest
         }
     }
     public QuestData GetQuestData(){
-        return new QuestData(state,currentQuestStepIndex,questStepStates);
+        return new QuestData(info.id,state,currentQuestStepIndex,questStepStates);
     }
 }
