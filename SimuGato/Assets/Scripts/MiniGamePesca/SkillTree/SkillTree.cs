@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,9 @@ public class SkillTree : MonoBehaviour
     public Button[] buttonSkills;
     public GameObject painelSkillTree;
     public bool skillTreeOpen;
+    void Awake(){
+        numeroHabilidades=5;//NUMERO DE HALIBIDADES TOTAIS
+    }
     void Start()
     {
         meuControllerPesca = ControllerMiniGamePesca.controllerMiniGamePesca;
@@ -23,10 +27,15 @@ public class SkillTree : MonoBehaviour
             painelSkillTree.SetActive(false);
             skillTreeOpen=false;
         }
-        for(int i=0;i<2;i++){//ESSE NUMERO É IGUAL A QUATIDADE DE "RAIZES" QUE EXISTEM
+        for(int i=0;i<2;i++){//ESSE NUMERO DEVE SER IGUAL A QUATIDADE DE "RAIZES" QUE EXISTEM
             podeComprarSkill[i]=true;
         }
-        numeroHabilidades=5;//NUMERO DE HALIBIDADES TOTAIS
+        for(int i = 0;i<skillsCompradas.Length;i++){
+            if(skillsCompradas[i]==true){
+                LiberaParaComprar(i);
+                meuControllerPesca.AtivaHabilidade(i);
+            }
+        }
         AtualizaInteractable();
     }
 
@@ -86,6 +95,19 @@ public class SkillTree : MonoBehaviour
                 buttonSkills[i].interactable=false;
             else
                 buttonSkills[i].interactable=true;
+        }
+    }
+    public bool[] GetSkillCompradas(){
+        bool[] newSkillsCompradas = new bool[numeroHabilidades];
+        for(int i=0;i<numeroHabilidades;i++){
+            newSkillsCompradas[i]=skillsCompradas[i];
+        }
+        return newSkillsCompradas;
+
+    }
+    public void AualizaComData(bool[]skillsJaCompradas){
+        for(int i=0;i<numeroHabilidades;i++){
+            skillsCompradas[i]=skillsJaCompradas[i];
         }
     }
 }

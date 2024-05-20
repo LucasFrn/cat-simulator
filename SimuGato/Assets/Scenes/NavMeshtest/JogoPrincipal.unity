@@ -3211,7 +3211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2, z: -4}
+  m_FollowOffset: {x: 0, y: 0, z: -3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -6724,7 +6724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2, z: -4}
+  m_FollowOffset: {x: 0, y: 0, z: -3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -6988,7 +6988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456258274}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20701736, y: 0.000000016833642, z: -0.000000003562019, w: 0.9783373}
+  m_LocalRotation: {x: -0.021693626, y: -0.00001016858, z: -0.00000022064533, w: 0.9997647}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11208,7 +11208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788339164}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22975291, y: -0.000000016746089, z: 0.0000000039532155, w: 0.973249}
+  m_LocalRotation: {x: 0.001603197, y: -0.000010183319, z: 0.000000016325886, w: 0.99999875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18079,11 +18079,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   peixesPossiveis:
-  - {fileID: 11400000, guid: 16eb7d4cafa483f418d5a94169f8464f, type: 2}
-  - {fileID: 11400000, guid: 045d0f8b843690147a7b7016580cf905, type: 2}
-  - {fileID: 11400000, guid: 0f45b07193dde4147b8f83a6010e05cf, type: 2}
   - {fileID: 11400000, guid: 1fb3ef86cdc176049a50cc2fbf0139c7, type: 2}
+  - {fileID: 11400000, guid: 0f45b07193dde4147b8f83a6010e05cf, type: 2}
+  - {fileID: 11400000, guid: 045d0f8b843690147a7b7016580cf905, type: 2}
   - {fileID: 11400000, guid: f83cb6534d987744196e7dbba5a6f46f, type: 2}
+  - {fileID: 11400000, guid: 16eb7d4cafa483f418d5a94169f8464f, type: 2}
   inventarioJogador: {fileID: 1212889872}
   minhaBarraDoJogador: {fileID: 1418764278}
   peixe: {fileID: 7335555059511549294, guid: 446f809d535e4f2489ed2b08a618898e, type: 3}
@@ -18102,6 +18102,7 @@ MonoBehaviour:
   tempoMaxProcura: 10
   painelExclamacao: {fileID: 696811377}
   painelResultado: {fileID: 1550200384}
+  minhaSkillTree: {fileID: 1739170075}
 --- !u!1 &1212889869
 GameObject:
   m_ObjectHideFlags: 0
@@ -19239,7 +19240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2, z: -4}
+  m_FollowOffset: {x: 0, y: 0, z: -3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -22142,7 +22143,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.5
+    Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 2
     m_AccelTime: 0.2
@@ -22200,7 +22201,7 @@ MonoBehaviour:
     m_Radius: 3
   - m_Height: 2
     m_Radius: 4
-  - m_Height: -1
+  - m_Height: 0
     m_Radius: 3
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
@@ -22216,7 +22217,7 @@ Transform:
   m_GameObject: {fileID: 1422972475}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 102, y: 18.39, z: 372.6}
+  m_LocalPosition: {x: 288.5, y: 16.39, z: 308.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22345,8 +22346,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425712142}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18426846, y: -0, z: -0, w: 0.982876}
-  m_LocalPosition: {x: 102, y: 18.39, z: 372.6}
+  m_LocalRotation: {x: -0.021693628, y: -0.000010168583, z: -0.00000022064536, w: 0.99976474}
+  m_LocalPosition: {x: 288.50006, y: 16.39962, z: 308.19955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24627,7 +24628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1566328422
 Transform:
   m_ObjectHideFlags: 0
@@ -36884,7 +36885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136013884}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18426844, y: -1e-45, z: -0, w: 0.98287594}
+  m_LocalRotation: {x: -0.04487802, y: -0.000010157006, z: -0.0000004562859, w: 0.9989925}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37423,7 +37424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6650135671654101976, guid: 9b4c7eb26be53a443878851a9a8c0843, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 102
+      value: 288.5
       objectReference: {fileID: 0}
     - target: {fileID: 6650135671654101976, guid: 9b4c7eb26be53a443878851a9a8c0843, type: 3}
       propertyPath: m_LocalPosition.y
@@ -37431,7 +37432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6650135671654101976, guid: 9b4c7eb26be53a443878851a9a8c0843, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 376.6
+      value: 311.2
       objectReference: {fileID: 0}
     - target: {fileID: 6650135671654101976, guid: 9b4c7eb26be53a443878851a9a8c0843, type: 3}
       propertyPath: m_LocalRotation.w
@@ -37439,15 +37440,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6650135671654101976, guid: 9b4c7eb26be53a443878851a9a8c0843, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6650135671654101976, guid: 9b4c7eb26be53a443878851a9a8c0843, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6650135671654101976, guid: 9b4c7eb26be53a443878851a9a8c0843, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6650135671654101976, guid: 9b4c7eb26be53a443878851a9a8c0843, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -37558,7 +37559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1049662855}
-  moveSpeedRegular: 10
+  moveSpeedRegular: 8
   groundDrag: 4
   jumpForce: 1.2
   jumpCoolDown: 1
@@ -37795,8 +37796,8 @@ SceneRoots:
   - {fileID: 1267560603}
   - {fileID: 1529931414}
   - {fileID: 550533940}
-  - {fileID: 1927622808}
   - {fileID: 1820961277}
+  - {fileID: 1927622808}
   - {fileID: 360079272}
   - {fileID: 709665286}
   - {fileID: 4275694713643522240}

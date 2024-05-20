@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class InventarioDePeixes : MonoBehaviour
 {
-    public static InventarioDePeixes meuInventarioDePeixes;
     public Text mensagem;
     public GameObject painelMensagem;
     public GameObject painelInventario;
@@ -233,5 +232,30 @@ public class InventarioDePeixes : MonoBehaviour
         powerUpFomeComprado=true;
         modPowerUpFome=1.25f;
     }
-
+    public void AdicionaPeixeData(InventarioPeixesData inventarioPeixesData, string nomePeixe){
+        switch(nomePeixe){
+            case "Baiacu":
+                inventarioPeixesData.quantidadePeixes[(int)TiposPeixes.Baiacu]++;
+            break;
+            case "Linguado":
+                inventarioPeixesData.quantidadePeixes[(int)TiposPeixes.Linguado]++;
+            break;
+            case "Pacu": 
+                inventarioPeixesData.quantidadePeixes[(int)TiposPeixes.Pacu]++;
+            break;
+            case "Piranha":
+                inventarioPeixesData.quantidadePeixes[(int)TiposPeixes.Piranha]++;
+                break;
+            case "Tilapia":
+                inventarioPeixesData.quantidadePeixes[(int)TiposPeixes.Tilapia]++;
+                break;
+            default: Debug.LogWarning("Passamos um nome de peixe para ser salvo que não está cadastrado"); break;
+        }
+    }
+    public void SaveData(InventarioPeixesData inventarioPeixesData)
+    {
+        foreach(PeixeItem peixeItem in meusPeixes){
+            AdicionaPeixeData(inventarioPeixesData,peixeItem.nomePeixe);
+        }
+    }
 }

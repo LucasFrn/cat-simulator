@@ -4,11 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ControllerMiniGamePesca : MonoBehaviour
+public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
 {
     public static ControllerMiniGamePesca controllerMiniGamePesca;//Singleton
     public PeixeItem[] peixesPossiveis;
     public InventarioDePeixes inventarioJogador;
+    InventarioPeixesData inventarioPeixesLoadado;
     public BarraDoJogador minhaBarraDoJogador;
     public GameObject peixe;//prefab
     public MusicaController efeito;
@@ -36,6 +37,8 @@ public class ControllerMiniGamePesca : MonoBehaviour
     bool conseguePescar;
     public GameObject painelExclamacao;
     public GameObject painelResultado;
+    [SerializeField]SkillTree minhaSkillTree;
+    SkillTreeData skillTreeDataLoadada;
     void Awake(){
         controllerMiniGamePesca = this;
         miniGameRodando=false;
@@ -47,6 +50,16 @@ public class ControllerMiniGamePesca : MonoBehaviour
             barrinhaCompletude.gameObject.SetActive(false);
             telaMiniGame.gameObject.SetActive(false);
             barrinhaCompletudeLigada=false;
+        }
+        if(inventarioJogador!=null){
+            if(inventarioPeixesLoadado!=null){
+                LoadInventario();
+            }
+        }
+        if(minhaSkillTree!=null){
+            if(skillTreeDataLoadada!=null){
+                LoadSkillTree();
+            }
         }
     }
 
@@ -197,5 +210,45 @@ public class ControllerMiniGamePesca : MonoBehaviour
     }
     void DesativaPainelExclamacao(){
         painelExclamacao.SetActive(false);
+    }
+
+    public void LoadData(GameData data)
+    {
+        //LoadInventario(data.fishMinigameData.inventarioPeixesData);
+        inventarioPeixesLoadado=data.inventarioPeixesData;
+        //load dados skilltree
+        skillTreeDataLoadada=data.skillTreeData;
+    }
+    public void LoadInventario(){
+            int tipoPeixeInt = (int) TiposPeixes.Baiacu;
+            for(int indexQuantidadePeixe=0;indexQuantidadePeixe<inventarioPeixesLoadado.quantidadePeixes.Length;indexQuantidadePeixe++){
+                while(inventarioPeixesLoadado.quantidadePeixes[indexQuantidadePeixe]>0){
+                    //verificar qual enum que estamos
+                    PeixeItem novoPeixe = peixesPossiveis[tipoPeixeInt];
+                    //Adicionar peixe (criar nova maneira de adicioanr peixe)
+                    inventarioJogador.AdicionarPeixe(novoPeixe);
+                    //subtrair 1 do numero de peixe
+                    inventarioPeixesLoadado.quantidadePeixes[indexQuantidadePeixe]--;
+                }
+                tipoPeixeInt++;
+            }
+    }
+    public void LoadSkillTree(){
+        exp = skillTreeDataLoadada.exp;
+        level= skillTreeDataLoadada.level;
+        pontosSkill=skillTreeDataLoadada.pontosSkill;
+        minhaSkillTree.AualizaComData(skillTreeDataLoadada.skillsCompradas);
+        UIExp();
+
+    }
+
+    public void SaveData(GameData data)
+    {
+        InventarioPeixesData inventarioPeixesData = new InventarioPeixesData();
+        inventarioJogador.SaveData(inventarioPeixesData);
+        data.inventarioPeixesData=inventarioPeixesData;
+        //SalvarDadosSkillTree
+        SkillTreeData skillTreeData = new SkillTreeData(exp,level,pontosSkill,minhaSkillTree.GetSkillCompradas());
+        data.skillTreeData=skillTreeData;
     }
 }
