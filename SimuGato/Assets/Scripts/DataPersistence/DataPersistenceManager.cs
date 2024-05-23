@@ -38,6 +38,7 @@ public class DataPersistenceManager : MonoBehaviour
         InitializeSelectedProfileId();
     }
     public void NewGame(){
+        Debug.LogWarning("Foi criada uma nova gameData");
         this.gameData = new GameData();
     }
     public void LoadGame(){
@@ -97,6 +98,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
 
     public bool HasData(){
+        Debug.Log(gameData);
         return gameData != null;
     }
     public Dictionary<string, GameData> GetAllProfilesGameData(){

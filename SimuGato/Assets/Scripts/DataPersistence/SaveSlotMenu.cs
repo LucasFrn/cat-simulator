@@ -47,7 +47,11 @@ public class SaveSlotMenu : MonoBehaviour
             DataPersistenceManager.instance.NewGame();
         }
         DataPersistenceManager.instance.SaveGame();
-        SceneManager.LoadSceneAsync("Teste 2");
+        if(isLoadingGame)
+            SceneManager.LoadScene("JogoPrincipal");
+        else
+            SceneManager.LoadScene("JogoPrincipal");
+            //coloca aqui a troca de cena para a cutscene
     }
     public void OnDeleteClick(SaveSlot saveSlot){
         DataPersistenceManager.instance.Delete(saveSlot.GetProfileId());

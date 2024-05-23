@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SaveSlot : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class SaveSlot : MonoBehaviour
     [Header("Content")]
     [SerializeField]private GameObject noDataContent;
     [SerializeField]private GameObject hasDataContent;
-    [SerializeField]private Text saveSlotName;
-    [SerializeField]private Text timeText;
+    [SerializeField]private TextMeshProUGUI saveSlotName;
+    [SerializeField]private TextMeshProUGUI timeText;
     [Header("Delete Save Button")]
     [SerializeField]private Button deleteButton;
 

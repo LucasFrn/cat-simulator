@@ -47,7 +47,7 @@ public class FileDataHanlder {
                 using(FileStream stream = new FileStream(fullpath,FileMode.Open)){
                     using(StreamReader reader = new StreamReader(stream)){
                         dataToLoad = reader.ReadToEnd();
-                        Debug.Log(dataToLoad);
+                        //Debug.Log(dataToLoad);
                     }
                 }
                 if(useEncryption){

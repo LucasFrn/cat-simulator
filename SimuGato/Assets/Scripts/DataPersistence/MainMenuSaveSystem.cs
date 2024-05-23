@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
     }
     public void ContinueButton(){
         DataPersistenceManager.instance.SaveGame();
-        SceneManager.LoadSceneAsync("Teste 2");
+        SceneManager.LoadScene("JogoPrincipal");
     }
     public void DeactivateMenu(){
         gameObject.SetActive(false);
@@ -36,6 +36,7 @@ public class MainMenu : MonoBehaviour
         ActivateButtonsDependingOnData();
     }
     public void ActivateButtonsDependingOnData(){
+            Debug.Log($"temos data? {DataPersistenceManager.instance.HasData()}");
         if(!DataPersistenceManager.instance.HasData()){
             continueGameButton.interactable = false;
             loadGameButton.interactable = false;
