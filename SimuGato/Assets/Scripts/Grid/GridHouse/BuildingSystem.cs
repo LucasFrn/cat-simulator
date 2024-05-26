@@ -261,7 +261,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void ExitMap()
     {
-        GameManager.Instance.janelaEmFoco=1;
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         SceneManager.LoadScene(1);       
     }
 

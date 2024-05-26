@@ -105,7 +105,8 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
                 resultadoMiniGame.gameObject.SetActive(true);
                 painelResultado.gameObject.SetActive(true);
                 Invoke("FechaResultado",2f);
-                GameManager.Instance.janelaEmFoco=1;
+                GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+                GameEventsManager.instance.cameraEvents.CameraUnPause();
             }
         }
     }
@@ -136,7 +137,8 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
         barrinhaCompletude.gameObject.SetActive(false);
         telaMiniGame.gameObject.SetActive(false);
         barrinhaCompletudeLigada=false;
-        GameManager.Instance.janelaEmFoco=1;
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+        GameEventsManager.instance.cameraEvents.CameraUnPause();
         Invoke("FechaResultado",3f);
     }
     void SpawnPeixe(){
@@ -149,7 +151,8 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
         barrinhaCompletude.gameObject.SetActive(false);
         telaMiniGame.gameObject.SetActive(true);
         Invoke("SpawnPeixe",1f);
-        GameManager.Instance.janelaEmFoco=2;
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.MiniGamePesca;
+        GameEventsManager.instance.cameraEvents.CameraPause();
     }
     public void DefinirMaxBarrinha(float valor){
         barrinhaCompletude.maxValue=valor;
@@ -202,7 +205,8 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
         else{
             randProcura= Random.Range(1f,tempoMaxProcura);
         }
-        GameManager.Instance.janelaEmFoco=2;
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.MiniGamePesca;
+        GameEventsManager.instance.cameraEvents.CameraPause();
     }
     void AtivaPainelExclamacao(){
         painelExclamacao.SetActive(true);

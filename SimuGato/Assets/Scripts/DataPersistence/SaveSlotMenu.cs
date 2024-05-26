@@ -47,8 +47,9 @@ public class SaveSlotMenu : MonoBehaviour
             DataPersistenceManager.instance.NewGame();
         }
         DataPersistenceManager.instance.SaveGame();
-        if(isLoadingGame)
+        if(isLoadingGame){
             SceneManager.LoadScene("JogoPrincipal");
+        }
         else
             SceneManager.LoadScene("JogoPrincipal");
             //coloca aqui a troca de cena para a cutscene

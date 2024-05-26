@@ -12,11 +12,24 @@ public class GameManager : MonoBehaviour
     public bool jogoPausado;
     public GameObject cameraMiniMapa;
     public float minimapaTamanho = 39;
-    public Transform spawnGatoNoLoad; //receber o "Spawn Do Gato" dentro do prefab da casa
-    public Vector3 posGatoNoLoad = Vector3.zero;//recebe a pos ao trocar de cena
-    public Quaternion rotGatoNoLoad;//recebe a rot gato ao trocar de cena
+    //public Transform spawnGatoNoLoad; //receber o "Spawn Do Gato" dentro do prefab da casa
+    //public Vector3 posGatoNoLoad = Vector3.zero;//recebe a pos ao trocar de cena
+    //public Quaternion rotGatoNoLoad;//recebe a rot gato ao trocar de cena
     public float HoraDoDiaAoTrocarCena = 6;
-    public int janelaEmFoco;// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
+    public bool overrideSaveToGameManager = false;
+    public JanelaEmFoco janelaEmFoco;
+    public enum JanelaEmFoco{// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
+        Parque,
+        MiniGamePesca,
+        InventarioPesca,
+        ConfirmaSair,
+        MiniGamePao,
+        MenuAudio,
+        SkillTree,
+        Tutorial,
+        Creditos,
+        Nula
+    }
                             // Manter em 1 para quando for o parque
                             // 2 é meu minigame de pesca
                             // 3 o inventario de pesca
@@ -41,12 +54,11 @@ public class GameManager : MonoBehaviour
 
     }
     public void Start(){
-        Time.timeScale=1f;
-        janelaEmFoco=1;//ISSO SUPOE QUE O JOGO COMEÇA NO PARQUE
+        ResetCoisasManagerParaJogar();//ISSO SUPOE QUE O JOGO COMEÇA NO PARQUE
     }
     void Update(){
         if(Input.GetKeyDown(KeyCode.Escape)){
-            if(janelaEmFoco==1){
+            if(janelaEmFoco==JanelaEmFoco.Parque){
                 if(jogoPausado){
                     uiController.AlternaPainelPausa();
                     jogoPausado=false;
@@ -62,7 +74,12 @@ public class GameManager : MonoBehaviour
     }
     public void Perder(){
         Time.timeScale=0f;
-        janelaEmFoco=-1;
+        janelaEmFoco=JanelaEmFoco.Nula;
         uiController.Perder();
+    }
+    public void ResetCoisasManagerParaJogar(){
+        Time.timeScale=1;
+        jogoPausado=false;
+        janelaEmFoco=JanelaEmFoco.Parque;
     }
 }

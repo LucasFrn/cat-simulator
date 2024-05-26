@@ -26,7 +26,7 @@ public class CameraMovement : MonoBehaviour
     {
         
         if(!GameManager.Instance.jogoPausado){
-            if(GameManager.Instance.janelaEmFoco==1){
+            if(GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
                 
                 
                 turner = Input.GetAxis("Mouse X") * sensitivity;

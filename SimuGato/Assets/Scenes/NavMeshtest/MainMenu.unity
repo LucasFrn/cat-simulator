@@ -7041,7 +7041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5662406544739611215, guid: c7370b1c928a80146a434e7334ccdebd, type: 3}
       propertyPath: fileName
-      value: simugatisavefile
+      value: simugatisavefile.txt
       objectReference: {fileID: 0}
     - target: {fileID: 5662406544739611215, guid: c7370b1c928a80146a434e7334ccdebd, type: 3}
       propertyPath: initializeDataIfNull

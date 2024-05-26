@@ -26,7 +26,7 @@ public class a : MonoBehaviour
     {
         CharacterController controller = GetComponent<CharacterController>();
         if(!GameManager.Instance.jogoPausado){
-            if(GameManager.Instance.janelaEmFoco==1){
+            if(GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
                 // is the controller on the ground?
                 if (controller.isGrounded)
                 {
