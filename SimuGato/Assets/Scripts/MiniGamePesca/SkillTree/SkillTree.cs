@@ -42,10 +42,11 @@ public class SkillTree : MonoBehaviour
     void Update()
     {
         if(!GameManager.Instance.jogoPausado){
-            if(Input.GetKeyDown(KeyCode.M)&&skillTreeOpen==false&&GameManager.Instance.janelaEmFoco==1){
+            if(Input.GetKeyDown(KeyCode.M)&&skillTreeOpen==false&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
                 painelSkillTree.SetActive(true);
                 skillTreeOpen=true;
-                GameManager.Instance.janelaEmFoco=7;
+                GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.SkillTree;
+                GameEventsManager.instance.cameraEvents.CameraPause();
                 Cursor.lockState=CursorLockMode.Confined;
                 Cursor.visible=true;
             }
@@ -53,7 +54,8 @@ public class SkillTree : MonoBehaviour
                 if(Input.GetKeyDown(KeyCode.Escape)&&skillTreeOpen==true){
                     painelSkillTree.SetActive(false);
                     skillTreeOpen=false;
-                    GameManager.Instance.janelaEmFoco=1;
+                    GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+                    GameEventsManager.instance.cameraEvents.CameraUnPause();
                     Cursor.lockState=CursorLockMode.Locked;
                     Cursor.visible=false;
                 }

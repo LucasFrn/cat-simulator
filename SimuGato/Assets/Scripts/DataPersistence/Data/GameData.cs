@@ -10,6 +10,8 @@ public class GameData {
     public GardenData[] gardenDatas;
     public InventarioPeixesData inventarioPeixesData;
     public SkillTreeData skillTreeData;
+    public StatusData statusData;
+    public PosData posData;
 
     //esses valores são os valores iniciais pra quando a gente começar o jogo.
     public GameData(){
@@ -17,5 +19,7 @@ public class GameData {
         questsData = new QuestData[0];
         inventarioPeixesData = null;
         skillTreeData = null;
+        statusData = new StatusData();
+        posData = new PosData();
     }
 }

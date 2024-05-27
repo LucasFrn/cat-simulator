@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using System;
-using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -23,9 +21,9 @@ public class DataPersistenceManager : MonoBehaviour
     public static DataPersistenceManager instance {get; private set;}
     void Awake(){
         if(instance!=null){
-            if(DebugManager.debugManager.DEBUG){
+            //if(DebugManager.debugManager.DEBUG){
                 Debug.Log("Já temos um DataPersistenceManager, então me destrui");
-            }
+            //}
             Destroy(this.gameObject);
             return;
         }

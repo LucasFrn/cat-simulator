@@ -139,5 +139,6 @@ public class ControllerMiniGamePao : MonoBehaviour
         GameManager.Instance.higiene -= 40;
         GameManager.Instance.felicidade -= 30;
         GameManager.Instance.social += 20;
+        GameManager.Instance.overrideSaveToGameManager=true;
     }
 }

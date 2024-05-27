@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3850101028533977480}
   - component: {fileID: 9073407081469042108}
   - component: {fileID: 4487210512935784245}
+  - component: {fileID: 7905674445444352252}
+  - component: {fileID: 1165396687727044808}
   - component: {fileID: 5412661570862711783}
   m_Layer: 0
   m_Name: PlayerFinal
@@ -111,6 +113,44 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7905674445444352252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113021766504358693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c749818352d09a842b1ea5b75f7d5727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 6509804329210044345}
+  moveSpeedRegular: 8
+  groundDrag: 4
+  jumpForce: 1.2
+  jumpCoolDown: 1
+  airMultiplayer: 0.4
+  readyToJump: 0
+  playerHight: 1.6
+  isGrounded: 0
+  ignoreMe:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &1165396687727044808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113021766504358693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1180ebda61ea42f40b50b7cbb5307e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meuScriptCamera: {fileID: 0}
+  GridIndicator: {fileID: 0}
 --- !u!114 &5412661570862711783
 MonoBehaviour:
   m_ObjectHideFlags: 0

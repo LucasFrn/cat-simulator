@@ -42,17 +42,19 @@ public class InventarioDePeixes : MonoBehaviour
     void Update()
     {
         if(!GameManager.Instance.jogoPausado){
-            if(Input.GetKeyDown(KeyCode.I)&&inventarioAberto==false&&GameManager.Instance.janelaEmFoco==1){
+            if(Input.GetKeyDown(KeyCode.I)&&inventarioAberto==false&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
                 painelInventario.SetActive(true);
                 inventarioAberto=true;
-                GameManager.Instance.janelaEmFoco=3;
+                GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.InventarioPesca;
+                GameEventsManager.instance.cameraEvents.CameraPause();
                 Cursor.lockState=CursorLockMode.Confined;
                 Cursor.visible=true;
             }
             if(Input.GetKeyDown(KeyCode.Escape)&&inventarioAberto==true){
                 painelInventario.SetActive(false);
                 inventarioAberto=false;
-                GameManager.Instance.janelaEmFoco=1;
+                GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+                GameEventsManager.instance.cameraEvents.CameraUnPause();
                 Cursor.lockState=CursorLockMode.Locked;
                 Cursor.visible=false;
             }

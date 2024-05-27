@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDataPersistance
 {
     public int petiscos;
     public float fome, energia, higiene, felicidade, social;
@@ -49,12 +45,13 @@ public class Player : MonoBehaviour
     bool isMorrendo=false;
     float timerMorte=0f;
     public GameObject fundoMorrendo;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnaNoLocal();
+        //SpawnaNoLocal();
         animator = GetComponent<Animator>();
         if(animator==null){
             Debug.LogError("Personagem sem animator");
@@ -63,14 +60,14 @@ public class Player : MonoBehaviour
         mask = LayerMask.GetMask("Interactable");
         Debug.Log("Minha mask é" + mask.value);
         timerDormindo=tempoDormir;
-        AtualizaSlidersComInfoDoManager();
-
+        //AtualizaValoresESlidesComInfoDoManager();
+        GameManager.Instance.ResetCoisasManagerParaJogar();
     }
     
     void Update()
     {
         if(!GameManager.Instance.jogoPausado){
-            if(GameManager.Instance.janelaEmFoco==1){
+            if(GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
                 RaycastHit hit;
                 //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(rayCastOrigin.position,rayCastOrigin.TransformDirection(Vector3.forward), out hit,3f,mask))
@@ -84,17 +81,18 @@ public class Player : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             TrocaCena(2);
-                            GameManager.Instance.janelaEmFoco=5;
+                            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.MiniGamePao;
                         }
                     }
                     if (hit.transform.tag == "Casa")
                     {
-                        textoInteracao.text="Aperte E para entrar em casa";
+                        //A casa do gato n existe mais
+                        /* textoInteracao.text="Aperte E para entrar em casa";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             TrocaCena(3);
                             GameManager.Instance.janelaEmFoco=20;
-                        }
+                        } */
                     }
                     if (hit.transform.tag == "Pesca")
                     {
@@ -312,7 +310,7 @@ public class Player : MonoBehaviour
         socialSldr.value = social;
         petiscoText.text = petiscos.ToString();
     }
-    public void AtualizaSlidersComInfoDoManager(){
+    public void AtualizaValoresESlidesComInfoDoManager(){
         petiscos = GameManager.Instance.petiscos;
         fome = GameManager.Instance.fome;
         energia = GameManager.Instance.energia;
@@ -358,7 +356,7 @@ public class Player : MonoBehaviour
         itemSegurado = null;
     }
     void Dormir(Transform cama){
-        GameManager.Instance.janelaEmFoco=-1;//basta ser difente de 1
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Nula;
         dormindo=true;
         transform.position=cama.position;
         luzManager.ratioPassagemDoTempo=1;
@@ -371,12 +369,12 @@ public class Player : MonoBehaviour
         timerDormindo = tempoDormir;
         modEnergia=10;
         luzManager.ratioPassagemDoTempo=20;
-        GameManager.Instance.janelaEmFoco=1;
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         animator.ResetTrigger("Dormi");
         animator.SetTrigger("Acordei");
     }
     void TomarBanho(){
-        GameManager.Instance.janelaEmFoco=-1;//basta ser difente de 1
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Nula;//basta ser difente de 1
         banho=true;
         luzManager.ratioPassagemDoTempo=1;
         ModHigiene=-400f;
@@ -387,19 +385,20 @@ public class Player : MonoBehaviour
         banho=false;
         timerBanho=tempoBanho;
         luzManager.ratioPassagemDoTempo=20;
-        GameManager.Instance.janelaEmFoco=1;
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         ModHigiene=5f;
         modEnergia=10;
         animator.ResetTrigger("Banho");
     }
     void TrocaCena(int cena){//obs: ao chamar vc precisa mudar seu proprio janela em foco
         TransferStatus();
-        GameManager.Instance.posGatoNoLoad=transform.position;
-        GameManager.Instance.rotGatoNoLoad=transform.rotation;
+        /* GameManager.Instance.posGatoNoLoad=transform.position;
+        GameManager.Instance.rotGatoNoLoad=transform.rotation; */
         GameManager.Instance.HoraDoDiaAoTrocarCena=luzManager.HoraDoDia;
+        DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadScene(cena);
     }
-    void SpawnaNoLocal(){
+    /* void SpawnaNoLocal(){
         if(GameManager.Instance.posGatoNoLoad!=Vector3.zero){
             transform.position = GameManager.Instance.posGatoNoLoad;
             transform.rotation = GameManager.Instance.rotGatoNoLoad;
@@ -414,7 +413,7 @@ public class Player : MonoBehaviour
                 transform.rotation= Quaternion.Euler(new Vector3(0,-90,0));
             }
         }
-    }
+    } */
     void Desmaiar(){
         Dormir(transform);
         petiscos-=100;
@@ -430,5 +429,31 @@ public class Player : MonoBehaviour
             isMorrendo=true;
         }
         fundoMorrendo.SetActive(true);
+    }
+    public void LoadData(GameData data)
+    {
+        if(GameManager.Instance.overrideSaveToGameManager){
+            fome = GameManager.Instance.fome;
+            energia = GameManager.Instance.energia;
+            higiene = GameManager.Instance.higiene;
+            felicidade = GameManager.Instance.felicidade;
+            social = GameManager.Instance.social;
+            petiscos = GameManager.Instance.petiscos;
+            GameManager.Instance.overrideSaveToGameManager=false;//usado para garantir que o resultado do pão vai ser salvo
+        }
+        else{
+            fome = data.statusData.fome;
+            energia=data.statusData.energia;
+            higiene = data.statusData.higiene;
+            felicidade = data.statusData.felicidade;
+            social = data.statusData.social;
+            petiscos = data.statusData.petiscos;
+        }
+
+    }
+    public void SaveData(GameData data)
+    {
+        StatusData novaData= new StatusData(fome,energia,higiene,felicidade,social,petiscos,timerMorte);
+        data.statusData = novaData;
     }
 }

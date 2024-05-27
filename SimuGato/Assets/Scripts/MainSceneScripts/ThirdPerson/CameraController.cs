@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
 
         if (!GameManager.Instance.jogoPausado)
         {
-            if (GameManager.Instance.janelaEmFoco == 1)
+            if (GameManager.Instance.janelaEmFoco == GameManager.JanelaEmFoco.Parque)
             {
                 turner = Input.GetAxis("Mouse X") * sensitivity;
                 looker = -Input.GetAxis("Mouse Y") * sensitivity;
@@ -101,7 +101,7 @@ public class CameraController : MonoBehaviour
     {
         if (!GameManager.Instance.jogoPausado)
         {
-            if (GameManager.Instance.janelaEmFoco == 1)
+            if (GameManager.Instance.janelaEmFoco == GameManager.JanelaEmFoco.Parque)
             {
                 if (follow)
                 {

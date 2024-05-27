@@ -67,31 +67,35 @@ public class UIController : MonoBehaviour
         if(painelAudioAberto){
             painelAudio.SetActive(false);
             painelAudioAberto=false;
-            GameManager.Instance.janelaEmFoco=1;
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         }
         else{
             painelAudio.SetActive(true);
             painelAudioAberto=true;
-            GameManager.Instance.janelaEmFoco=6; 
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.MenuAudio; 
         }
     }
     public void AbreConfirmaSair(){
         painelConfirmaSair.SetActive(true);
-        GameManager.Instance.janelaEmFoco=4;
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.ConfirmaSair;
     }
     public void FechaConfirmaSair(){
         painelConfirmaSair.SetActive(false);
-        GameManager.Instance.janelaEmFoco=1;
+        GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+    }
+    public void VoltarAoMenuPrincipal(){
+        DataPersistenceManager.instance.SaveGame();
+        SceneManager.LoadScene("MainMenu");
     }
     public void Sair(){
         Application.Quit();
     }
 
-    public void Jogar() 
+    /* public void Jogar() NÃO É MAIS USADO
     {
         SceneManager.LoadScene("Intro");
 
-    }
+    } */
     public void Perder(){
         painelDerrota.SetActive(true);
         Cursor.lockState=CursorLockMode.Confined;
@@ -101,24 +105,24 @@ public class UIController : MonoBehaviour
         if(painelTutorialAberto){
             painelTutorial.SetActive(false);
             painelTutorialAberto=false;
-            GameManager.Instance.janelaEmFoco=1;
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         }
         else{
             painelTutorial.SetActive(true);
             painelTutorialAberto=true;
-            GameManager.Instance.janelaEmFoco=8; 
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Tutorial; 
         }
     }
     public void AlternaPainelCreditos(){
         if(painelCreditosAberto){
             painelCreditos.SetActive(false);
             painelCreditosAberto=false;
-            GameManager.Instance.janelaEmFoco=1;
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         }
         else{
             painelCreditos.SetActive(true);
             painelCreditosAberto=true;
-            GameManager.Instance.janelaEmFoco=9; 
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Creditos; 
         }
     }
 }

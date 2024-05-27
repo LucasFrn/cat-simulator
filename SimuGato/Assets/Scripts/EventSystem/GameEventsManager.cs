@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class GameEventsManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameEventsManager : MonoBehaviour
     public QuestEvents questEvents;
     public InputEvents inputEvents;
     public PlayerEvents playerEvents;
+    public CameraEvents cameraEvents;
 
     private void Awake(){
         if(instance!=null){
@@ -21,5 +23,6 @@ public class GameEventsManager : MonoBehaviour
         questEvents = new QuestEvents();
         inputEvents = new InputEvents();
         playerEvents = new PlayerEvents();
+        cameraEvents = new CameraEvents();
     }
 }

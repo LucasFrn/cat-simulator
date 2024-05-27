@@ -19,7 +19,7 @@ public class GridController : MonoBehaviour, IDataPersistance
     public void LoadData(GameData data)
     {
         if(data.gardenDatas!=null){
-            Debug.Log($"garden datas tem tamanho {data.gardenDatas.Length}");
+            //Debug.Log($"garden datas tem tamanho {data.gardenDatas.Length}");
             if(data.gardenDatas.Length!=0)
                 gardenInfo.LoadData(data.gardenDatas);
         }
@@ -27,7 +27,7 @@ public class GridController : MonoBehaviour, IDataPersistance
 
     public void SaveData(GameData data)
     {
-        Debug.Log("Grid controller vai tentar salvar");
+        //Debug.Log("Grid controller vai tentar salvar");
         gardenInfo.SaveData(data);
     }
 

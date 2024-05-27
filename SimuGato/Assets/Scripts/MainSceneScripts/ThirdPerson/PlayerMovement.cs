@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.Instance.jogoPausado)
         {
-            if (GameManager.Instance.janelaEmFoco == 1)
+            if (GameManager.Instance.janelaEmFoco == GameManager.JanelaEmFoco.Parque)
             {
                 /*  Controller Mappings */
                 vaxis = Input.GetAxis("Vertical");
