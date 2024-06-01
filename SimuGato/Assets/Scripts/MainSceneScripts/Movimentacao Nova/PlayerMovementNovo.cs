@@ -17,6 +17,7 @@ public class PlayerMovementNovo : MonoBehaviour,IDataPersistance
     [SerializeField]float playerHight;
     [SerializeField]bool isGrounded;
     [SerializeField]LayerMask ignoreMe;
+    [SerializeField]ThirdPersonCamera thirdPersonCamera;
     PosData posDataLoadada;
     float hInput;
     float vInput;
@@ -82,9 +83,13 @@ public class PlayerMovementNovo : MonoBehaviour,IDataPersistance
         moveDir = orientation.forward*vInput + orientation.right*hInput;
         if(isGrounded){//no chao
             rb.AddForce(moveDir.normalized*moveSpeed*movimentHelper,ForceMode.Force);
+            //rb.AddForce(moveDir.normalized,ForceMode.VelocityChange);
+            //rb.velocity = moveDir.normalized;
         }
         else{//no ar
             rb.AddForce(moveDir.normalized*moveSpeed*movimentHelper*airMultiplayer,ForceMode.Force);
+            //rb.AddForce(moveDir.normalized*airMultiplayer,ForceMode.VelocityChange);
+            //rb.velocity = moveDir.normalized*airMultiplayer;
         }
     }
     void SpeedControl(){
@@ -97,6 +102,7 @@ public class PlayerMovementNovo : MonoBehaviour,IDataPersistance
     void Jump(){
         rb.velocity=new Vector3(rb.velocity.x,0,rb.velocity.z);
         rb.AddForce(transform.up*jumpForce*movimentHelper/2, ForceMode.Impulse);
+        //rb.AddForce(transform.up*jumpForce, ForceMode.Impulse);
     }
     void ResetJump(){
         readyToJump = true;
@@ -112,17 +118,15 @@ public class PlayerMovementNovo : MonoBehaviour,IDataPersistance
     public void LoadData(GameData data)
     {
         posDataLoadada=data.posData;
-        Debug.Log($"pos = {posDataLoadada.pos} e rot= {posDataLoadada.rot}");
     }
 
     public void SaveData(GameData data)
     {
-        PosData newPosData = new PosData(transform.position,orientation.rotation.eulerAngles);
+        PosData newPosData = new PosData(transform.position);
         data.posData=newPosData;
     }
     void LoadPos(){
-        transform.position=posDataLoadada.pos;
-        orientation.rotation = Quaternion.Euler(posDataLoadada.rot);
+        transform.position=posDataLoadada.gatoPos;
         Debug.Log($"Colocando o gato na pos {transform.position}");
     }
 }

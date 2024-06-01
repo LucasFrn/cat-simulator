@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public class ThirdPersonCamera : MonoBehaviour
+public class ThirdPersonCamera : MonoBehaviour,IDataPersistance
 {
     [Header("Reference")]
     [SerializeField]Transform orientation;
@@ -17,6 +18,8 @@ public class ThirdPersonCamera : MonoBehaviour
     CameraStyle currentStyle;
     CinemachineFreeLook freelookPadrao;
     CinemachineFreeLook freelookJardim;
+    CameraData dataLoadada;
+
     public enum CameraStyle
     {
         Basic,
@@ -37,6 +40,8 @@ public class ThirdPersonCamera : MonoBehaviour
         Cursor.visible=false;
         freelookJardim = cameraJardim.GetComponent<CinemachineFreeLook>();
         freelookPadrao = cameraPadrao.GetComponent<CinemachineFreeLook>();
+        LoadSavedData();
+        
     }
 
     // Update is called once per frame
@@ -92,5 +97,23 @@ public class ThirdPersonCamera : MonoBehaviour
         freelookJardim.m_YAxis.m_MaxSpeed=2;
         freelookPadrao.m_XAxis.m_MaxSpeed=300;
         freelookPadrao.m_YAxis.m_MaxSpeed=2;
+    }
+
+    public void LoadData(GameData data)
+    {
+       dataLoadada=data.cameraData;
+    }
+
+    public void SaveData(GameData data)
+    {
+        CameraData newCameraData = new CameraData();
+        newCameraData.cameraPos = transform.position;
+        newCameraData.cameraRot = transform.rotation.eulerAngles;
+        newCameraData.orientationRotation = orientation.rotation.eulerAngles;
+        data.cameraData=newCameraData;
+    }
+    void LoadSavedData(){
+        orientation.rotation=Quaternion.Euler(dataLoadada.orientationRotation);
+        freelookPadrao.ForceCameraPosition(dataLoadada.cameraPos,Quaternion.Euler(dataLoadada.cameraRot));
     }
 }

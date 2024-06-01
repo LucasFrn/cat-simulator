@@ -12,6 +12,7 @@ public class GameData {
     public SkillTreeData skillTreeData;
     public StatusData statusData;
     public PosData posData;
+    public CameraData cameraData;
 
     //esses valores são os valores iniciais pra quando a gente começar o jogo.
     public GameData(){
@@ -21,5 +22,6 @@ public class GameData {
         skillTreeData = null;
         statusData = new StatusData();
         posData = new PosData();
+        cameraData = null;
     }
 }
