@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    bool painelPausaAberto,painelAudioAberto,painelTutorialAberto,painelCreditosAberto;
-    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota,painelTutorial,painelCreditos;
-    // Start is called before the first frame update
+    bool painelPausaAberto,painelAudioAberto,painelTutorialAberto,painelCreditosAberto,painelQuestsAberto;
+    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota,painelTutorial,painelCreditos,QuestsLogUI;
+    QuestLogUi questLogUi;
     void Start()
     {
         GameManager.Instance.uiController=this;
@@ -34,6 +34,11 @@ public class UIController : MonoBehaviour
             painelCreditos.SetActive(false);
             painelCreditosAberto=false;
         }
+        if(QuestsLogUI!=null){
+            questLogUi=QuestsLogUI.GetComponent<QuestLogUi>();
+            questLogUi.HideUI();
+            painelQuestsAberto=false;
+        }
     }
 
     // Update is called once per frame
@@ -47,6 +52,30 @@ public class UIController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Escape)&&painelCreditosAberto){
             AlternaPainelCreditos();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape)&&painelQuestsAberto){
+            AlternaPainelQuests();
+        }
+        if(Input.GetKeyDown(KeyCode.J)&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
+            AlternaPainelQuests();
+        }
+    }
+    public void AlternaPainelQuests(){
+        if(painelQuestsAberto){
+            questLogUi.HideUI();
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+            GameEventsManager.instance.cameraEvents.CameraUnPause();
+            painelQuestsAberto=false;
+            Cursor.lockState=CursorLockMode.Locked;
+            Cursor.visible=false;
+        }
+        else{
+            questLogUi.ShowUI();
+            painelQuestsAberto=true;
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Quests;
+            GameEventsManager.instance.cameraEvents.CameraPause();
+            Cursor.lockState=CursorLockMode.Confined;
+            Cursor.visible=true;
         }
     }
     public void AlternaPainelPausa(){

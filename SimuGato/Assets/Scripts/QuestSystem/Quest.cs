@@ -59,6 +59,7 @@ public class Quest
     public void StoreQuestStepState(QuestStepState questStepState, int stepIndex){
         if(stepIndex<questStepStates.Length){
             questStepStates[stepIndex].state=questStepState.state;
+            questStepStates[stepIndex].status= questStepState.status;
         }
         else{
             Debug.LogWarning("Tried to acess quest step data, but step index was out of range: "+
@@ -67,5 +68,30 @@ public class Quest
     }
     public QuestData GetQuestData(){
         return new QuestData(info.id,state,currentQuestStepIndex,questStepStates);
+    }
+    public string GetFullStatusText(){
+        string fullStatus = "";
+        if(state == QuestState.REQUIREMENTS_NOT_MET){
+            fullStatus = "Requisitos ainda não foram atendidos para começar essa quest";
+        }
+        else if(state == QuestState.CAN_START){
+            fullStatus = "Você pode começar essa quest! Ache o ponto de inicio dela";
+        }
+        else{
+            for(int i=0;i<currentQuestStepIndex; i++){
+                fullStatus += "<s>" + questStepStates[i].status + "</s>\n";
+            }
+            if(CurrentStepExists()){
+                fullStatus += questStepStates[currentQuestStepIndex].status;
+            }
+            if(state== QuestState.CAN_FINISH){
+                fullStatus += "Você pode entregar essa quest!";
+            }
+            if(state == QuestState.FINISHED){
+                fullStatus += "Você já completou essa quest.";
+            }
+        }
+
+        return fullStatus;
     }
 }

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         SkillTree,
         Tutorial,
         Creditos,
+        Quests,
         Nula
     }
                             // Manter em 1 para quando for o parque

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName ="QuestInfoSO",menuName = "ScriptableObjects/QuestInfoSO",order =1)]
 public class QuestInfoSO : ScriptableObject
-{
+    {
     [field: SerializeField] public string id {get;private set;}
     
     [Header("General")]
@@ -17,6 +17,7 @@ public class QuestInfoSO : ScriptableObject
     [Header("Rewards")]
     public int goldReward;
     public int experienceReward;
+    public string otherRewards;
 
     private void OnValidate(){
         #if UNITY_EDITOR

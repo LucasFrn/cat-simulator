@@ -14,6 +14,9 @@ public class CollectCoinsQuestStep : QuestStep
     private void OnDisable(){
         GameEventsManager.instance.miscEvents.onCoinCollected-= CoinCollected;
     }
+    void Start(){
+        UpdateState();
+    }
     private void CoinCollected(){
         if(coinsCollected<coinsToComplete){
             coinsCollected++;
@@ -26,7 +29,8 @@ public class CollectCoinsQuestStep : QuestStep
 
     public void UpdateState(){
         string state = coinsCollected.ToString();
-        ChangeState(state);
+        string status = "Coletamos "+ coinsCollected+ " / " + coinsToComplete + " moedas";
+        ChangeState(state,status);
     }
 
     protected override void SetQuestStepState(string state)
