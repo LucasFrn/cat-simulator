@@ -286,7 +286,7 @@ public class PlantInfo{
         FasesParaCrescer = bibliotecaPlantas.catalogoPlantas[ID].NFases;
     }
 }
-public class Semente{
+/* public class Semente{
     public int quantidadeSementes;
     public int plantaID;
 
@@ -294,4 +294,4 @@ public class Semente{
         this.quantidadeSementes=quantidadeSementes;
         this.plantaID=plantaID;
     }
-}
+} */

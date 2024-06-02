@@ -5,7 +5,6 @@ using UnityEngine;
 public class ColliderPlayer : MonoBehaviour
 {
     [SerializeField]ThirdPersonCamera meuScriptCamera; //Scrit da camera no Camera Handler
-    [SerializeField]GameObject GridIndicator; //Grid Indicator do Garden
     // Start is called before the first frame update
     PlayerMovementNovo meuScriptDeMovimento;
     void Start()
@@ -24,18 +23,18 @@ public class ColliderPlayer : MonoBehaviour
     {
         
     }
-    void OnCollisionEnter(Collision colisao){
-        if(colisao.collider.CompareTag("Garden")){
+    void OnTriggerEnter(Collider collider){
+        if(collider.CompareTag("Garden")){
             meuScriptCamera?.TrocaCamera(ThirdPersonCamera.CameraStyle.Garden);
-            GridIndicator?.SetActive(true);
-            //meuScriptDeMovimento?.ChangeVelocity(5);
+            meuScriptDeMovimento?.ChangeDrag(true);
+            GameEventsManager.instance.gardenEvents.EnterGarden();
         }
     }
-        void OnCollisionExit(Collision colisao){
-        if(colisao.collider.CompareTag("Garden")){
+        void OnTriggerExit(Collider collider){
+        if(collider.CompareTag("Garden")){
             meuScriptCamera?.TrocaCamera(ThirdPersonCamera.CameraStyle.Basic);
-            GridIndicator?.SetActive(false);
-            meuScriptDeMovimento?.ResetMoveSpeed();
+            meuScriptDeMovimento?.ChangeDrag(false);
+            GameEventsManager.instance.gardenEvents.LeaveGarden();
         }
     }
 }

@@ -5,16 +5,21 @@ using UnityEngine;
 
 public class GridController : MonoBehaviour, IDataPersistance
 {
-    [SerializeField]
-    Transform cuboGuia;
-    [SerializeField]
-    Grid grid;
+    [SerializeField]Transform cuboGuia;
+    [SerializeField]Grid grid;
     Vector3Int cellNumber,lastCellPos;
-    [SerializeField]
-    GameObject contorno;
+    [SerializeField]GameObject contorno;
     [SerializeField] GardenInfo gardenInfo;
     [SerializeField] BibliotecaChao bibliotecaChao;
     [SerializeField] BibliotecaPlantas bibliotecaPlantas;
+    bool canInteract;
+    enum TiposPlantas{
+        Abobora,
+        Cenoura,
+        Tomate
+    }
+    TiposPlantas plantaSelecionada;
+    int[] inventarioSementes = new int [TiposPlantas.GetNames(typeof(TiposPlantas)).Length];
 
     public void LoadData(GameData data)
     {
@@ -34,9 +39,19 @@ public class GridController : MonoBehaviour, IDataPersistance
     void Awake(){
         gardenInfo = new(grid,bibliotecaChao,bibliotecaPlantas);
     }
+    void OnEnable(){
+        GameEventsManager.instance.gardenEvents.onEnterGarden+=EnteredGarden;
+        GameEventsManager.instance.gardenEvents.onLeaveGarden+=LeftGarden;
+        
+    }
+    void OnDisable(){
+        GameEventsManager.instance.gardenEvents.onEnterGarden-=EnteredGarden;
+        GameEventsManager.instance.gardenEvents.onLeaveGarden-=LeftGarden;
+    }
     void Start()
     {
-        
+        canInteract=false;
+        plantaSelecionada=TiposPlantas.Abobora;
     }
 
     // Update is called once per frame
@@ -54,6 +69,7 @@ public class GridController : MonoBehaviour, IDataPersistance
                 Debug.Log($"Estamos na celula {cellNumber} que resulta na world cord {grid.CellToWorld(cellNumber)}");
             }  
         }
+        if(canInteract)
         if(Input.GetKeyDown(KeyCode.Alpha1)){
             gardenInfo.HoeAt(lastCellPos);
         }
@@ -70,5 +86,27 @@ public class GridController : MonoBehaviour, IDataPersistance
             gardenInfo.ColherAt(lastCellPos);
         }
     }
-    
+    //Coisas Do Event System
+    void EnteredGarden(){
+        canInteract=true;
+        contorno.SetActive(true);
+    }
+    void LeftGarden(){
+        canInteract=false;
+        contorno.SetActive(false);
+    }
+    public void GanharSementes(int tipoSemente,int quantidade){
+        inventarioSementes[tipoSemente]+=quantidade;
+        GameEventsManager.instance.uiEvents.AtualizarQuantidadeSementes(tipoSemente,inventarioSementes[tipoSemente]);
+    }
+    /* public void UsarEneretico(){
+        if(nEnergeticos>0){
+            GameEventsManager.instance.playerEvents.PlayerUsesEnergyDrink();
+            nEnergeticos--;
+            GameEventsManager.instance.uiEvents.AtualizarEnergeticos(nEnergeticos);
+        }
+        else{
+            //um barulinho, sei la
+        }
+    } */
 }

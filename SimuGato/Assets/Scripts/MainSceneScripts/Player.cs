@@ -7,7 +7,7 @@ public class Player : MonoBehaviour,IDataPersistance
 {
     public int petiscos;
     public float fome, energia, higiene, felicidade, social;
-    int nEnergeticos = 1;
+    int nEnergeticos;
     //VARIAVEIS PROVISORIAS PARA A ENTREGA DA PRE BANCA
     //TROCAR PARA USAR O EVENT SYSTEM
 
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour,IDataPersistance
         timerDormindo=tempoDormir;
         //AtualizaValoresESlidesComInfoDoManager();
         GameManager.Instance.ResetCoisasManagerParaJogar();
+        GanharEnergetico(1);
     }
     
     void Update()
@@ -282,10 +283,10 @@ public class Player : MonoBehaviour,IDataPersistance
             
             PegaItem(collider.gameObject);
         }
-        if(collider.CompareTag("PeixePickupable")){
+        /* if(collider.CompareTag("PeixePickupable")){
             inventarioDePeixes.peixeNaBoca=collider.gameObject;
             PegaItem(collider.gameObject);
-        }
+        } */
     }
     void AlteraValoresBarrinhas()
     {

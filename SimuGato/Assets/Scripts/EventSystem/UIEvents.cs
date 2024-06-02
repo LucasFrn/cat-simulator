@@ -10,4 +10,10 @@ public class UIEvents {
             onAtualizarEnergeticos(n);
         }
     }
+    public event Action<int,int> onAtualizarQuantidadeSementes;
+    public void AtualizarQuantidadeSementes(int tipoSemente,int quantidadeSemente){
+        if(onAtualizarQuantidadeSementes!=null){
+            AtualizarQuantidadeSementes(tipoSemente,quantidadeSemente);
+        }
+    }
 }

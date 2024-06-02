@@ -44,3 +44,4 @@ public class DebugManager : MonoBehaviour
 // ou no minimo mudar elas pra aqui dentro, ou sei la, fazer uma variavel global de permitir debug
 
 //Dentro do ThridPersonCamera na pasta movimentação nova tem 2 trocas de camera, nas teclas G e B
+//Dentro do GridController nas coisas do garden tem um opção de debug na tecla B

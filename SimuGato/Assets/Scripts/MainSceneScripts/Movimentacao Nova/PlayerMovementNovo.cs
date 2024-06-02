@@ -7,6 +7,7 @@ public class PlayerMovementNovo : MonoBehaviour,IDataPersistance
     [Header("Movement")]
     [SerializeField] Transform orientation;
     [SerializeField] float groundDrag;
+    const float dragFinal = 10f;
     /* [SerializeField] float moveSpeedRegular; //eu gosto de 8
     float moveSpeed;
     [SerializeField]float jumpForce;
@@ -154,6 +155,14 @@ public class PlayerMovementNovo : MonoBehaviour,IDataPersistance
     }
     public void ResetMoveSpeed(){
         speed= speedRegular;
+    }
+    public void ChangeDrag(bool MaisDrag){
+        if(MaisDrag){
+            groundDrag=dragFinal*2.5f;
+        }
+        else{
+            groundDrag=dragFinal;
+        }
     }
 
     public void LoadData(GameData data)

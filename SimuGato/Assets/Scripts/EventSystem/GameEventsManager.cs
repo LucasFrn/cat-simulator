@@ -14,6 +14,7 @@ public class GameEventsManager : MonoBehaviour
     public PlayerEvents playerEvents;
     public CameraEvents cameraEvents;
     public UIEvents uiEvents;
+    public GardenEvents gardenEvents;
 
     private void Awake(){
         if(instance!=null){
@@ -26,5 +27,6 @@ public class GameEventsManager : MonoBehaviour
         playerEvents = new PlayerEvents();
         cameraEvents = new CameraEvents();
         uiEvents = new UIEvents();
+        gardenEvents = new GardenEvents();
     }
 }
