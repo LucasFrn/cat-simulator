@@ -1241,7 +1241,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5368949784385161574}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 591641996461308969}
+        m_TargetAssemblyTypeName: UIBotoesNovos, Assembly-CSharp
+        m_MethodName: SelectTipoPlanta
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6668479881798360058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1375,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2643317321010532469}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 591641996461308969}
+        m_TargetAssemblyTypeName: UIBotoesNovos, Assembly-CSharp
+        m_MethodName: SelectTipoPlanta
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8620699021772762302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,4 +1643,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7730481317873968615}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 591641996461308969}
+        m_TargetAssemblyTypeName: UIBotoesNovos, Assembly-CSharp
+        m_MethodName: SelectTipoPlanta
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

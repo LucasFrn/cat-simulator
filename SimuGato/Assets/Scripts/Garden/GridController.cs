@@ -18,7 +18,7 @@ public class GridController : MonoBehaviour, IDataPersistance
         Cenoura,
         Tomate
     }
-    TiposPlantas plantaSelecionada;
+    [SerializeField]TiposPlantas plantaSelecionada;
     int[] inventarioSementes = new int [TiposPlantas.GetNames(typeof(TiposPlantas)).Length];
 
     public void LoadData(GameData data)
@@ -42,11 +42,13 @@ public class GridController : MonoBehaviour, IDataPersistance
     void OnEnable(){
         GameEventsManager.instance.gardenEvents.onEnterGarden+=EnteredGarden;
         GameEventsManager.instance.gardenEvents.onLeaveGarden+=LeftGarden;
+        GameEventsManager.instance.gardenEvents.onPlantaSelecionada+=SelecionaPlanta;
         
     }
     void OnDisable(){
         GameEventsManager.instance.gardenEvents.onEnterGarden-=EnteredGarden;
         GameEventsManager.instance.gardenEvents.onLeaveGarden-=LeftGarden;
+        GameEventsManager.instance.gardenEvents.onPlantaSelecionada-=SelecionaPlanta;
     }
     void Start()
     {
@@ -69,21 +71,22 @@ public class GridController : MonoBehaviour, IDataPersistance
                 Debug.Log($"Estamos na celula {cellNumber} que resulta na world cord {grid.CellToWorld(cellNumber)}");
             }  
         }
-        if(canInteract)
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
-            gardenInfo.HoeAt(lastCellPos);
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
-            gardenInfo.PlantAt(lastCellPos,0);
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3)){
-            gardenInfo.RegarAt(lastCellPos);
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha4)){
-            gardenInfo.CrescerPlantas();
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha5)){
-            gardenInfo.ColherAt(lastCellPos);
+        if(canInteract&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
+            if(Input.GetKeyDown(KeyCode.Alpha1)){
+                gardenInfo.HoeAt(lastCellPos);
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha2)){
+                gardenInfo.PlantAt(lastCellPos,(int)plantaSelecionada);
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha3)){
+                gardenInfo.RegarAt(lastCellPos);
+            }
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha4)){
+                gardenInfo.ColherAt(lastCellPos);
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha0)){
+                gardenInfo.CrescerPlantas();
         }
     }
     //Coisas Do Event System
@@ -94,6 +97,9 @@ public class GridController : MonoBehaviour, IDataPersistance
     void LeftGarden(){
         canInteract=false;
         contorno.SetActive(false);
+    }
+    void SelecionaPlanta(int tipo){
+        plantaSelecionada = (TiposPlantas)tipo;
     }
     public void GanharSementes(int tipoSemente,int quantidade){
         inventarioSementes[tipoSemente]+=quantidade;

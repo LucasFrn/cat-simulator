@@ -16,4 +16,10 @@ public class GardenEvents {
             onLeaveGarden();
         }
     }
+    public event Action<int> onPlantaSelecionada;
+    public void PlantaSelecionada(int plantaSelecionada){
+        if(onPlantaSelecionada!=null){
+            onPlantaSelecionada(plantaSelecionada);
+        }
+    }
 }
