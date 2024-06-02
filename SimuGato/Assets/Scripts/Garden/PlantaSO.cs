@@ -8,6 +8,8 @@ public class PlantaSO:ScriptableObject {
     public string Nome {get; private set;}
     [field: SerializeField]
     public int ID {get; private set;}
+    [field:SerializeField]
+    public int Valor {get; private set;}
     [field: SerializeField]
     public int NFases {get; private set;}
     [field: SerializeField]

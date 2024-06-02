@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BibliotecaPlantas
   m_EditorClassIdentifier: 
   catalogoPlantas:
-  - {fileID: 11400000, guid: e18eb8e878bbd35439d7d784be4a6bd0, type: 2}
   - {fileID: 11400000, guid: e4b5d2cb07711664bb8b91c44d1c857a, type: 2}
+  - {fileID: 11400000, guid: 29a00da07daf26046b6d342cfd639147, type: 2}
+  - {fileID: 11400000, guid: e18eb8e878bbd35439d7d784be4a6bd0, type: 2}

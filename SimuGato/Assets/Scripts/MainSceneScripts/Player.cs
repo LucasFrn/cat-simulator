@@ -8,8 +8,6 @@ public class Player : MonoBehaviour,IDataPersistance
     public int petiscos;
     public float fome, energia, higiene, felicidade, social;
     int nEnergeticos;
-    //VARIAVEIS PROVISORIAS PARA A ENTREGA DA PRE BANCA
-    //TROCAR PARA USAR O EVENT SYSTEM
 
     public Slider fomeSldr;
     public Slider energiaSldr;
@@ -51,7 +49,12 @@ public class Player : MonoBehaviour,IDataPersistance
     
 
 
-    // Start is called before the first frame update
+    void OnEnable(){
+        GameEventsManager.instance.gardenEvents.onPlantaColhida+=VenderPlanta;
+    }
+    void OnDisable(){
+        GameEventsManager.instance.gardenEvents.onPlantaColhida-=VenderPlanta;
+    }
     void Start()
     {
         //SpawnaNoLocal();
@@ -476,5 +479,8 @@ public class Player : MonoBehaviour,IDataPersistance
         else{
             //um barulinho, sei la
         }
+    }
+    public void VenderPlanta(int valor){
+        petiscos+=valor;
     }
 }

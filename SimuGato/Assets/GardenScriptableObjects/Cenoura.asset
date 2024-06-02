@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48b1b8668f0cd8d4c944416d4a6df00f, type: 3}
-  m_Name: Abobora
+  m_Name: Cenoura
   m_EditorClassIdentifier: 
-  <Nome>k__BackingField: Abobora
-  <ID>k__BackingField: 0
-  <Valor>k__BackingField: 50
+  <Nome>k__BackingField: Cenoura
+  <ID>k__BackingField: 1
+  <Valor>k__BackingField: 24
   <NFases>k__BackingField: 3
   <prefabs>k__BackingField:
-  - {fileID: 1828347126552223551, guid: 9ac5c6fb8e3491c4ba8da332c87c576f, type: 3}
-  - {fileID: 8516250165922164170, guid: 972b546a8d194e14986668534b546206, type: 3}
-  - {fileID: 5487542381619493515, guid: 42aab39044b65524da5d1b8ef0d8a541, type: 3}
+  - {fileID: 8437750601964989818, guid: 730dee420b702d944b145110f5821880, type: 3}
+  - {fileID: 5302354793783346306, guid: feb29c215d46ca14a98d18f7fd775075, type: 3}
+  - {fileID: 464710294804966403, guid: c76fccbe38969f843a29eb5b4114a988, type: 3}

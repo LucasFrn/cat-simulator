@@ -22,4 +22,10 @@ public class GardenEvents {
             onPlantaSelecionada(plantaSelecionada);
         }
     }
+    public event Action<int> onPlantaColhida;
+    public void PlantaColida(int valor){
+        if(onPlantaColhida!=null){
+            onPlantaColhida(valor);
+        }
+    }
 }

@@ -76,7 +76,11 @@ public class GridController : MonoBehaviour, IDataPersistance
                 gardenInfo.HoeAt(lastCellPos);
             }
             if(Input.GetKeyDown(KeyCode.Alpha2)){
-                gardenInfo.PlantAt(lastCellPos,(int)plantaSelecionada);
+                if(inventarioSementes[(int)plantaSelecionada]>0){
+                    gardenInfo.PlantAt(lastCellPos,(int)plantaSelecionada);
+                    inventarioSementes[(int)plantaSelecionada]--;
+                    GameEventsManager.instance.uiEvents.AtualizarQuantidadeSementes((int)plantaSelecionada,inventarioSementes[(int)plantaSelecionada]);
+                }
             }
             if(Input.GetKeyDown(KeyCode.Alpha3)){
                 gardenInfo.RegarAt(lastCellPos);
@@ -105,14 +109,4 @@ public class GridController : MonoBehaviour, IDataPersistance
         inventarioSementes[tipoSemente]+=quantidade;
         GameEventsManager.instance.uiEvents.AtualizarQuantidadeSementes(tipoSemente,inventarioSementes[tipoSemente]);
     }
-    /* public void UsarEneretico(){
-        if(nEnergeticos>0){
-            GameEventsManager.instance.playerEvents.PlayerUsesEnergyDrink();
-            nEnergeticos--;
-            GameEventsManager.instance.uiEvents.AtualizarEnergeticos(nEnergeticos);
-        }
-        else{
-            //um barulinho, sei la
-        }
-    } */
 }

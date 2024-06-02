@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Tomate
   m_EditorClassIdentifier: 
   <Nome>k__BackingField: Tomate
-  <ID>k__BackingField: 0
+  <ID>k__BackingField: 2
+  <Valor>k__BackingField: 35
   <NFases>k__BackingField: 4
   <prefabs>k__BackingField:
-  - {fileID: 5663620146537585714, guid: c5ef523df8f62ac43b79978ae4149a82, type: 3}
-  - {fileID: 1523212249194117220, guid: 18f2826d1316cdc409483c21bfaf9c9f, type: 3}
-  - {fileID: 3440228738756355916, guid: a03bc63e8c77fb14cb2ecf179baed4c0, type: 3}
-  - {fileID: 8873539312902094172, guid: 9439d15ec3e543246a19665ace967add, type: 3}
+  - {fileID: 747217983159355327, guid: 8e9defe02115fa04389b51dcb8b067f7, type: 3}
+  - {fileID: 1646231181219681415, guid: 292685329ac35744d961034d8134d586, type: 3}
+  - {fileID: 1388535096190978444, guid: 55f8dc04b8ff257448c647f585563181, type: 3}
+  - {fileID: 5599805115802063066, guid: 92b700ae142922c4b9d46d55001977b4, type: 3}

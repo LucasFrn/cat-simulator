@@ -154,6 +154,7 @@ public class GardenInfo
         {   
             if(gardenInfo[gridPos].Planted){//ta plantado
                 if(gardenInfo[gridPos].plantInfo.FaseAtual==gardenInfo[gridPos].plantInfo.FasesParaCrescer){
+                    int valorRecebido = gardenInfo[gridPos].plantInfo.Valor;
                     gardenInfo[gridPos].Hoed=false;
                     gardenInfo[gridPos].Watered=false;
                     gardenInfo[gridPos].Planted=false;
@@ -165,7 +166,7 @@ public class GardenInfo
                                                                             grid.CellToWorld(gridPos),Quaternion.identity);*/
                     //remover do dicionario
                     gardenInfo.Remove(gridPos);
-                    //ADICIONAR DINHEIRO PRO GATO
+                    GameEventsManager.instance.gardenEvents.PlantaColida(valorRecebido);
                 }
                 else{
                     if(DebugManager.debugManager.DEBUG){
@@ -276,12 +277,15 @@ public class PlantInfo{
     [field: SerializeField]
     public int ID {get; private set;}
     [field: SerializeField]
+    public int Valor {get; private set;}
+    [field: SerializeField]
     public int FaseAtual {get; set;} // vai de 1->FasesParaCrescer, para acessar o array lembrar de tirar -1
     [field: SerializeField]
     public int FasesParaCrescer {get; private set;}
     public PlantInfo(int ID, BibliotecaPlantas bibliotecaPlantas){
         Nome=bibliotecaPlantas.catalogoPlantas[ID].Nome;
         this.ID = ID;
+        this.Valor = bibliotecaPlantas.catalogoPlantas[ID].Valor;
         FaseAtual = 1;
         FasesParaCrescer = bibliotecaPlantas.catalogoPlantas[ID].NFases;
     }
