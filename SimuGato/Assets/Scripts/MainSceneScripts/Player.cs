@@ -7,6 +7,9 @@ public class Player : MonoBehaviour,IDataPersistance
 {
     public int petiscos;
     public float fome, energia, higiene, felicidade, social;
+    int nEnergeticos = 1;
+    //VARIAVEIS PROVISORIAS PARA A ENTREGA DA PRE BANCA
+    //TROCAR PARA USAR O EVENT SYSTEM
 
     public Slider fomeSldr;
     public Slider energiaSldr;
@@ -147,7 +150,7 @@ public class Player : MonoBehaviour,IDataPersistance
                             if (Input.GetKeyDown(KeyCode.E)){
                                 if(petiscos>=20){
                                     petiscos-=20;
-                                    energia+=20;
+                                    GanharEnergetico(1);
                                 }
                             }
                         }
@@ -165,7 +168,7 @@ public class Player : MonoBehaviour,IDataPersistance
                 else{
                     painelInteracao.SetActive(false);
                 }
-                if (Input.GetButtonDown("Fire1"))
+                /* if (Input.GetButtonDown("Fire1"))
                 {
                     if (itemSegurado != null)
                     {
@@ -174,10 +177,13 @@ public class Player : MonoBehaviour,IDataPersistance
                         }
                         SoltaItem();
                     }
-                }
+                } */
                 if (Input.GetKeyDown(KeyCode.B))
                 {
                     TomarBanho();
+                }
+                if(Input.GetKeyDown(KeyCode.K)){
+                    UsarEneretico();
                 }
                 if(Input.GetKey(KeyCode.F9)){
                     if(Input.GetKeyDown(KeyCode.Alpha1)){
@@ -455,5 +461,19 @@ public class Player : MonoBehaviour,IDataPersistance
     {
         StatusData novaData= new StatusData(fome,energia,higiene,felicidade,social,petiscos,timerMorte);
         data.statusData = novaData;
+    }
+    public void GanharEnergetico(int i){
+        nEnergeticos+=i;
+        GameEventsManager.instance.uiEvents.AtualizarEnergeticos(nEnergeticos);
+    }
+    public void UsarEneretico(){
+        if(nEnergeticos>0){
+            GameEventsManager.instance.playerEvents.PlayerUsesEnergyDrink();
+            nEnergeticos--;
+            GameEventsManager.instance.uiEvents.AtualizarEnergeticos(nEnergeticos);
+        }
+        else{
+            //um barulinho, sei la
+        }
     }
 }

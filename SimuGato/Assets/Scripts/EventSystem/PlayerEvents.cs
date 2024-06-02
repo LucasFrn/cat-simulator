@@ -11,4 +11,11 @@ public class PlayerEvents
             onPlayerLevelChange(level);
         }
     }
+    public event Action onPlayerUsesEnergyDrink;
+    public void PlayerUsesEnergyDrink(){
+        if(onPlayerLevelChange!=null){
+            onPlayerUsesEnergyDrink();
+            
+        }
+    }
 }

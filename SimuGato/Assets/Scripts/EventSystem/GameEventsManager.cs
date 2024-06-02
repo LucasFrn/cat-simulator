@@ -13,6 +13,7 @@ public class GameEventsManager : MonoBehaviour
     public InputEvents inputEvents;
     public PlayerEvents playerEvents;
     public CameraEvents cameraEvents;
+    public UIEvents uiEvents;
 
     private void Awake(){
         if(instance!=null){
@@ -24,5 +25,6 @@ public class GameEventsManager : MonoBehaviour
         inputEvents = new InputEvents();
         playerEvents = new PlayerEvents();
         cameraEvents = new CameraEvents();
+        uiEvents = new UIEvents();
     }
 }

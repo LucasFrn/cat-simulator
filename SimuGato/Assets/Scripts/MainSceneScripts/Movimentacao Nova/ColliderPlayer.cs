@@ -28,7 +28,7 @@ public class ColliderPlayer : MonoBehaviour
         if(colisao.collider.CompareTag("Garden")){
             meuScriptCamera?.TrocaCamera(ThirdPersonCamera.CameraStyle.Garden);
             GridIndicator?.SetActive(true);
-            meuScriptDeMovimento?.ChangeVelocity(5);
+            //meuScriptDeMovimento?.ChangeVelocity(5);
         }
     }
         void OnCollisionExit(Collision colisao){
