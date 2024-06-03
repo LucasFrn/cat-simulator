@@ -46,6 +46,7 @@ public class InventarioDePeixes : MonoBehaviour
                 painelInventario.SetActive(true);
                 inventarioAberto=true;
                 GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.InventarioPesca;
+                GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.InventarioPesca);
                 GameEventsManager.instance.cameraEvents.CameraPause();
                 Cursor.lockState=CursorLockMode.Confined;
                 Cursor.visible=true;
@@ -54,6 +55,7 @@ public class InventarioDePeixes : MonoBehaviour
                 painelInventario.SetActive(false);
                 inventarioAberto=false;
                 GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+                GameEventsManager.instance.uiEvents.PainelFechado((int)GameManager.JanelaEmFoco.InventarioPesca);
                 GameEventsManager.instance.cameraEvents.CameraUnPause();
                 Cursor.lockState=CursorLockMode.Locked;
                 Cursor.visible=false;
@@ -177,6 +179,7 @@ public class InventarioDePeixes : MonoBehaviour
                     mensagem.gameObject.SetActive(true);
                     painelMensagem.SetActive(true);
                     Invoke("FechaMensagem",3f);
+                    GameEventsManager.instance.playerEvents.PlayerComePeixe();
                 }break;
                 case 1:{
                     int dinheiro =(int) ((float)peixe.valorVenda*modPowerUpDinheiro);
@@ -185,6 +188,7 @@ public class InventarioDePeixes : MonoBehaviour
                     mensagem.gameObject.SetActive(true);
                     painelMensagem.SetActive(true);
                     Invoke("FechaMensagem",3f);
+                    GameEventsManager.instance.playerEvents.PlayerVendePeixe();
                 }break;
             }
             meusPeixes.Remove(peixe);

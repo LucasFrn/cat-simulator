@@ -20,6 +20,7 @@ public class SkillTree : MonoBehaviour
     void Awake(){
         numeroHabilidades=5;//NUMERO DE HALIBIDADES TOTAIS
     }
+
     void Start()
     {
         meuControllerPesca = ControllerMiniGamePesca.controllerMiniGamePesca;
@@ -43,9 +44,11 @@ public class SkillTree : MonoBehaviour
     {
         if(!GameManager.Instance.jogoPausado){
             if(Input.GetKeyDown(KeyCode.M)&&skillTreeOpen==false&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
+                ControllerMiniGamePesca.controllerMiniGamePesca.ControleExp(false);
                 painelSkillTree.SetActive(true);
                 skillTreeOpen=true;
                 GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.SkillTree;
+                GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.SkillTree);
                 GameEventsManager.instance.cameraEvents.CameraPause();
                 Cursor.lockState=CursorLockMode.Confined;
                 Cursor.visible=true;
@@ -55,6 +58,7 @@ public class SkillTree : MonoBehaviour
                     painelSkillTree.SetActive(false);
                     skillTreeOpen=false;
                     GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+                    GameEventsManager.instance.uiEvents.PainelFechado((int)GameManager.JanelaEmFoco.SkillTree);
                     GameEventsManager.instance.cameraEvents.CameraUnPause();
                     Cursor.lockState=CursorLockMode.Locked;
                     Cursor.visible=false;

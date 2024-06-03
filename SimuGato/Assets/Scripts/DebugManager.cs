@@ -27,7 +27,7 @@ public class DebugManager : MonoBehaviour
             Debug.Log("O debug magico dita que foi pega uma moeda");
             GameEventsManager.instance.miscEvents.coinCollected();
         }
-        if(Input.GetKeyDown(KeyCode.Keypad7)){
+        if(Input.GetKeyDown(KeyCode.Return)){
             Debug.Log("O debug magico dita que foi apertado Submit");
             GameEventsManager.instance.inputEvents.SubmitPressed();
         }

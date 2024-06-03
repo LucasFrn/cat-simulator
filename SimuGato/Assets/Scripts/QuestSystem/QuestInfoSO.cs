@@ -17,7 +17,19 @@ public class QuestInfoSO : ScriptableObject
     [Header("Rewards")]
     public int goldReward;
     public int experienceReward;
-    public string otherRewards;
+    public string otherRewardsText;
+    /* Devido a como foi feito a interpretação desse texto ele PRECISA TER O FORMATO
+    x(int) semente(s) de Nomeplanta (primeira letra maiscula)\n exemplo: 4 sementes de Tomate
+    x(int) peixe(s) tipo NomePeixe (primeira letra maiucula)\n exemplo: 1 peixe tipo Baiacu
+    x(int) exp de pesca\n
+    x Energetico(s)*/
+    public bool hasOtherRewards;
+    public enum OtherRewardsTypes { //só como referencia
+        Sementes,
+        Peixes,
+        ExpPesca,
+        Energetico
+    }
 
     private void OnValidate(){
         #if UNITY_EDITOR

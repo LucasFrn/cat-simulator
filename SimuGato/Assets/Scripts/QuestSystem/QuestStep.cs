@@ -26,6 +26,10 @@ public abstract class QuestStep : MonoBehaviour
         GameEventsManager.instance.questEvents.QuestStepStateChange(questId,stepIndex,
         new QuestStepState(newState,status));
     }
+    //Esse status é como vamos escrever no log
+    //O state é como guardamos o progresso numa string
 
     protected abstract void SetQuestStepState(string state);
+    //usado para voltar ao ponto que paramos
+    //da seus corre pra receber uma string e fazer isso virar progresso
 }

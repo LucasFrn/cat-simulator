@@ -18,4 +18,22 @@ public class PlayerEvents
             
         }
     }
+    public event Action onPlayerTriesFishing;
+    public void PlayerTriesFishing(){
+        if(onPlayerTriesFishing!=null){
+            onPlayerTriesFishing();
+        }
+    }
+    public event Action onPlayerVendePeixe;
+    public void PlayerVendePeixe(){
+        if(onPlayerVendePeixe!=null){
+            onPlayerVendePeixe();
+        }
+    }
+    public event Action onPlayerComePeixe;
+    public void PlayerComePeixe(){
+        if(onPlayerComePeixe!=null){
+            onPlayerComePeixe();
+        }
+    }
 }

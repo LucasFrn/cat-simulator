@@ -108,6 +108,7 @@ public class Player : MonoBehaviour,IDataPersistance
                         {
                             if(energia>5f){
                                 energia-=5f;
+                                GameEventsManager.instance.playerEvents.PlayerTriesFishing();
                                 ControllerMiniGamePesca.controllerMiniGamePesca.ProcuraPeixe();  
                             }
                         }

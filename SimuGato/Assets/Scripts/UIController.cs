@@ -66,6 +66,7 @@ public class UIController : MonoBehaviour
             GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
             GameEventsManager.instance.cameraEvents.CameraUnPause();
             painelQuestsAberto=false;
+            GameEventsManager.instance.uiEvents.PainelFechado((int)GameManager.JanelaEmFoco.Quests);
             Cursor.lockState=CursorLockMode.Locked;
             Cursor.visible=false;
         }
@@ -74,6 +75,7 @@ public class UIController : MonoBehaviour
             painelQuestsAberto=true;
             GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Quests;
             GameEventsManager.instance.cameraEvents.CameraPause();
+            GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.Quests);
             Cursor.lockState=CursorLockMode.Confined;
             Cursor.visible=true;
         }
@@ -89,6 +91,7 @@ public class UIController : MonoBehaviour
             painelPausa.SetActive(true);
             painelPausaAberto=true;
             Cursor.lockState=CursorLockMode.Confined;
+            
             Cursor.visible=true;
         }
     }
@@ -97,20 +100,24 @@ public class UIController : MonoBehaviour
             painelAudio.SetActive(false);
             painelAudioAberto=false;
             GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+            GameEventsManager.instance.uiEvents.PainelFechado((int)GameManager.JanelaEmFoco.MenuAudio);
         }
         else{
             painelAudio.SetActive(true);
             painelAudioAberto=true;
+            GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.MenuAudio);
             GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.MenuAudio; 
         }
     }
     public void AbreConfirmaSair(){
         painelConfirmaSair.SetActive(true);
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.ConfirmaSair;
+        GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.ConfirmaSair);
     }
     public void FechaConfirmaSair(){
         painelConfirmaSair.SetActive(false);
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+        GameEventsManager.instance.uiEvents.PainelFechado((int)GameManager.JanelaEmFoco.ConfirmaSair);
     }
     public void VoltarAoMenuPrincipal(){
         DataPersistenceManager.instance.SaveGame();
@@ -135,11 +142,13 @@ public class UIController : MonoBehaviour
             painelTutorial.SetActive(false);
             painelTutorialAberto=false;
             GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+            GameEventsManager.instance.uiEvents.PainelFechado((int)GameManager.JanelaEmFoco.Tutorial);
         }
         else{
             painelTutorial.SetActive(true);
             painelTutorialAberto=true;
-            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Tutorial; 
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Tutorial;
+            GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.Tutorial); 
         }
     }
     public void AlternaPainelCreditos(){
@@ -147,11 +156,14 @@ public class UIController : MonoBehaviour
             painelCreditos.SetActive(false);
             painelCreditosAberto=false;
             GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+            GameEventsManager.instance.uiEvents.PainelFechado((int)GameManager.JanelaEmFoco.Creditos);
+            
         }
         else{
             painelCreditos.SetActive(true);
             painelCreditosAberto=true;
-            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Creditos; 
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Creditos;
+            GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.Creditos); 
         }
     }
 }

@@ -110,7 +110,7 @@ public class QuestManager : MonoBehaviour,IDataPersistance
         ChangeQuestState(quest.info.id,QuestState.FINISHED);
     }
     private void ClaimRewards(Quest quest){
-        //Eviar eventos de recompensa, ou literalmente qualquer outra coisa kkkkk
+        RewardsHendler.GiveRewards(quest);
     }
     private void QuestStepStateChange(string id,int stepIndex, QuestStepState questStepState){
         Quest quest = GetQuestByID(id);

@@ -62,6 +62,12 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
             }
         }
     }
+    void OnEnable(){
+        GameEventsManager.instance.rewardEvents.onExpPescaRewardRecived+=GanharExperiencia;
+    }
+    void OnDisable(){
+        GameEventsManager.instance.rewardEvents.onExpPescaRewardRecived-=GanharExperiencia;
+    }
 
     // Update is called once per frame
     void Update()
@@ -121,7 +127,7 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
         resultadoMiniGame.gameObject.SetActive(true);
         painelResultado.gameObject.SetActive(true);
         Debug.Log("Vc pescou um peixe, um: "+ novoPeixe.FalaInfo());
-        ControleExp();
+        ControleExp(true);
         FecharMinigame();
     }
     public void Perder(){
@@ -181,11 +187,12 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
             default: return;
         }
     }
-    public void ControleExp(){//chamado ao pescar, cuida od exp e já atualiza a info na UI
-        exp+=10;
+    public void ControleExp(bool GanhaDez){//chamado ao pescar, cuida od exp e já atualiza a info na UI
+        if(GanhaDez)
+            exp+=10;
         if(exp>=100){
             pontosSkill++;
-            exp=0;
+            exp-=100;
             level++;
         }
         UIExp();
@@ -254,5 +261,9 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
         //SalvarDadosSkillTree
         SkillTreeData skillTreeData = new SkillTreeData(exp,level,pontosSkill,minhaSkillTree.GetSkillCompradas());
         data.skillTreeData=skillTreeData;
+    }
+    public void GanharExperiencia(int expGanha){
+        exp+=expGanha;
+        ControleExp(false);
     }
 }

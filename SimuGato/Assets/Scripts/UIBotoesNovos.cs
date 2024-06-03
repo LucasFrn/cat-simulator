@@ -9,14 +9,19 @@ public class UIBotoesNovos : MonoBehaviour
     [SerializeField] TMP_Text quantidadeCenoura;
     [SerializeField] TMP_Text quantidadeTomate;
     [SerializeField] TMP_Text quantidadeEnergetico;
+    [SerializeField] GameObject[] imagensTutorial;
 
     void OnEnable(){
         GameEventsManager.instance.uiEvents.onAtualizarQuantidadeSementes+=AtualizarQuantidadeSementes;
         GameEventsManager.instance.uiEvents.onAtualizarEnergeticos+=AtualizarEnergeticos;
+        GameEventsManager.instance.gardenEvents.onEnterGarden+=AtivaImagensGuia;
+        GameEventsManager.instance.gardenEvents.onLeaveGarden+=DesativaImagensGuia;
     } 
     void OnDisable(){
         GameEventsManager.instance.uiEvents.onAtualizarQuantidadeSementes-=AtualizarQuantidadeSementes;
         GameEventsManager.instance.uiEvents.onAtualizarEnergeticos-=AtualizarEnergeticos;
+        GameEventsManager.instance.gardenEvents.onEnterGarden-=AtivaImagensGuia;
+        GameEventsManager.instance.gardenEvents.onLeaveGarden-=DesativaImagensGuia;
     }
     void UpdateText(TMP_Text texto,int quantidade){
         texto.text = quantidade.ToString();
@@ -41,7 +46,12 @@ public class UIBotoesNovos : MonoBehaviour
     public void SelectTipoPlanta(int tipo){
         GameEventsManager.instance.gardenEvents.PlantaSelecionada(tipo);
     }
+    void AtivaImagensGuia(){
+        for(int i=0;i<imagensTutorial.Length;i++)
+            imagensTutorial[i].SetActive(true);
+    }
+    void DesativaImagensGuia(){
+        for(int i=0;i<imagensTutorial.Length;i++)
+            imagensTutorial[i].SetActive(false);
+    }
 }
-        /********************************* ONDE EU PAREI **************************/
-        /* ALEM DISSO TEMOS O LOG DE QUEST, DEVE SER MOLE NÉ PO, AI FAZER UMAS QUESTS AI, E DAR UM CONFERE NA PASSAGEM DO TEMPO
-        E COLOCAR UMA CHAMADA PRAS PLANTAS CRESCEREM NELE, OU METER O MIGUE, E SE SOBRAR TEMPO, COLHER AS PLANTAS */

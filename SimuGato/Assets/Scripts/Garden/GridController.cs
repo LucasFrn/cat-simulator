@@ -54,6 +54,9 @@ public class GridController : MonoBehaviour, IDataPersistance
     {
         canInteract=false;
         plantaSelecionada=TiposPlantas.Abobora;
+        for(int i=0;i<3;i++){
+            inventarioSementes[i]+=5;
+        }
     }
 
     // Update is called once per frame
@@ -91,7 +94,17 @@ public class GridController : MonoBehaviour, IDataPersistance
             }
             if(Input.GetKeyDown(KeyCode.Alpha0)){
                 gardenInfo.CrescerPlantas();
+            if(Input.GetKeyDown(KeyCode.Keypad8)){
+                GanharSementes(0,5);
+                GanharSementes(1,5);
+                GanharSementes(2,5);
+            }
         }
+        if(Input.GetKeyDown(KeyCode.Keypad8)){
+                GanharSementes(0,5);
+                GanharSementes(1,5);
+                GanharSementes(2,5);
+            }
     }
     //Coisas Do Event System
     void EnteredGarden(){

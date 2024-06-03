@@ -54,6 +54,6 @@ public class QuestLogUi : MonoBehaviour
         }
         //recompensas
         goldRewardsText.text=quest.info.goldReward+ " Petiscos";
-        outrasRewardsText.text=quest.info.otherRewards;
+        outrasRewardsText.text=quest.info.otherRewardsText;
     }
 }
