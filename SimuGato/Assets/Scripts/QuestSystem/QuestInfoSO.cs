@@ -9,6 +9,7 @@ public class QuestInfoSO : ScriptableObject
     
     [Header("General")]
     public string displayName;
+    public bool requiresPoint;
     [Header("Requirements")]
     public int levelRequirement;
     public QuestInfoSO[] questPrerequisites;
@@ -19,9 +20,9 @@ public class QuestInfoSO : ScriptableObject
     public int experienceReward;
     public string otherRewardsText;
     /* Devido a como foi feito a interpretação desse texto ele PRECISA TER O FORMATO
-    x(int) semente(s) de Nomeplanta (primeira letra maiscula)\n exemplo: 4 sementes de Tomate
-    x(int) peixe(s) tipo NomePeixe (primeira letra maiucula)\n exemplo: 1 peixe tipo Baiacu
-    x(int) exp de pesca\n
+    x(int) semente(s) de Nomeplanta (primeira letra maiscula) & exemplo: 4 sementes de Tomate
+    x(int) peixe(s) tipo NomePeixe (primeira letra maiucula)& exemplo: 1 peixe tipo Baiacu
+    x(int) exp de pesca\n &
     x Energetico(s)*/
     public bool hasOtherRewards;
     public enum OtherRewardsTypes { //só como referencia

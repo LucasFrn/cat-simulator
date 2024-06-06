@@ -47,11 +47,13 @@ public class QuestPoint : MonoBehaviour
     private void OnTriggerEnter(Collider collider){
         if(collider.CompareTag("Player")){
             playerIsNear=true;
+            GameEventsManager.instance.uiEvents.PainelInteracaoQuestChange(true,currentQuestState);
         }
     }
     private void OnTriggerExit(Collider collider){
         if(collider.CompareTag("Player")){
             playerIsNear=false;
+            GameEventsManager.instance.uiEvents.PainelInteracaoQuestChange(false,currentQuestState);
         }
     }
 }

@@ -72,10 +72,14 @@ public class Quest
     public string GetFullStatusText(){
         string fullStatus = "";
         if(state == QuestState.REQUIREMENTS_NOT_MET){
-            fullStatus = "Requisitos ainda não foram atendidos para começar essa quest";
+            fullStatus = "Requisitos ainda não foram atendidos para iniciar essa quest";
         }
         else if(state == QuestState.CAN_START){
-            fullStatus = "Você pode começar essa quest! Ache o ponto de inicio dela";
+            if(info.requiresPoint){
+                fullStatus = "Você pode iniciar essa quest! Ache o ponto de inicio dela";
+            }else{
+                fullStatus = "Você pode iniciar essa quest!";
+            }
         }
         else{
             for(int i=0;i<currentQuestStepIndex; i++){
@@ -93,5 +97,30 @@ public class Quest
         }
 
         return fullStatus;
+    }
+    public string GetCurrentStatusText(){
+        string status = "";
+        if(state == QuestState.REQUIREMENTS_NOT_MET){
+            status = "Requisitos ainda não foram atendidos para começar essa quest";
+        }
+        else if(state == QuestState.CAN_START){
+            if(info.requiresPoint){
+                status = "Você pode iniciar essa quest! Ache o ponto de inicio dela";
+            }else{
+                status = "Você pode iniciar essa quest!";
+            }
+        }
+        else{
+            if(CurrentStepExists()){
+                status = questStepStates[currentQuestStepIndex].status;
+            }
+            if(state== QuestState.CAN_FINISH){
+                status = "Você pode entregar essa quest!";
+            }
+            if(state == QuestState.FINISHED){
+                status = "Você já completou essa quest.";
+            }
+        }
+        return status;
     }
 }

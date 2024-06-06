@@ -9,6 +9,8 @@ public class UIBotoesNovos : MonoBehaviour
     [SerializeField] TMP_Text quantidadeCenoura;
     [SerializeField] TMP_Text quantidadeTomate;
     [SerializeField] TMP_Text quantidadeEnergetico;
+    [SerializeField] TMP_Text displayName;
+    [SerializeField] TMP_Text descricaoQuest;
     [SerializeField] GameObject[] imagensTutorial;
 
     void OnEnable(){
@@ -16,12 +18,14 @@ public class UIBotoesNovos : MonoBehaviour
         GameEventsManager.instance.uiEvents.onAtualizarEnergeticos+=AtualizarEnergeticos;
         GameEventsManager.instance.gardenEvents.onEnterGarden+=AtivaImagensGuia;
         GameEventsManager.instance.gardenEvents.onLeaveGarden+=DesativaImagensGuia;
+        GameEventsManager.instance.uiEvents.onQuestAtualizada+=AtualizaQuestLog;
     } 
     void OnDisable(){
         GameEventsManager.instance.uiEvents.onAtualizarQuantidadeSementes-=AtualizarQuantidadeSementes;
         GameEventsManager.instance.uiEvents.onAtualizarEnergeticos-=AtualizarEnergeticos;
         GameEventsManager.instance.gardenEvents.onEnterGarden-=AtivaImagensGuia;
         GameEventsManager.instance.gardenEvents.onLeaveGarden-=DesativaImagensGuia;
+        GameEventsManager.instance.uiEvents.onQuestAtualizada-=AtualizaQuestLog;
     }
     void UpdateText(TMP_Text texto,int quantidade){
         texto.text = quantidade.ToString();
@@ -53,5 +57,9 @@ public class UIBotoesNovos : MonoBehaviour
     void DesativaImagensGuia(){
         for(int i=0;i<imagensTutorial.Length;i++)
             imagensTutorial[i].SetActive(false);
+    }
+    void AtualizaQuestLog(string displayName, string statusAtual){
+        this.displayName.text=displayName;
+        this.descricaoQuest.text=statusAtual;
     }
 }

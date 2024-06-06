@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f48c3bdefcdf24a86f5b1b3f6d39ec, type: 3}
   m_Name: CollectCoinsQuest
   m_EditorClassIdentifier: 
-  <id>k__BackingField: CollectCoinsQuest
+  <id>k__BackingField: CollectCoinsQuest1
   displayName: Pegue as Moedas!
   levelRequirement: 1
   questPrerequisites: []

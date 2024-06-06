@@ -41,6 +41,8 @@ public class Player : MonoBehaviour,IDataPersistance
     [Header("Painel Interação")]
     public GameObject painelInteracao;
     public TextMeshProUGUI textoInteracao;
+    public GameObject painelInteracaoQuests;
+    public TextMeshProUGUI textoInteracaoQuest;
     Animator animator;
     //variaveis de morte
     bool isMorrendo=false;
@@ -51,9 +53,11 @@ public class Player : MonoBehaviour,IDataPersistance
 
     void OnEnable(){
         GameEventsManager.instance.gardenEvents.onPlantaColhida+=VenderPlanta;
+        GameEventsManager.instance.uiEvents.onPainelInteracaoQuestChange+=AlterarPainelQuest;
     }
     void OnDisable(){
         GameEventsManager.instance.gardenEvents.onPlantaColhida-=VenderPlanta;
+        GameEventsManager.instance.uiEvents.onPainelInteracaoQuestChange-=AlterarPainelQuest;
     }
     void Start()
     {
@@ -483,5 +487,23 @@ public class Player : MonoBehaviour,IDataPersistance
     }
     public void VenderPlanta(int valor){
         petiscos+=valor;
+    }
+    void AlterarPainelQuest(bool ativarPainel,QuestState questState){
+        if(ativarPainel){
+            painelInteracaoQuests.SetActive(true);
+            switch(questState){
+            case QuestState.CAN_START:
+                textoInteracaoQuest.text = "Aperte enter para comecar a quest";
+            break;
+            case QuestState.CAN_FINISH:
+                textoInteracaoQuest.text = "Aperte enter para entregar a quest";
+            break;
+            default:painelInteracaoQuests.SetActive(false);
+            break;
+            }
+        }
+        else{
+            painelInteracaoQuests.SetActive(false);
+        }
     }
 }

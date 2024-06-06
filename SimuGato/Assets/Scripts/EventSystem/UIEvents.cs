@@ -28,4 +28,16 @@ public class UIEvents {
             onPainelFechado(painel);
         }
     }
+    public event Action<string,string> onQuestAtualizada;
+    public void QuestAtualizada(string displayName,string currentStatus){
+        if(onQuestAtualizada!=null){
+            onQuestAtualizada(displayName,currentStatus);
+        }
+    }
+    public event Action<bool,QuestState> onPainelInteracaoQuestChange;
+    public void PainelInteracaoQuestChange(bool ativarPainel,QuestState state){
+        if(onPainelInteracaoQuestChange!=null){
+            onPainelInteracaoQuestChange(ativarPainel,state);
+        }
+    }
 }

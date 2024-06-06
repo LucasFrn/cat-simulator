@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f48c3bdefcdf24a86f5b1b3f6d39ec, type: 3}
   m_Name: TestQuest
   m_EditorClassIdentifier: 
-  <id>k__BackingField: TestQuest
+  <id>k__BackingField: TestQuest1
   displayName: teste
+  requiresPoint: 0
   levelRequirement: 0
   questPrerequisites: []
   questStepPrefabs:

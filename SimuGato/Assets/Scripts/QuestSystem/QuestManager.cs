@@ -66,6 +66,7 @@ public class QuestManager : MonoBehaviour,IDataPersistance
         Quest quest = GetQuestByID(id);
         quest.state = state;
         GameEventsManager.instance.questEvents.QuestStateChange(quest);
+        GameEventsManager.instance.uiEvents.QuestAtualizada(quest.info.displayName,quest.GetCurrentStatusText());
     }
     private bool CheckRequirementsMet(Quest quest){
         bool meetsRequirements = true;
@@ -93,6 +94,7 @@ public class QuestManager : MonoBehaviour,IDataPersistance
         Quest quest=GetQuestByID(id);
         quest.InstantiateCurrentQuestStep(this.transform);
         ChangeQuestState(quest.info.id,QuestState.IN_PROGRESS);
+        GameEventsManager.instance.uiEvents.QuestAtualizada(quest.info.displayName,quest.GetCurrentStatusText());
     }
     private void AdvanceQuest(string id){
         Quest quest = GetQuestByID(id);
@@ -103,11 +105,13 @@ public class QuestManager : MonoBehaviour,IDataPersistance
         else{//se não tem mais quest steps quer dizer que acabou a quest
             ChangeQuestState(quest.info.id,QuestState.CAN_FINISH);
         }
+        GameEventsManager.instance.uiEvents.QuestAtualizada(quest.info.displayName,quest.GetCurrentStatusText());
     }
     private void FinishQuest(string id){
         Quest quest = GetQuestByID(id);
         ClaimRewards(quest);
         ChangeQuestState(quest.info.id,QuestState.FINISHED);
+        GameEventsManager.instance.uiEvents.QuestAtualizada(quest.info.displayName,quest.GetCurrentStatusText());
     }
     private void ClaimRewards(Quest quest){
         RewardsHendler.GiveRewards(quest);
@@ -116,6 +120,7 @@ public class QuestManager : MonoBehaviour,IDataPersistance
         Quest quest = GetQuestByID(id);
         quest.StoreQuestStepState(questStepState, stepIndex);
         ChangeQuestState(id,quest.state);
+        GameEventsManager.instance.uiEvents.QuestAtualizada(quest.info.displayName,quest.GetCurrentStatusText());
     }
     /* private void OnApplicationQuit(){
         foreach(Quest quest in questMap.Values){
