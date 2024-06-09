@@ -28,4 +28,29 @@ public class GardenEvents {
             onPlantaColhida(valor);
         }
     }
+    public event Action onTerraArada;
+    public void ArarTerra(){
+        if(onTerraArada!=null){
+            onTerraArada();
+        }
+    }
+    public event Action onPlantaPlantada;
+    public void PlantaPlantada(){
+        if(onPlantaPlantada!=null){
+            onPlantaPlantada();
+        }
+    }
+    public event Action onPlantaRegada;
+    public void PlantaRegada(){
+        if(onPlantaRegada!=null){
+            onPlantaRegada();
+        }
+    }
+
+    public event Action onFicouDia;
+    public void FicouDia(){
+        if(onFicouDia!=null){
+            onFicouDia();
+        }
+    }
 }

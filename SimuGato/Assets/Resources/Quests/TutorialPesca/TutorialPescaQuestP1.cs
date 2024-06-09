@@ -19,7 +19,7 @@ public class TutorialPescaQuestP1 : QuestStep
     }
     public void UpdateState(){
         string state = "";
-        string status = "Ir até o lago (siga opeixe no minimapa)";
+        string status = "Ir até o lago (siga o peixe no minimapa)";
         ChangeState(state,status);
     }
 

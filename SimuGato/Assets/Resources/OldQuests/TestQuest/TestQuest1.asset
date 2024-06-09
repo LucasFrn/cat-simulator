@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f48c3bdefcdf24a86f5b1b3f6d39ec, type: 3}
-  m_Name: TestQuest
+  m_Name: TestQuest1
   m_EditorClassIdentifier: 
   <id>k__BackingField: TestQuest1
   displayName: teste

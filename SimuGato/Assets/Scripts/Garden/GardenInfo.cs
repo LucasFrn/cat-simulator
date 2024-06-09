@@ -28,6 +28,7 @@ public class GardenInfo
             gardenInfo[gridPos]=novoTile;
             gardenInfo[gridPos].floorPrefab=GameObject.Instantiate(bibliotecaChao.catalogoChao[(int)BibliotecaChao.TiposChao.Hoed],grid.CellToWorld(gridPos),Quaternion.identity);
             gardenInfo[gridPos].Hoed=true;
+            GameEventsManager.instance.gardenEvents.ArarTerra();
             
         }
         else{
@@ -46,6 +47,7 @@ public class GardenInfo
                     gardenInfo[gridPos].Hoed=true;
                     GameObject.Destroy(gardenInfo[gridPos].floorPrefab.gameObject);
                     gardenInfo[gridPos].floorPrefab=GameObject.Instantiate(bibliotecaChao.catalogoChao[(int)BibliotecaChao.TiposChao.Hoed],grid.CellToWorld(gridPos),Quaternion.identity);
+                    GameEventsManager.instance.gardenEvents.ArarTerra();
                 }
             }
         }
@@ -58,6 +60,7 @@ public class GardenInfo
                     gardenInfo[gridPos].plantInfo = novaPlanta;
                     gardenInfo[gridPos].Planted=true;
                     gardenInfo[gridPos].plantPrefab = GameObject.Instantiate(bibliotecaPlantas.catalogoPlantas[plantaID].prefabs[0],grid.CellToWorld(gridPos),Quaternion.identity);
+                    GameEventsManager.instance.gardenEvents.PlantaPlantada();
                 }
                 else{
                     if(DebugManager.debugManager.DEBUG){
@@ -81,6 +84,7 @@ public class GardenInfo
                     GameObject.Destroy(gardenInfo[gridPos].floorPrefab.gameObject);
                     gardenInfo[gridPos].floorPrefab=GameObject.Instantiate(bibliotecaChao.catalogoChao[(int)BibliotecaChao.TiposChao.Watered],
                                                                             grid.CellToWorld(gridPos),Quaternion.identity);
+                    GameEventsManager.instance.gardenEvents.PlantaRegada();
                 }
                 else{
                     if(DebugManager.debugManager.DEBUG){

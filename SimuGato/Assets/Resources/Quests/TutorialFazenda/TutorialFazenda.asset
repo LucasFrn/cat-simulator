@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f48c3bdefcdf24a86f5b1b3f6d39ec, type: 3}
+  m_Name: TutorialFazenda
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: TutorialFazenda
+  displayName: Tutorial 3 - Fazenda
+  requiresPoint: 1
+  levelRequirement: 0
+  questPrerequisites: []
+  questStepPrefabs:
+  - {fileID: 8613113221889881510, guid: 9e63aa60f5723134ea73e5441b190102, type: 3}
+  - {fileID: 7955270401504300647, guid: 79276f9526ab31e428d4f3bcc5047223, type: 3}
+  - {fileID: 1150519914401379499, guid: 1e67c2736b8422f458d23c28b141d417, type: 3}
+  - {fileID: 1134178621569976642, guid: 68cdb1a078583384ab1cdbd08f885211, type: 3}
+  - {fileID: 8398068784913737626, guid: bfa7bd8b06a743245884739fd931f6d6, type: 3}
+  goldReward: 0
+  experienceReward: 10
+  otherRewardsText: 5 sementes de Abobora & 5 sementes de Cenoura & 5 sementes de
+    Tomate
+  hasOtherRewards: 1

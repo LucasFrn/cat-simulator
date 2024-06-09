@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [ExecuteAlways]
-public class LuzManager : MonoBehaviour
+public class LuzManager : MonoBehaviour,IDataPersistance
 {
     [SerializeField] private Light LuzDirecional;
     [SerializeField] private MusicaController musica;
@@ -12,10 +12,15 @@ public class LuzManager : MonoBehaviour
     public float ratioPassagemDoTempo = 20f;//ratio = 20 resulta em cada hora durando 20 segundos e etc
                                             //diminuir ao tomar banho
     [SerializeField, Range(0, 24)] public float HoraDoDia;
+    bool avisoDia;
 
     void Start(){
-        if(GameManager.Instance!=null)
-            HoraDoDia=GameManager.Instance.HoraDoDiaAoTrocarCena;
+        avisoDia=false;
+        if(GameManager.Instance!=null){
+            if(GameManager.Instance.overrideSaveToGameManager){
+                HoraDoDia=GameManager.Instance.HoraDoDiaAoTrocarCena;
+            }
+        }
     }
     private void FixedUpdate()
     {
@@ -30,6 +35,13 @@ public class LuzManager : MonoBehaviour
         else
         {
             AtualizaLuz(HoraDoDia);
+        }
+        if(HoraDoDia>=6&&HoraDoDia<=7&&!avisoDia){
+            GameEventsManager.instance.gardenEvents.FicouDia();
+            avisoDia=true;
+        }
+        if(HoraDoDia>=7&&avisoDia){
+            avisoDia=false;
         }
         if (HoraDoDia >= 18 || HoraDoDia <= 6) musica.Noite();
         else musica.Dia();
@@ -67,5 +79,15 @@ public class LuzManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        HoraDoDia=data.horaDoDia;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.horaDoDia=HoraDoDia;
     }
 }

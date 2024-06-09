@@ -54,10 +54,14 @@ public class Player : MonoBehaviour,IDataPersistance
     void OnEnable(){
         GameEventsManager.instance.gardenEvents.onPlantaColhida+=VenderPlanta;
         GameEventsManager.instance.uiEvents.onPainelInteracaoQuestChange+=AlterarPainelQuest;
+        GameEventsManager.instance.rewardEvents.onEnergeticoRewardRecived+=GanharEnergetico;
+        GameEventsManager.instance.rewardEvents.onGoldRewardRecived+=GanharPetiscos;
     }
     void OnDisable(){
         GameEventsManager.instance.gardenEvents.onPlantaColhida-=VenderPlanta;
         GameEventsManager.instance.uiEvents.onPainelInteracaoQuestChange-=AlterarPainelQuest;
+        GameEventsManager.instance.rewardEvents.onEnergeticoRewardRecived-=GanharEnergetico;
+        GameEventsManager.instance.rewardEvents.onGoldRewardRecived-=GanharPetiscos;
     }
     void Start()
     {
@@ -455,6 +459,7 @@ public class Player : MonoBehaviour,IDataPersistance
             social = GameManager.Instance.social;
             petiscos = GameManager.Instance.petiscos;
             GameManager.Instance.overrideSaveToGameManager=false;//usado para garantir que o resultado do pão vai ser salvo
+            nEnergeticos=data.statusData.nEnergeticos;
         }
         else{
             fome = data.statusData.fome;
@@ -463,12 +468,13 @@ public class Player : MonoBehaviour,IDataPersistance
             felicidade = data.statusData.felicidade;
             social = data.statusData.social;
             petiscos = data.statusData.petiscos;
+            nEnergeticos=data.statusData.nEnergeticos;
         }
 
     }
     public void SaveData(GameData data)
     {
-        StatusData novaData= new StatusData(fome,energia,higiene,felicidade,social,petiscos,timerMorte);
+        StatusData novaData= new StatusData(fome,energia,higiene,felicidade,social,petiscos,timerMorte,nEnergeticos);
         data.statusData = novaData;
     }
     public void GanharEnergetico(int i){
@@ -505,5 +511,8 @@ public class Player : MonoBehaviour,IDataPersistance
         else{
             painelInteracaoQuests.SetActive(false);
         }
+    }
+    void GanharPetiscos(int valor){
+        petiscos+=valor;
     }
 }

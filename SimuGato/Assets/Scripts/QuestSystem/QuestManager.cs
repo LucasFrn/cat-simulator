@@ -9,6 +9,7 @@ public class QuestManager : MonoBehaviour,IDataPersistance
     [SerializeField]private bool loadQuestState = true;
     private Dictionary<string, Quest> questMap;
     private Dictionary<string,QuestData> questsLoadadas;
+    [SerializeField] QuestInfoSO primeiraQuest;
 
     private int currentPlayerLevel;
 
@@ -39,6 +40,10 @@ public class QuestManager : MonoBehaviour,IDataPersistance
             }
             GameEventsManager.instance.questEvents.QuestStateChange(quest);
         }
+        /* string firstDisplayName = "Eu sou seu menu de Quests!";
+        string firstDescricao = "Aperte J para me abrir, eu deixo sua quest selecionada aqui pra vc :)";
+        GameEventsManager.instance.uiEvents.QuestAtualizada(firstDisplayName,firstDescricao); */
+        StartQuest(primeiraQuest.id);
     }
 
     private Dictionary<string, Quest> CreateQuestMap(){

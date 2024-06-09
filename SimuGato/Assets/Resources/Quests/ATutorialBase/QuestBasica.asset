@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f48c3bdefcdf24a86f5b1b3f6d39ec, type: 3}
-  m_Name: CollectCoinsQuest
+  m_Name: QuestBasica
   m_EditorClassIdentifier: 
-  <id>k__BackingField: CollectCoinsQuest1
-  displayName: Pegue as Moedas!
-  levelRequirement: 1
+  <id>k__BackingField: QuestBasica
+  displayName: Comandos Basicos
+  requiresPoint: 0
+  levelRequirement: 0
   questPrerequisites: []
   questStepPrefabs:
-  - {fileID: 8813783582727037212, guid: 611aaf90cd8399c459146ebc4f28e1b4, type: 3}
-  - {fileID: 8813783582727037212, guid: 611aaf90cd8399c459146ebc4f28e1b4, type: 3}
-  goldReward: 50
-  experienceReward: 250
-  otherRewardsText: 
-  hasOtherRewards: 0
+  - {fileID: 1742372950619304787, guid: c33c791c028a12b409a940740c4bf249, type: 3}
+  - {fileID: 2066298495798717541, guid: 71e2a3a2494a126489a73246c3eb01e6, type: 3}
+  goldReward: 100
+  experienceReward: 0
+  otherRewardsText: 5 Energeticos
+  hasOtherRewards: 1

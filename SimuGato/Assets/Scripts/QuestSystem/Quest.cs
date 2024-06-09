@@ -76,7 +76,7 @@ public class Quest
         }
         else if(state == QuestState.CAN_START){
             if(info.requiresPoint){
-                fullStatus = "Você pode iniciar essa quest! Ache o ponto de inicio dela";
+                fullStatus = "Você pode iniciar essa quest! Ache o ponto de inicio dela (Aperte Enter do lado dele)";
             }else{
                 fullStatus = "Você pode iniciar essa quest!";
             }
@@ -105,7 +105,7 @@ public class Quest
         }
         else if(state == QuestState.CAN_START){
             if(info.requiresPoint){
-                status = "Você pode iniciar essa quest! Ache o ponto de inicio dela";
+                status = "Você pode iniciar essa quest! Ache o ponto de inicio dela (Aperte Enter do lado dele)";
             }else{
                 status = "Você pode iniciar essa quest!";
             }

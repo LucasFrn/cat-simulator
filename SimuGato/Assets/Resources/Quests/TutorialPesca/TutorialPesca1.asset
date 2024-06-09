@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f48c3bdefcdf24a86f5b1b3f6d39ec, type: 3}
   m_Name: TutorialPesca1
   m_EditorClassIdentifier: 
-  <id>k__BackingField: TutorialPesca
+  <id>k__BackingField: TutorialPesca1
   displayName: Tutorial 2 - Aprendendo a Pescar
   requiresPoint: 1
   levelRequirement: 0
