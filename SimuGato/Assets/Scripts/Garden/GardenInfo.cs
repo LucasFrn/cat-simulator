@@ -52,7 +52,7 @@ public class GardenInfo
             }
         }
     }
-    public void PlantAt(Vector3Int gridPos,int plantaID){// ADICIONAR UM CHECK DE N TER PLANTA NO LUGAR
+    public bool PlantAt(Vector3Int gridPos,int plantaID){// ADICIONAR UM CHECK DE N TER PLANTA NO LUGAR
         if(gardenInfo.ContainsKey(gridPos)){
             if(!gardenInfo[gridPos].Planted){
                 if(gardenInfo[gridPos].Hoed||gardenInfo[gridPos].Watered){
@@ -61,6 +61,7 @@ public class GardenInfo
                     gardenInfo[gridPos].Planted=true;
                     gardenInfo[gridPos].plantPrefab = GameObject.Instantiate(bibliotecaPlantas.catalogoPlantas[plantaID].prefabs[0],grid.CellToWorld(gridPos),Quaternion.identity);
                     GameEventsManager.instance.gardenEvents.PlantaPlantada();
+                    return true;
                 }
                 else{
                     if(DebugManager.debugManager.DEBUG){
@@ -74,6 +75,7 @@ public class GardenInfo
                 }
             }
         }
+        return false;
     }
     public void RegarAt(Vector3Int gridPos){
         if(gardenInfo.ContainsKey(gridPos)){

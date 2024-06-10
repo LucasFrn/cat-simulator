@@ -4997,6 +4997,7 @@ MonoBehaviour:
   painelDerrota: {fileID: 0}
   painelTutorial: {fileID: 0}
   painelCreditos: {fileID: 463880729}
+  QuestsLogUI: {fileID: 0}
 --- !u!4 &1184314657
 Transform:
   m_ObjectHideFlags: 0
@@ -5818,10 +5819,8 @@ MonoBehaviour:
   jogoPausado: 0
   cameraMiniMapa: {fileID: 0}
   minimapaTamanho: 39
-  spawnGatoNoLoad: {fileID: 0}
-  posGatoNoLoad: {x: 0, y: 0, z: 0}
-  rotGatoNoLoad: {x: 0, y: 0, z: 0, w: 0}
   HoraDoDiaAoTrocarCena: 6
+  overrideSaveToGameManager: 0
   janelaEmFoco: 0
 --- !u!4 &1574662882
 Transform:
@@ -7041,7 +7040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5662406544739611215, guid: c7370b1c928a80146a434e7334ccdebd, type: 3}
       propertyPath: fileName
-      value: simugatisavefile.txt
+      value: simugatosavefile.txt
       objectReference: {fileID: 0}
     - target: {fileID: 5662406544739611215, guid: c7370b1c928a80146a434e7334ccdebd, type: 3}
       propertyPath: initializeDataIfNull

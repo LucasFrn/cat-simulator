@@ -92,23 +92,33 @@ public class GridController : MonoBehaviour, IDataPersistance
                 }
                 if(Input.GetKeyDown(KeyCode.Alpha2)){
                     if(inventarioSementes[(int)plantaSelecionada]>0){
-                        gardenInfo.PlantAt(lastCellPos,(int)plantaSelecionada);
-                        inventarioSementes[(int)plantaSelecionada]--;
-                        GameEventsManager.instance.uiEvents.AtualizarQuantidadeSementes((int)plantaSelecionada,inventarioSementes[(int)plantaSelecionada]);
+                        if(gardenInfo.PlantAt(lastCellPos,(int)plantaSelecionada)){
+                            inventarioSementes[(int)plantaSelecionada]--;
+                            GameEventsManager.instance.uiEvents.AtualizarQuantidadeSementes((int)plantaSelecionada,inventarioSementes[(int)plantaSelecionada]);
+                        }
                     }
                 }
                 if(Input.GetKeyDown(KeyCode.Alpha3)){
                     gardenInfo.RegarAt(lastCellPos);
-                }
                 }
                 if(Input.GetKeyDown(KeyCode.Alpha4)){
                     gardenInfo.ColherAt(lastCellPos);
                 }
                 if(Input.GetKeyDown(KeyCode.Alpha0)){
                     CrescerPlantas();
+                }
+                if(Input.GetKeyDown(KeyCode.R)){
+                    SelecionaPlanta(0);
+                }
+                if(Input.GetKeyDown(KeyCode.T)){
+                    SelecionaPlanta(1);
+                }
+                if(Input.GetKeyDown(KeyCode.Y)){
+                    SelecionaPlanta(2);
+                }
             }
         }
-        if(Input.GetKeyDown(KeyCode.LeftShift)){
+        if(Input.GetKey(KeyCode.LeftShift)){
             if(Input.GetKeyDown(KeyCode.Alpha8)){
                     GanharSementes(0,5);
                     GanharSementes(1,5);
