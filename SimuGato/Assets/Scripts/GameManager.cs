@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -82,5 +83,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale=1;
         jogoPausado=false;
         janelaEmFoco=JanelaEmFoco.Parque;
+    }
+    public Vector3 RandPointInSpace(){
+        float x = Random.Range(100,600);
+        float y = Random.Range(15,19);
+        float z = Random.Range(100,600);
+        Vector3 vet = new Vector3(x,y,z);
+        return vet;
     }
 }

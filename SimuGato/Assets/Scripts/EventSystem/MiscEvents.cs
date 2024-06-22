@@ -17,4 +17,10 @@ public class MiscEvents
             onGemCollected();
         }
     }
+    public event Action<int> onFicouDia;
+    public void FicouDia(int overload){
+        if(onFicouDia!=null){
+            onFicouDia(overload);
+        }
+    }
 }

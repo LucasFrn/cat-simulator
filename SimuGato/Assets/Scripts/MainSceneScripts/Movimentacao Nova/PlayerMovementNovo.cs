@@ -35,6 +35,10 @@ public class PlayerMovementNovo : MonoBehaviour,IDataPersistance
     const float maxTimerPulo=0.15f;
     const float speedRegular = 3.5f;
     bool isJumping;
+    [SerializeField]ParticleSystem dust;
+    [SerializeField]float minSpeedForDust;
+    [SerializeField]float coolDownVFX;
+    float timerCoolDownVFX;
 
     void OnEnable(){
         GameEventsManager.instance.playerEvents.onPlayerUsesEnergyDrink+=UseEnergetico;
@@ -123,6 +127,15 @@ public class PlayerMovementNovo : MonoBehaviour,IDataPersistance
             //rb.AddForce(moveDir.normalized*moveSpeed*movimentHelper,ForceMode.Force);
             //rb.AddForce(moveDir.normalized,ForceMode.VelocityChange);
             rb.velocity += moveDir.normalized*speed;
+            if(rb.velocity.magnitude>minSpeedForDust){
+                if(timerCoolDownVFX>=0){
+                    timerCoolDownVFX-=Time.deltaTime;
+                }
+                else{
+                    dust.Play();
+                    timerCoolDownVFX=coolDownVFX;
+                }
+            }
         }
         else{//no ar
             //rb.AddForce(moveDir.normalized*moveSpeed*movimentHelper*airMultiplayer,ForceMode.Force);
