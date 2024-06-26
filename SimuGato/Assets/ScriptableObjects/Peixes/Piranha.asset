@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomePeixe: Piranha
   tamanho: 15cm
-  valorVenda: 10
-  fomeRestauradaAoComer: 3
+  valorVenda: 5
+  fomeRestauradaAoComer: 15
   felicidadeAoPescar: 50

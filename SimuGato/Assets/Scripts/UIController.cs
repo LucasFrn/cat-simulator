@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    bool painelPausaAberto,painelAudioAberto,painelTutorialAberto,painelCreditosAberto,painelQuestsAberto;
-    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota,painelTutorial,painelCreditos,QuestsLogUI;
+    bool painelPausaAberto,painelAudioAberto,painelTutorialAberto,
+            painelCreditosAberto,painelQuestsAberto,painelMapaAberto;
+    public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota,
+            painelTutorial,painelCreditos,QuestsLogUI,painelMapa;
     QuestLogUi questLogUi;
     void Start()
     {
@@ -39,11 +41,15 @@ public class UIController : MonoBehaviour
             questLogUi.HideUI();
             painelQuestsAberto=false;
         }
+        if(painelMapa!=null){
+            painelMapa.SetActive(false);
+            painelMapaAberto=false;
+        }
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   //Botar os inputs iguais ao que abre
         if(Input.GetKeyDown(KeyCode.Escape)&&painelAudioAberto){
             AlternaPainelAudio();
         }
@@ -53,11 +59,18 @@ public class UIController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)&&painelCreditosAberto){
             AlternaPainelCreditos();
         }
-        if(Input.GetKeyDown(KeyCode.Escape)&&painelQuestsAberto){
-            AlternaPainelQuests();
-        }
         if(Input.GetKeyDown(KeyCode.J)&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
             AlternaPainelQuests();
+        }else
+        if((Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.J))&&painelQuestsAberto){
+            AlternaPainelQuests();
+        }
+        if(Input.GetKeyDown(KeyCode.M)&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque)
+        {
+            AlternaPainelMapa();
+        }else
+        if((Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.M))&&painelMapaAberto){
+            AlternaPainelMapa();
         }
     }
     public void AlternaPainelQuests(){
@@ -164,6 +177,22 @@ public class UIController : MonoBehaviour
             painelCreditosAberto=true;
             GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Creditos;
             GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.Creditos); 
+        }
+    }
+    public void AlternaPainelMapa(){
+        if(painelMapaAberto){
+            painelMapa.SetActive(false);
+            painelMapaAberto=false;
+            GameEventsManager.instance.cameraEvents.CameraUnPause();
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
+            GameEventsManager.instance.uiEvents.PainelFechado((int)GameManager.JanelaEmFoco.Mapa);
+        }
+        else{
+            painelMapa.SetActive(true);
+            painelMapaAberto=true;
+            GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Mapa;
+            GameEventsManager.instance.uiEvents.PainelAberto((int)GameManager.JanelaEmFoco.Mapa);
+            GameEventsManager.instance.cameraEvents.CameraPause();
         }
     }
 }

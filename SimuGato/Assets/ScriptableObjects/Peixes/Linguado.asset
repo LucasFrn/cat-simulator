@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomePeixe: Linguado
   tamanho: 40cm
-  valorVenda: 20
-  fomeRestauradaAoComer: 5
+  valorVenda: 30
+  fomeRestauradaAoComer: 20
   felicidadeAoPescar: 5

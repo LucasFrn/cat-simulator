@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomePeixe: Tilapia
   tamanho: 10cm
-  valorVenda: 30
+  valorVenda: 40
   fomeRestauradaAoComer: 10
   felicidadeAoPescar: 5

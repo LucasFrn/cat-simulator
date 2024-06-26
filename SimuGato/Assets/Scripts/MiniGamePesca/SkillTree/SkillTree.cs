@@ -43,7 +43,7 @@ public class SkillTree : MonoBehaviour
     void Update()
     {
         if(!GameManager.Instance.jogoPausado){
-            if(Input.GetKeyDown(KeyCode.M)&&skillTreeOpen==false&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
+            if(Input.GetKeyDown(KeyCode.O)&&skillTreeOpen==false&&GameManager.Instance.janelaEmFoco==GameManager.JanelaEmFoco.Parque){
                 ControllerMiniGamePesca.controllerMiniGamePesca.ControleExp(false);
                 painelSkillTree.SetActive(true);
                 skillTreeOpen=true;
@@ -54,7 +54,7 @@ public class SkillTree : MonoBehaviour
                 Cursor.visible=true;
             }
             else{
-                if(Input.GetKeyDown(KeyCode.Escape)&&skillTreeOpen==true){
+                if((Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.O))&&skillTreeOpen==true){
                     painelSkillTree.SetActive(false);
                     skillTreeOpen=false;
                     GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;

@@ -30,7 +30,8 @@ public class GameManager : MonoBehaviour
         Tutorial,
         Creditos,
         Quests,
-        Nula
+        Nula,
+        Mapa
     }
                             // Manter em 1 para quando for o parque
                             // 2 é meu minigame de pesca

@@ -50,8 +50,8 @@ public class InventarioDePeixes : MonoBehaviour
                 GameEventsManager.instance.cameraEvents.CameraPause();
                 Cursor.lockState=CursorLockMode.Confined;
                 Cursor.visible=true;
-            }
-            if(Input.GetKeyDown(KeyCode.Escape)&&inventarioAberto==true){
+            }else
+            if((Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.I))&&inventarioAberto==true){
                 painelInventario.SetActive(false);
                 inventarioAberto=false;
                 GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;

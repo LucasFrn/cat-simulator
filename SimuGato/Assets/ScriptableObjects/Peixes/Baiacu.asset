@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nomePeixe: Baiacu
   tamanho: 8cm
-  valorVenda: 5
+  valorVenda: 30
   fomeRestauradaAoComer: 0
   felicidadeAoPescar: -5
