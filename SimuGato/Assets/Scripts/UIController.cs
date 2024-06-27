@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Mail;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -10,10 +11,19 @@ public class UIController : MonoBehaviour
             painelCreditosAberto,painelQuestsAberto,painelMapaAberto;
     public GameObject painelPausa,painelConfirmaSair,painelAudio,painelDerrota,
             painelTutorial,painelCreditos,QuestsLogUI,painelMapa;
+    [SerializeField]Toggle toggleCasual;
     QuestLogUi questLogUi;
     void Start()
     {
         GameManager.Instance.uiController=this;
+        if(toggleCasual!=null){
+            if(GameManager.Instance.casualModeOn){
+                toggleCasual.isOn=true;
+            }
+            else{
+                toggleCasual.isOn=false;
+            }
+        }
         if(painelPausa!=null){
             painelPausa.SetActive(false);
             painelPausaAberto=false;

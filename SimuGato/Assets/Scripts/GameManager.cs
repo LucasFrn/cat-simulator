@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public float HoraDoDiaAoTrocarCena = 6;
     public bool overrideSaveToGameManager = false;
     public JanelaEmFoco janelaEmFoco;
-    [SerializeField]bool casualModeOn;
+    public bool casualModeOn {get;private set;}
     bool jogoPerdido;
     public enum JanelaEmFoco{// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
         Parque,
@@ -97,13 +97,18 @@ public class GameManager : MonoBehaviour
         Vector3 vet = new Vector3(x,y,z);
         return vet;
     }
-    void AtivarModoPacifico(){//chamar de casual no jogo final
-        casualModeOn=true;
-        if(jogoPerdido){
-            jogoPerdido=false;
-            Time.timeScale=1f;
-            janelaEmFoco=JanelaEmFoco.Parque;
-            uiController.DesPerder();
+    public void ToggleModoPacifico(){//chamar de casual no jogo final
+        if(!casualModeOn){    
+            casualModeOn=true;
+            if(jogoPerdido){
+                jogoPerdido=false;
+                Time.timeScale=1f;
+                janelaEmFoco=JanelaEmFoco.Parque;
+                uiController.DesPerder();
+            }
+        }
+        else{
+            casualModeOn=false;
         }
     }
 }
