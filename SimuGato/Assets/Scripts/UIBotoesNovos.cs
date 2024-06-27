@@ -16,15 +16,15 @@ public class UIBotoesNovos : MonoBehaviour
     void OnEnable(){
         GameEventsManager.instance.uiEvents.onAtualizarQuantidadeSementes+=AtualizarQuantidadeSementes;
         GameEventsManager.instance.uiEvents.onAtualizarEnergeticos+=AtualizarEnergeticos;
-        GameEventsManager.instance.gardenEvents.onEnterGarden+=AtivaImagensGuia;
-        GameEventsManager.instance.gardenEvents.onLeaveGarden+=DesativaImagensGuia;
+        GameEventsManager.instance.uiEvents.onAtivarImagensGarden+=AtivaImagensGuia;
+        GameEventsManager.instance.uiEvents.onDesativarImagensGarden+=DesativaImagensGuia;
         GameEventsManager.instance.uiEvents.onQuestAtualizada+=AtualizaQuestLog;
     } 
     void OnDisable(){
         GameEventsManager.instance.uiEvents.onAtualizarQuantidadeSementes-=AtualizarQuantidadeSementes;
         GameEventsManager.instance.uiEvents.onAtualizarEnergeticos-=AtualizarEnergeticos;
-        GameEventsManager.instance.gardenEvents.onEnterGarden-=AtivaImagensGuia;
-        GameEventsManager.instance.gardenEvents.onLeaveGarden-=DesativaImagensGuia;
+        GameEventsManager.instance.uiEvents.onAtivarImagensGarden-=AtivaImagensGuia;
+        GameEventsManager.instance.uiEvents.onDesativarImagensGarden-=DesativaImagensGuia;
         GameEventsManager.instance.uiEvents.onQuestAtualizada-=AtualizaQuestLog;
     }
     
@@ -51,13 +51,20 @@ public class UIBotoesNovos : MonoBehaviour
     public void SelectTipoPlanta(int tipo){
         GameEventsManager.instance.gardenEvents.PlantaSelecionada(tipo);
     }
-    void AtivaImagensGuia(){
-        for(int i=0;i<imagensJardim.Length;i++)
-            imagensJardim[i].SetActive(true);
+    void AtivaImagensGuia(bool somenteQuantidadeSementes){
+        if(somenteQuantidadeSementes){
+            for(int i=0;i<3;i++)
+                imagensJardim[i].SetActive(true);
+        }
+        else{
+            for(int i=0;i<imagensJardim.Length;i++)
+                imagensJardim[i].SetActive(true);
+        }
     }
     void DesativaImagensGuia(){
         for(int i=0;i<imagensJardim.Length;i++)
             imagensJardim[i].SetActive(false);
+        
     }
     void AtualizaQuestLog(string displayName, string statusAtual){
         this.displayName.text=displayName;

@@ -40,4 +40,16 @@ public class UIEvents {
             onPainelInteracaoQuestChange(ativarPainel,state);
         }
     }
+    public event Action<bool> onAtivarImagensGarden;
+    public void AtivarImagensGarden(bool somenteQuantidadeSementes){
+        if(onAtivarImagensGarden!=null){
+            onAtivarImagensGarden(somenteQuantidadeSementes);
+        }
+    }
+    public event Action onDesativarImagensGarden;
+    public void DesativarImagensGarden(){
+        if(onDesativarImagensGarden!=null){
+            onDesativarImagensGarden();
+        }
+    }
 }

@@ -28,6 +28,7 @@ public class ColliderPlayer : MonoBehaviour
             meuScriptCamera?.TrocaCamera(ThirdPersonCamera.CameraStyle.Garden);
             meuScriptDeMovimento?.ChangeDrag(true);
             GameEventsManager.instance.gardenEvents.EnterGarden();
+            GameEventsManager.instance.uiEvents.AtivarImagensGarden(false);
         }
     }
         void OnTriggerExit(Collider collider){
@@ -35,6 +36,7 @@ public class ColliderPlayer : MonoBehaviour
             meuScriptCamera?.TrocaCamera(ThirdPersonCamera.CameraStyle.Basic);
             meuScriptDeMovimento?.ChangeDrag(false);
             GameEventsManager.instance.gardenEvents.LeaveGarden();
+            GameEventsManager.instance.uiEvents.DesativarImagensGarden();
         }
     }
 }

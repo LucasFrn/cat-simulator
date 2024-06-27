@@ -48,7 +48,7 @@ public class Player : MonoBehaviour,IDataPersistance
     bool isMorrendo=false;
     float timerMorte=0f;
     public GameObject fundoMorrendo;
-    
+    bool controllerParaApagarSementesCompradas;//usado pra garantir que n vai ficar apagando as sementes no garden
 
 
     void OnEnable(){
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour,IDataPersistance
                     //Debug.Log("Estou olhando um "+ hit.transform.name);
                     if (hit.transform.tag == "PontoDeOnibus")
                     {
-                        textoInteracao.text="Aperte E para ir trabalhar";
+                        textoInteracao.text="Ir trabalhar";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             TrocaCena(2);
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour,IDataPersistance
                     }
                     if (hit.transform.tag == "Pesca")
                     {
-                        textoInteracao.text="Aperte E para pescar";
+                        textoInteracao.text="Pescar";
                         if (Input.GetKeyDown(KeyCode.E)&&ControllerMiniGamePesca.controllerMiniGamePesca.miniGameRodando==false)
                         {
                             if(energia>5f){
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour,IDataPersistance
                     }
                     if (hit.transform.tag == "NPC")
                     {
-                        textoInteracao.text="Aperte E para interagir";
+                        textoInteracao.text="Interagir";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
                             NPC npc = hit.transform.GetComponent<NPC>();
@@ -143,13 +143,13 @@ public class Player : MonoBehaviour,IDataPersistance
                     if (hit.transform.CompareTag("ObjetosDaCasa"))
                     {
                         if(hit.transform.name == "HouseCama3"){
-                            textoInteracao.text="Aperte E para dormir";
+                            textoInteracao.text="Dormir";
                             if (Input.GetKeyDown(KeyCode.E)){
                                 Dormir(hit.transform);
                             }
                         }
                         if(hit.transform.name == "HouseArranhador"){
-                            textoInteracao.text="Aperte E para brincar";
+                            textoInteracao.text="Brincar";
                             if (Input.GetKeyDown(KeyCode.E)){
                                 energia-=5;
                                 felicidade+=5;
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour,IDataPersistance
                     if (hit.transform.CompareTag("Interactable"))
                     {
                         if(hit.transform.name == "ParkVendingMachine"){
-                            textoInteracao.text="Aperte E para comprar um Energético";
+                            textoInteracao.text="Comprar Energético";
                             if (Input.GetKeyDown(KeyCode.E)){
                                 if(petiscos>=20){
                                     petiscos-=20;
@@ -167,8 +167,41 @@ public class Player : MonoBehaviour,IDataPersistance
                                 }
                             }
                         }
+                        if(hit.transform.name == "ParkVendingMachineAbobora"){
+                            GameEventsManager.instance.uiEvents.AtivarImagensGarden(true);
+                            controllerParaApagarSementesCompradas=true;
+                            textoInteracao.text="Comprar 5 sementes";
+                            if (Input.GetKeyDown(KeyCode.E)){
+                                if(petiscos>=100){
+                                    petiscos-=100;
+                                    GameEventsManager.instance.rewardEvents.SementeRewardRecived(0,5);
+                                }
+                            }
+                        }
+                        if(hit.transform.name == "ParkVendingMachineCenoura"){
+                            GameEventsManager.instance.uiEvents.AtivarImagensGarden(true);
+                            controllerParaApagarSementesCompradas=true;
+                            textoInteracao.text="Comprar 5 sementes";
+                            if (Input.GetKeyDown(KeyCode.E)){
+                                if(petiscos>=50){
+                                    petiscos-=50;
+                                    GameEventsManager.instance.rewardEvents.SementeRewardRecived(1,5);
+                                }
+                            }
+                        }
+                        if(hit.transform.name == "ParkVendingMachineTomate"){
+                            GameEventsManager.instance.uiEvents.AtivarImagensGarden(true);
+                            controllerParaApagarSementesCompradas=true;
+                            textoInteracao.text="Comprar 5 sementes";
+                            if (Input.GetKeyDown(KeyCode.E)){
+                                if(petiscos>=55){
+                                    petiscos-=55;
+                                    GameEventsManager.instance.rewardEvents.SementeRewardRecived(2,5);
+                                }
+                            }
+                        }
                         if(hit.transform.name == "LixeiraGrande"){
-                            textoInteracao.text="Aperte E para brincar com o lixo";
+                            textoInteracao.text="Brincar";
                             if (Input.GetKeyDown(KeyCode.E)){
                                 energia-=5;
                                 felicidade+=10;
@@ -176,10 +209,13 @@ public class Player : MonoBehaviour,IDataPersistance
                             }
                         }
                     }
-                    
                 }
                 else{
                     painelInteracao.SetActive(false);
+                    if(controllerParaApagarSementesCompradas){
+                        ApagarSementesAposVerMaquina();
+                        controllerParaApagarSementesCompradas=false;
+                    }
                 }
                 /* if (Input.GetButtonDown("Fire1"))
                 {
@@ -234,7 +270,7 @@ public class Player : MonoBehaviour,IDataPersistance
                 }
             }//Fim do Janela em foco == 1
             //O tempo passa com a pesca aberta, mas não com o jogo pausado
-            AlteraValoresBarrinhas();
+            //AlteraValoresBarrinhas();
             //Passagem do tempo quando estiver dormindo, migue pra n usar corotina
             if(dormindo){
                 if(timerDormindo>0){
@@ -267,8 +303,13 @@ public class Player : MonoBehaviour,IDataPersistance
             }
         }//Fim do Jogo Pausado
     }
+    void FixedUpdate(){
+        if(!GameManager.Instance.jogoPausado){
+            AlteraValoresBarrinhas();
+        }
+    }
 
-    private void OnCollisionEnter(Collision collision)
+    /* private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Fisica"){
             if(quebr < 3)
@@ -282,8 +323,8 @@ public class Player : MonoBehaviour,IDataPersistance
                 }
         }
 
-    }
-    private void OnTriggerEnter(Collider collider)
+    } */
+    /* private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Seguravel")
         {
@@ -295,11 +336,11 @@ public class Player : MonoBehaviour,IDataPersistance
             
             PegaItem(collider.gameObject);
         }
-        /* if(collider.CompareTag("PeixePickupable")){
+        if(collider.CompareTag("PeixePickupable")){
             inventarioDePeixes.peixeNaBoca=collider.gameObject;
             PegaItem(collider.gameObject);
-        } */
-    }
+        }
+    } */
     void AlteraValoresBarrinhas()
     {
         if(luzManager==null) //Controle Para as barrinhas não serem alteradas se não ouver um
@@ -344,7 +385,7 @@ public class Player : MonoBehaviour,IDataPersistance
         socialSldr.value = social;
     }
 
-    void TransferStatus()
+    void TransferStatusToGameManager()
     {
         GameManager.Instance.petiscos = petiscos;
         GameManager.Instance.fome = fome;
@@ -410,7 +451,7 @@ public class Player : MonoBehaviour,IDataPersistance
         animator.ResetTrigger("Banho");
     }
     void TrocaCena(int cena){//obs: ao chamar vc precisa mudar seu proprio janela em foco
-        TransferStatus();
+        TransferStatusToGameManager();
         /* GameManager.Instance.posGatoNoLoad=transform.position;
         GameManager.Instance.rotGatoNoLoad=transform.rotation; */
         GameManager.Instance.HoraDoDiaAoTrocarCena=luzManager.HoraDoDia;
@@ -514,5 +555,8 @@ public class Player : MonoBehaviour,IDataPersistance
     }
     void GanharPetiscos(int valor){
         petiscos+=valor;
+    }
+    void ApagarSementesAposVerMaquina(){
+        GameEventsManager.instance.uiEvents.DesativarImagensGarden();
     }
 }
