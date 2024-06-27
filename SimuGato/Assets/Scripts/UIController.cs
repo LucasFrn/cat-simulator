@@ -150,6 +150,11 @@ public class UIController : MonoBehaviour
         Cursor.lockState=CursorLockMode.Confined;
         Cursor.visible=true;
     }
+    public void DesPerder(){
+        painelDerrota.SetActive(false);
+        Cursor.lockState=CursorLockMode.Confined;
+        Cursor.visible=false;
+    }
     public void AlternaPainelTutorial(){
         if(painelTutorialAberto){
             painelTutorial.SetActive(false);

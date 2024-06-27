@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public float HoraDoDiaAoTrocarCena = 6;
     public bool overrideSaveToGameManager = false;
     public JanelaEmFoco janelaEmFoco;
+    [SerializeField]bool casualModeOn;
+    bool jogoPerdido;
     public enum JanelaEmFoco{// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
         Parque,
         MiniGamePesca,
@@ -76,9 +78,12 @@ public class GameManager : MonoBehaviour
         }
     }
     public void Perder(){
-        Time.timeScale=0f;
-        janelaEmFoco=JanelaEmFoco.Nula;
-        uiController.Perder();
+        if(!casualModeOn){
+            jogoPerdido=true;
+            Time.timeScale=0f;
+            janelaEmFoco=JanelaEmFoco.Nula;
+            uiController.Perder();
+        }
     }
     public void ResetCoisasManagerParaJogar(){
         Time.timeScale=1;
@@ -91,5 +96,14 @@ public class GameManager : MonoBehaviour
         float z = Random.Range(100,600);
         Vector3 vet = new Vector3(x,y,z);
         return vet;
+    }
+    void AtivarModoPacifico(){//chamar de casual no jogo final
+        casualModeOn=true;
+        if(jogoPerdido){
+            jogoPerdido=false;
+            Time.timeScale=1f;
+            janelaEmFoco=JanelaEmFoco.Parque;
+            uiController.DesPerder();
+        }
     }
 }

@@ -395,7 +395,7 @@ public class Player : MonoBehaviour,IDataPersistance
         GameManager.Instance.social = social;
     }
 
-    private void PegaItem(GameObject item)
+    /* private void PegaItem(GameObject item)
     {
         itemSegurado = item;
         seguradoRB = itemSegurado.GetComponent<Rigidbody>();
@@ -405,16 +405,16 @@ public class Player : MonoBehaviour,IDataPersistance
         itemSegurado.transform.SetParent(boca);
         itemSegurado.transform.localPosition = Vector3.zero;
         itemSegurado.transform.localRotation = Quaternion.identity;
-    }
+    } */
 
-    private void SoltaItem()
+    /* private void SoltaItem()
     {
         seguradoRB.isKinematic = false;
         seguradoRB.useGravity = true;
         itemSegurado.transform.SetParent(null);
         seguradoRB.AddForce(boca.right * -20f, ForceMode.Impulse);
         itemSegurado = null;
-    }
+    } */
     void Dormir(Transform cama){
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Nula;
         dormindo=true;
