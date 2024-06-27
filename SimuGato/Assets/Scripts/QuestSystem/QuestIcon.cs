@@ -15,6 +15,10 @@ public class QuestIcon : MonoBehaviour
     [SerializeField]Sprite canStartSprite;
     [SerializeField]Sprite requirementsNotMetToFinishSprite;
     [SerializeField]Sprite canFinishSprite;
+    [Header("Coisas VFX")]
+    [SerializeField]bool isPerson; // Se for uma pessoa o efeito deve ser o coração, se não o confetti
+    [SerializeField]ParticleSystem coracoes;
+    [SerializeField]ParticleSystem confetti;
 
     public void SetState(QuestState newState,bool startPoint,bool finishPoint){
         requirementsNotMetToStartIcon.SetActive(false);
@@ -47,7 +51,17 @@ public class QuestIcon : MonoBehaviour
                     spriteRenderer.sprite=canFinishSprite;
                 }
             break;
-            case QuestState.FINISHED:spriteRenderer.gameObject.SetActive(false); break;
+            case QuestState.FINISHED:
+                spriteRenderer.gameObject.SetActive(false);
+                if(isPerson){
+                    if(coracoes!=null)
+                        coracoes.Play();    
+                }
+                else{
+                    if(confetti!=null)
+                        confetti.Play();
+                }
+                break;
             default: 
                 Debug.LogWarning("Quest state not recognized by switch statement for quest icon "+ newState);
             break;
