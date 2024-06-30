@@ -36,6 +36,7 @@ public class Player : MonoBehaviour,IDataPersistance
     public Transform boca;
     public InventarioDePeixes inventarioDePeixes;
     public LuzManager luzManager;
+    public TimeController timeController;
     LayerMask mask;
     public Transform rayCastOrigin;
     [Header("Painel Interação")]
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour,IDataPersistance
     float timerMorte=0f;
     public GameObject fundoMorrendo;
     bool controllerParaApagarSementesCompradas;//usado pra garantir que n vai ficar apagando as sementes no garden
+    public bool modoPacificoLigado;
 
 
     void OnEnable(){
@@ -56,12 +58,14 @@ public class Player : MonoBehaviour,IDataPersistance
         GameEventsManager.instance.uiEvents.onPainelInteracaoQuestChange+=AlterarPainelQuest;
         GameEventsManager.instance.rewardEvents.onEnergeticoRewardRecived+=GanharEnergetico;
         GameEventsManager.instance.rewardEvents.onGoldRewardRecived+=GanharPetiscos;
+        GameEventsManager.instance.uiEvents.onToggleCasualModeOn+=ToggleModoPacifico;
     }
     void OnDisable(){
         GameEventsManager.instance.gardenEvents.onPlantaColhida-=VenderPlanta;
         GameEventsManager.instance.uiEvents.onPainelInteracaoQuestChange-=AlterarPainelQuest;
         GameEventsManager.instance.rewardEvents.onEnergeticoRewardRecived-=GanharEnergetico;
         GameEventsManager.instance.rewardEvents.onGoldRewardRecived-=GanharPetiscos;
+        GameEventsManager.instance.uiEvents.onToggleCasualModeOn-=ToggleModoPacifico;
     }
     void Start()
     {
@@ -72,7 +76,7 @@ public class Player : MonoBehaviour,IDataPersistance
         }
         painelInteracao.SetActive(false);
         mask = LayerMask.GetMask("Interactable");
-        Debug.Log("Minha mask é" + mask.value);
+        //Debug.Log("Minha mask é" + mask.value);
         timerDormindo=tempoDormir;
         //AtualizaValoresESlidesComInfoDoManager();
         GameManager.Instance.ResetCoisasManagerParaJogar();
@@ -293,7 +297,8 @@ public class Player : MonoBehaviour,IDataPersistance
                     timerMorte+=Time.deltaTime;
                 }
                 else{
-                    GameManager.Instance.Perder();
+                    if(!modoPacificoLigado)
+                        GameManager.Instance.Perder();
                 }
                 if(felicidade>=5&&fome>=5){
                     isMorrendo=false;
@@ -420,6 +425,7 @@ public class Player : MonoBehaviour,IDataPersistance
         dormindo=true;
         transform.position=cama.position;
         luzManager.ratioPassagemDoTempo=1;
+        timeController.timeMultiplier*=4;
         modEnergia=-400;
         animator.SetTrigger("Dormi");
         animator.ResetTrigger("Acordei");
@@ -429,6 +435,7 @@ public class Player : MonoBehaviour,IDataPersistance
         timerDormindo = tempoDormir;
         modEnergia=10;
         luzManager.ratioPassagemDoTempo=20;
+        timeController.timeMultiplier/=4;
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         animator.ResetTrigger("Dormi");
         animator.SetTrigger("Acordei");
@@ -437,6 +444,7 @@ public class Player : MonoBehaviour,IDataPersistance
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Nula;//basta ser difente de 1
         banho=true;
         luzManager.ratioPassagemDoTempo=1;
+        timeController.timeMultiplier*=4;
         ModHigiene=-400f;
         modEnergia=20f;
         animator.SetTrigger("Banho");
@@ -445,6 +453,7 @@ public class Player : MonoBehaviour,IDataPersistance
         banho=false;
         timerBanho=tempoBanho;
         luzManager.ratioPassagemDoTempo=20;
+        timeController.timeMultiplier/=4;
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         ModHigiene=5f;
         modEnergia=10;
@@ -454,7 +463,7 @@ public class Player : MonoBehaviour,IDataPersistance
         TransferStatusToGameManager();
         /* GameManager.Instance.posGatoNoLoad=transform.position;
         GameManager.Instance.rotGatoNoLoad=transform.rotation; */
-        GameManager.Instance.HoraDoDiaAoTrocarCena=luzManager.HoraDoDia;
+        //GameManager.Instance.HoraDoDiaAoTrocarCena=luzManager.HoraDoDia;
         DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadScene(cena);
     }
@@ -501,6 +510,8 @@ public class Player : MonoBehaviour,IDataPersistance
             petiscos = GameManager.Instance.petiscos;
             GameManager.Instance.overrideSaveToGameManager=false;//usado para garantir que o resultado do pão vai ser salvo
             nEnergeticos=data.statusData.nEnergeticos;
+            modoPacificoLigado=data.statusData.modoPacificoLigado;
+            timerMorte=data.statusData.timerMorte;
         }
         else{
             fome = data.statusData.fome;
@@ -510,12 +521,14 @@ public class Player : MonoBehaviour,IDataPersistance
             social = data.statusData.social;
             petiscos = data.statusData.petiscos;
             nEnergeticos=data.statusData.nEnergeticos;
+            modoPacificoLigado=data.statusData.modoPacificoLigado;
+            timerMorte=data.statusData.timerMorte;
         }
 
     }
     public void SaveData(GameData data)
     {
-        StatusData novaData= new StatusData(fome,energia,higiene,felicidade,social,petiscos,timerMorte,nEnergeticos);
+        StatusData novaData= new StatusData(fome,energia,higiene,felicidade,social,petiscos,timerMorte,nEnergeticos,modoPacificoLigado);
         data.statusData = novaData;
     }
     public void GanharEnergetico(int i){
@@ -558,5 +571,16 @@ public class Player : MonoBehaviour,IDataPersistance
     }
     void ApagarSementesAposVerMaquina(){
         GameEventsManager.instance.uiEvents.DesativarImagensGarden();
+    }
+    public void ToggleModoPacifico(){//chamar de casual no jogo final
+        if(!modoPacificoLigado){    
+            //GameManager.Instance.casualModeOn=true;
+            GameManager.Instance.Unlose();
+            modoPacificoLigado=true;
+        }
+        else{
+            modoPacificoLigado=false;
+            //GameManager.Instance.casualModeOn=false;
+        }
     }
 }

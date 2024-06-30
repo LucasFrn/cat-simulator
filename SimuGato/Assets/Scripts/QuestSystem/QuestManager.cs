@@ -9,7 +9,7 @@ public class QuestManager : MonoBehaviour,IDataPersistance
     [SerializeField]private bool loadQuestState = true;
     private Dictionary<string, Quest> questMap;
     private Dictionary<string,QuestData> questsLoadadas;
-    [SerializeField] QuestInfoSO primeiraQuest;
+    //[SerializeField] QuestInfoSO primeiraQuest;
 
     private int currentPlayerLevel;
 
@@ -43,7 +43,7 @@ public class QuestManager : MonoBehaviour,IDataPersistance
         /* string firstDisplayName = "Eu sou seu menu de Quests!";
         string firstDescricao = "Aperte J para me abrir, eu deixo sua quest selecionada aqui pra vc :)";
         GameEventsManager.instance.uiEvents.QuestAtualizada(firstDisplayName,firstDescricao); */
-        StartQuest(primeiraQuest.id);
+        //StartQuest(primeiraQuest.id);
     }
 
     private Dictionary<string, Quest> CreateQuestMap(){
@@ -57,7 +57,7 @@ public class QuestManager : MonoBehaviour,IDataPersistance
         }
         return idToQuestMap;
     }
-    private Quest GetQuestByID(string id){
+    public Quest GetQuestByID(string id){
         Quest quest = questMap[id];
         if(quest==null){
             Debug.LogError("Id not found in the Quest Map"+ id);

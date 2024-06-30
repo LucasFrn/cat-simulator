@@ -7,6 +7,7 @@ public class QuestPoint : MonoBehaviour
 {
     [Header("Quest")]
     [SerializeField]QuestInfoSO questInfoForPoint;
+    [SerializeField]List<QuestInfoSO> listaQuests;
     [Header("Config")]
     [SerializeField]private bool startPoint = true;
     [SerializeField]private bool finishPoint = true;
@@ -14,9 +15,16 @@ public class QuestPoint : MonoBehaviour
     private string questId;
     private QuestState currentQuestState;
     private QuestIcon questIcon;
+    [SerializeField]bool hasMultipleQuests;
+    [SerializeField]QuestManager questManager;
     void Awake(){
-        questId=questInfoForPoint.id;
         questIcon=GetComponentInChildren<QuestIcon>();
+        if(!hasMultipleQuests){
+            questId=questInfoForPoint.id;
+        }
+        else{
+            questId=listaQuests[0].id;
+        }
     }
     void OnEnable(){
         GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
@@ -30,6 +38,9 @@ public class QuestPoint : MonoBehaviour
         if(quest.info.id.Equals(questId)){
             currentQuestState=quest.state;
             questIcon.SetState(currentQuestState,startPoint,finishPoint);
+            if(currentQuestState==QuestState.FINISHED)
+                if(hasMultipleQuests)
+                    FindUnfinishedQuest();
         }
     }
     void SubmitPressed(){
@@ -55,5 +66,17 @@ public class QuestPoint : MonoBehaviour
             playerIsNear=false;
             GameEventsManager.instance.uiEvents.PainelInteracaoQuestChange(false,currentQuestState);
         }
+    }
+    private void FindUnfinishedQuest(){
+        Quest quest;
+        for(int i = 0;i<listaQuests.Count;i++){
+            quest = questManager.GetQuestByID(listaQuests[i].id);
+            if(quest.state!=QuestState.FINISHED){
+                questId=listaQuests[i].id;
+                QuestStateChange(quest);
+                return;
+            }
+        }
+        //Se sairmos do loop é pq todas as quests da lista já acabaram, então n precisa fazer nada kk
     }
 }
