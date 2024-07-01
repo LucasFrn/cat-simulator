@@ -23,7 +23,8 @@ public class TutorialPescaP2 : QuestStep
     
     public void UpdateState(){
         string state = "";
-        string status = "Tente pescar, quando aparecer um exclamação aperte o botão esq do mouse";
+        string status = "Ande até a começo do lago até aparecer a opção de pescar e tente pescar"+ 
+        ". Depois de um tempo vai aparecer uma exclamação, para abrir o minigame aperte o botão esq do mouse";
         ChangeState(state,status);
     }
 }

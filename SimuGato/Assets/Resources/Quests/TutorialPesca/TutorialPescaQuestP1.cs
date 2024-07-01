@@ -19,7 +19,8 @@ public class TutorialPescaQuestP1 : QuestStep
     }
     public void UpdateState(){
         string state = "";
-        string status = "Ir até o lago (siga o peixe no minimapa)";
+        string status = "Existem alguns lugares onde da para pescar no lago, mas o melhor está marcado com um peixe "
+        + "no seu minimapa, vá até la";
         ChangeState(state,status);
     }
 

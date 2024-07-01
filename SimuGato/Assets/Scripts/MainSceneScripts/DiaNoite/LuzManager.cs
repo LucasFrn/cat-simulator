@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [ExecuteAlways]
-public class LuzManager : MonoBehaviour,IDataPersistance
+public class LuzManager : MonoBehaviour//,IDataPersistance
 {
     [SerializeField] private Light LuzDirecional;
     [SerializeField] private MusicaController musica;
@@ -18,7 +18,7 @@ public class LuzManager : MonoBehaviour,IDataPersistance
         avisoDia=false;
         if(GameManager.Instance!=null){
             if(GameManager.Instance.overrideSaveToGameManager){
-                HoraDoDia=GameManager.Instance.HoraDoDiaAoTrocarCena;
+                //HoraDoDia=GameManager.Instance.HoraDoDiaAoTrocarCena;
             }
         }
     }
@@ -81,7 +81,7 @@ public class LuzManager : MonoBehaviour,IDataPersistance
         }
     }
 
-    public void LoadData(GameData data)
+    /* public void LoadData(GameData data)
     {
         HoraDoDia=data.horaDoDia;
     }
@@ -89,5 +89,5 @@ public class LuzManager : MonoBehaviour,IDataPersistance
     public void SaveData(GameData data)
     {
         data.horaDoDia=HoraDoDia;
-    }
+    } */
 }

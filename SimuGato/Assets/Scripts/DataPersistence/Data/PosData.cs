@@ -6,7 +6,7 @@ public class PosData
 {
     public Vector3 gatoPos;
     public PosData(){
-        gatoPos = new Vector3(288.5f,16.3899994f,311.200012f);
+        gatoPos = new Vector3(119.599998f,16.6000004f,437.299988f);
     }
     public PosData(Vector3 position){
         gatoPos = position;

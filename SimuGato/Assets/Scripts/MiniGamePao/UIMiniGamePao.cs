@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class UIMiniGamePao : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class UIMiniGamePao : MonoBehaviour
         //ControllerMiniGamePao.controllerMiniGamePao.Recomecar();
         //Pq que isso ta assim? n faz sentido reiniciar o minigame e sair
         ControllerMiniGamePao.controllerMiniGamePao.AtualizarBarrinhas();
-        GameManager.Instance.HoraDoDiaAoTrocarCena+=4f;
+        GameManager.Instance.GanhoTempoAoTrocarCena= new TimeSpan(4,0,0);
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Parque;
         SceneManager.LoadScene(1);
     }

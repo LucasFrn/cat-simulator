@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f48c3bdefcdf24a86f5b1b3f6d39ec, type: 3}
+  m_Name: MEstrePescadorTilapia
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: MEstrePescadorTilapia
+  displayName: Mestre Pescador - Tilapia
+  requiresPoint: 0
+  levelRequirement: 0
+  questPrerequisites:
+  - {fileID: 11400000, guid: 2813a262ecddc5d4ba8fa2505c4761cd, type: 2}
+  questStepPrefabs:
+  - {fileID: 1187998465204003703, guid: 771d997f38e1263429e5bc26e0899957, type: 3}
+  goldReward: 200
+  experienceReward: 0
+  otherRewardsText: 
+  hasOtherRewards: 0

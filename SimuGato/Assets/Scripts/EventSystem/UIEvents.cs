@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class UIEvents {
@@ -50,6 +51,13 @@ public class UIEvents {
     public void DesativarImagensGarden(){
         if(onDesativarImagensGarden!=null){
             onDesativarImagensGarden();
+        }
+    }
+    public event Action onToggleCasualModeOn;
+    public void ToggleCasualModeOn(){
+        if(onToggleCasualModeOn!=null){
+            Debug.Log("Ativando uma chamada do onToggleCasualmodeon");
+            onToggleCasualModeOn();
         }
     }
 }

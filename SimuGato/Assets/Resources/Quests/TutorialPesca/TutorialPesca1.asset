@@ -16,7 +16,8 @@ MonoBehaviour:
   displayName: Tutorial 2 - Aprendendo a Pescar
   requiresPoint: 1
   levelRequirement: 0
-  questPrerequisites: []
+  questPrerequisites:
+  - {fileID: 11400000, guid: da76145517de28a4b9851ab574da591e, type: 2}
   questStepPrefabs:
   - {fileID: 3044849092736675101, guid: 3c5ea1f0195824d49bd55665d25dc066, type: 3}
   - {fileID: 599065298141290276, guid: 7f2e219cc6310174a9246b674ec3a1d9, type: 3}

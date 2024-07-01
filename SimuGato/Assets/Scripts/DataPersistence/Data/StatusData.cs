@@ -14,6 +14,7 @@ public class StatusData
     public float timerMorte;
     public int petiscos;
     public int nEnergeticos;
+    public bool modoPacificoLigado;
 
     public StatusData(){
         fome = 50;
@@ -24,9 +25,9 @@ public class StatusData
         petiscos = 100;
         timerMorte=0f;
         nEnergeticos=1;
-        
+        modoPacificoLigado=false;
     }
-    public StatusData(float fome, float energia, float higiene, float felicidade, float social, int petiscos, float timerMorte,int nEnergeticos){
+    public StatusData(float fome, float energia, float higiene, float felicidade, float social, int petiscos, float timerMorte,int nEnergeticos,bool modoPacificoLigado){
         this.fome = fome;
         this.energia = energia;
         this.higiene = higiene;
@@ -35,5 +36,6 @@ public class StatusData
         this.petiscos = petiscos;
         this.timerMorte=timerMorte;
         this.nEnergeticos=nEnergeticos;
+        this.modoPacificoLigado=modoPacificoLigado;
     }
 }

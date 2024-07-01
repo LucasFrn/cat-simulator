@@ -7,7 +7,7 @@ using System;
 public class GameData {
     public long lastUpdated;
     public int [] quantidadeSementes;
-    public float horaDoDia;
+    public int[] horaDoDia;
     public QuestData[] questsData;
     public GardenData[] gardenDatas;
     public InventarioPeixesData inventarioPeixesData;
@@ -20,7 +20,7 @@ public class GameData {
     public GameData(){
         gardenDatas=new GardenData[0];
         questsData = new QuestData[0];
-        horaDoDia=6;
+        horaDoDia= new int[] {7,0,0};
         statusData = new StatusData();
         inventarioPeixesData = null;
         skillTreeData = null;

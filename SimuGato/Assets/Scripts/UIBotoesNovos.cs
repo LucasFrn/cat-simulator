@@ -12,6 +12,7 @@ public class UIBotoesNovos : MonoBehaviour
     [SerializeField] TextMeshProUGUI displayName;
     [SerializeField] TextMeshProUGUI descricaoQuest;
     [SerializeField] GameObject[] imagensJardim;
+    bool descricaoQuestLiberado;
 
     void OnEnable(){
         GameEventsManager.instance.uiEvents.onAtualizarQuantidadeSementes+=AtualizarQuantidadeSementes;
@@ -19,6 +20,7 @@ public class UIBotoesNovos : MonoBehaviour
         GameEventsManager.instance.uiEvents.onAtivarImagensGarden+=AtivaImagensGuia;
         GameEventsManager.instance.uiEvents.onDesativarImagensGarden+=DesativaImagensGuia;
         GameEventsManager.instance.uiEvents.onQuestAtualizada+=AtualizaQuestLog;
+        GameEventsManager.instance.uiEvents.onPainelAberto+=LiberaDescricaoQuest;
     } 
     void OnDisable(){
         GameEventsManager.instance.uiEvents.onAtualizarQuantidadeSementes-=AtualizarQuantidadeSementes;
@@ -26,6 +28,7 @@ public class UIBotoesNovos : MonoBehaviour
         GameEventsManager.instance.uiEvents.onAtivarImagensGarden-=AtivaImagensGuia;
         GameEventsManager.instance.uiEvents.onDesativarImagensGarden-=DesativaImagensGuia;
         GameEventsManager.instance.uiEvents.onQuestAtualizada-=AtualizaQuestLog;
+        GameEventsManager.instance.uiEvents.onPainelAberto-=LiberaDescricaoQuest;
     }
     
     void UpdateText(TextMeshProUGUI texto,int quantidade){
@@ -67,7 +70,14 @@ public class UIBotoesNovos : MonoBehaviour
         
     }
     void AtualizaQuestLog(string displayName, string statusAtual){
-        this.displayName.text=displayName;
-        this.descricaoQuest.text=statusAtual;
+        if(descricaoQuestLiberado){
+            this.displayName.text=displayName;
+            this.descricaoQuest.text=statusAtual;
+        }
+    }
+    void LiberaDescricaoQuest(int painelAberto){
+        if(painelAberto==(int)GameManager.JanelaEmFoco.Quests){
+            descricaoQuestLiberado=true;
+        }
     }
 }

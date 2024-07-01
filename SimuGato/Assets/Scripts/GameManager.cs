@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -16,10 +17,11 @@ public class GameManager : MonoBehaviour
     //public Transform spawnGatoNoLoad; //receber o "Spawn Do Gato" dentro do prefab da casa
     //public Vector3 posGatoNoLoad = Vector3.zero;//recebe a pos ao trocar de cena
     //public Quaternion rotGatoNoLoad;//recebe a rot gato ao trocar de cena
-    public float HoraDoDiaAoTrocarCena = 6;
+    //public float HoraDoDiaAoTrocarCena = 6;
+    [SerializeField]public TimeSpan GanhoTempoAoTrocarCena = new TimeSpan(0,0,0);
     public bool overrideSaveToGameManager = false;
     public JanelaEmFoco janelaEmFoco;
-    public bool casualModeOn {get;private set;}
+    //public bool casualModeOn;
     bool jogoPerdido;
     public enum JanelaEmFoco{// Isso daqui é pra tecla esq fazer coisas diferentes de acordo com qual o foco do jogo
         Parque,
@@ -78,12 +80,10 @@ public class GameManager : MonoBehaviour
         }
     }
     public void Perder(){
-        if(!casualModeOn){
-            jogoPerdido=true;
-            Time.timeScale=0f;
-            janelaEmFoco=JanelaEmFoco.Nula;
-            uiController.Perder();
-        }
+        jogoPerdido=true;
+        Time.timeScale=0f;
+        janelaEmFoco=JanelaEmFoco.Nula;
+        uiController.Perder();
     }
     public void ResetCoisasManagerParaJogar(){
         Time.timeScale=1;
@@ -91,13 +91,21 @@ public class GameManager : MonoBehaviour
         janelaEmFoco=JanelaEmFoco.Parque;
     }
     public Vector3 RandPointInSpace(){
-        float x = Random.Range(100,600);
-        float y = Random.Range(15,19);
-        float z = Random.Range(100,600);
+        float x = UnityEngine.Random.Range(100,600);
+        float y = UnityEngine.Random.Range(15,19);
+        float z = UnityEngine.Random.Range(100,600);
         Vector3 vet = new Vector3(x,y,z);
         return vet;
     }
-    public void ToggleModoPacifico(){//chamar de casual no jogo final
+    public void Unlose(){
+        if(jogoPerdido){
+            jogoPerdido=false;
+            Time.timeScale=1f;
+            janelaEmFoco=JanelaEmFoco.Parque;
+            uiController.DesPerder();
+        }
+    }
+    /* public void ToggleModoPacifico(){//chamar de casual no jogo final
         if(!casualModeOn){    
             casualModeOn=true;
             if(jogoPerdido){
@@ -110,5 +118,5 @@ public class GameManager : MonoBehaviour
         else{
             casualModeOn=false;
         }
-    }
+    } */
 }

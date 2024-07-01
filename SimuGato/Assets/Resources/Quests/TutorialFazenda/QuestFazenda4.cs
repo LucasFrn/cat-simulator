@@ -28,7 +28,7 @@ public class QuestFazenda4 : QuestStep
     }
     public void UpdateState(){
         string state = plantasRegadas.ToString();
-        string status = "Regue as plantas para elas crescerem quando trocar o dia! (tecla 3)\nPlantas regadas"+plantasRegadas.ToString() + " /5";
+        string status = "Regue as plantas para elas crescerem quando começar um novo dia! (tecla 3)\nPlantas regadas "+plantasRegadas.ToString() + " /5";
         ChangeState(state,status);
     }
 }
