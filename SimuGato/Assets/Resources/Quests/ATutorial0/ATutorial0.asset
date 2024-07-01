@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f48c3bdefcdf24a86f5b1b3f6d39ec, type: 3}
+  m_Name: ATutorial0
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: ATutorial0
+  displayName: Bem Vindo Ao Simugato!
+  requiresPoint: 1
+  levelRequirement: 0
+  questPrerequisites: []
+  questStepPrefabs:
+  - {fileID: 4530790411015471119, guid: c58357b8a9892884d924b516ac4eb495, type: 3}
+  - {fileID: 2066298495798717541, guid: 71e2a3a2494a126489a73246c3eb01e6, type: 3}
+  - {fileID: 1675161355655816752, guid: f5b40dfa8eebaf946b33d4c9ef4227ce, type: 3}
+  goldReward: 100
+  experienceReward: 0
+  otherRewardsText: 5 energeticos
+  hasOtherRewards: 0

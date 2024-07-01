@@ -24,7 +24,8 @@ public class TutorialPescaP4 : QuestStep
     
     public void UpdateState(){
         string state = "";
-        string status = "Pegar um peixe te da 10 de exp Pesca, com 100 vc consegue comprar um upgrade (Abra o menu com M e clique com o mouse)";
+        string status = "Pegar um peixe te da 10 de exp Pesca, com 100 vc consegue comprar um upgrade. "
+         + "Abra o menu com O e clique com o mouse para comprar um upgrade";
         ChangeState(state,status);
     }
 }

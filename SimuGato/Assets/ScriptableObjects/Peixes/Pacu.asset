@@ -15,5 +15,5 @@ MonoBehaviour:
   nomePeixe: Pacu
   tamanho: 30cm
   valorVenda: 25
-  fomeRestauradaAoComer: 20
+  fomeRestauradaAoComer: 25
   felicidadeAoPescar: 5

@@ -36,4 +36,34 @@ public class PlayerEvents
             onPlayerComePeixe();
         }
     }
+    public event Action<bool> onPlayerBrinca;
+    public void PlayerBrinca(bool isLixo){
+        if(onPlayerBrinca!=null){
+            onPlayerBrinca(isLixo);
+        }
+    }
+    public event Action onPlayerBanho;
+    public void PlayerBanho(){
+        if(onPlayerBanho!=null){
+            onPlayerBanho();
+        }
+    }
+    public event Action onPlayerDorme;
+    public void PlayerDorme(){
+        if(onPlayerDorme!=null){
+            onPlayerDorme();
+        }
+    }
+    public event Action onPlayerTrabalha;
+    public void PlayerTrabalha(){
+        if(onPlayerTrabalha!=null){
+            onPlayerTrabalha();
+        }
+    }
+    public event Action<int> onPlayerPescoPeixe;
+    public void PlayerPescouPeixe(int tipoPeixe){
+        if(onPlayerPescoPeixe!=null){
+            onPlayerPescoPeixe(tipoPeixe);
+        }
+    }
 }

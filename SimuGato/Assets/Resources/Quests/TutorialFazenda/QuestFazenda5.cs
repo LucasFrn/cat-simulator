@@ -29,7 +29,8 @@ public class QuestFazenda5 : QuestStep
     }
     public void UpdateState(){
         string state = plantasColhidas.ToString();
-        string status = "Após alguns dias a planta vai estar pronta, colha elas (tecla 4)\nPlantas colhidas"+plantasColhidas.ToString() + " /5";
+        string status = "Cada planta tem uma barra de progresso em cima dela, depois de alguns dias a planta "+
+        "vai estar pronta com a barrinha toda verde. Colha elas com tecla 4 \nPlantas colhidas"+plantasColhidas.ToString() + " /5";
         ChangeState(state,status);
     }
 

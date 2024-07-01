@@ -64,9 +64,11 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
     }
     void OnEnable(){
         GameEventsManager.instance.rewardEvents.onExpPescaRewardRecived+=GanharExperiencia;
+        GameEventsManager.instance.rewardEvents.onPeixeRewardRecived+=GanharPeixe;
     }
     void OnDisable(){
         GameEventsManager.instance.rewardEvents.onExpPescaRewardRecived-=GanharExperiencia;
+        GameEventsManager.instance.rewardEvents.onPeixeRewardRecived-=GanharPeixe;
     }
 
     // Update is called once per frame
@@ -119,7 +121,9 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
     public void Captura(int dificuldade){
         //Adicionar um peixe ao jogador
         efeito.Sucesso();
-        PeixeItem novoPeixe=peixesPossiveis[Random.Range(0,peixesPossiveis.Length)];
+        int peixe = Random.Range(0,peixesPossiveis.Length);
+        PeixeItem novoPeixe=peixesPossiveis[peixe];
+        GameEventsManager.instance.playerEvents.PlayerPescouPeixe(peixe);
         inventarioJogador.AdicionarPeixe(novoPeixe);
         //Modificar barrinhas
         player.felicidade+=novoPeixe.felicidadeAoPescar;
@@ -265,5 +269,11 @@ public class ControllerMiniGamePesca : MonoBehaviour, IDataPersistance
     public void GanharExperiencia(int expGanha){
         exp+=expGanha;
         ControleExp(false);
+    }
+    void GanharPeixe(int tipo,int quantidade){
+        for(int i=0;i<quantidade;i++){
+            PeixeItem novoPeixe=peixesPossiveis[tipo];
+            inventarioJogador.AdicionarPeixe(novoPeixe);
+        }
     }
 }

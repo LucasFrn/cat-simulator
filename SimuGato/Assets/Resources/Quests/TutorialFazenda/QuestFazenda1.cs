@@ -24,7 +24,7 @@ public class QuestFazenda1 : QuestStep
     
     public void UpdateState(){
         string state = "";
-        string status = "Ir até a Fazenda (do lado da casa no minimapa)";
+        string status = "Ir até a Fazenda (o quadrado verde perto da sua casa)";
         ChangeState(state,status);
     }
     

@@ -99,8 +99,9 @@ public class Player : MonoBehaviour,IDataPersistance
                         textoInteracao.text="Ir trabalhar";
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            TrocaCena(2);
                             GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.MiniGamePao;
+                            GameEventsManager.instance.playerEvents.PlayerTrabalha();
+                            TrocaCena(2);
                         }
                     }
                     if (hit.transform.tag == "Casa")
@@ -149,12 +150,14 @@ public class Player : MonoBehaviour,IDataPersistance
                         if(hit.transform.name == "HouseCama3"){
                             textoInteracao.text="Dormir";
                             if (Input.GetKeyDown(KeyCode.E)){
+                                GameEventsManager.instance.playerEvents.PlayerDorme();
                                 Dormir(hit.transform);
                             }
                         }
                         if(hit.transform.name == "HouseArranhador"){
                             textoInteracao.text="Brincar";
                             if (Input.GetKeyDown(KeyCode.E)){
+                                GameEventsManager.instance.playerEvents.PlayerBrinca(false);
                                 energia-=5;
                                 felicidade+=5;
                             }
@@ -207,6 +210,7 @@ public class Player : MonoBehaviour,IDataPersistance
                         if(hit.transform.name == "LixeiraGrande"){
                             textoInteracao.text="Brincar";
                             if (Input.GetKeyDown(KeyCode.E)){
+                                GameEventsManager.instance.playerEvents.PlayerBrinca(true);
                                 energia-=5;
                                 felicidade+=10;
                                 higiene-=20;
@@ -422,6 +426,7 @@ public class Player : MonoBehaviour,IDataPersistance
     } */
     void Dormir(Transform cama){
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Nula;
+        GameEventsManager.instance.playerEvents.PlayerDorme();
         dormindo=true;
         transform.position=cama.position;
         luzManager.ratioPassagemDoTempo=1;
@@ -442,6 +447,7 @@ public class Player : MonoBehaviour,IDataPersistance
     }
     void TomarBanho(){
         GameManager.Instance.janelaEmFoco=GameManager.JanelaEmFoco.Nula;//basta ser difente de 1
+        GameEventsManager.instance.playerEvents.PlayerBanho();
         banho=true;
         luzManager.ratioPassagemDoTempo=1;
         timeController.timeMultiplier*=4;

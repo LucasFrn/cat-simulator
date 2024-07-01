@@ -105,9 +105,9 @@ public class Quest
         }
         else if(state == QuestState.CAN_START){
             if(info.requiresPoint){
-                status = "Você pode iniciar essa quest! Ache o ponto de inicio dela (Aperte Enter do lado dele)";
+                status = "Você pode iniciar essa quest! Ache o ponto de inicio dela apertando Enter do lado dele";
             }else{
-                status = "Você pode iniciar essa quest!";
+                status = "Você pode iniciar essa quest, clique no botão iniciar!";
             }
         }
         else{
@@ -115,7 +115,12 @@ public class Quest
                 status = questStepStates[currentQuestStepIndex].status;
             }
             if(state== QuestState.CAN_FINISH){
-                status = "Você pode entregar essa quest!";
+                if(info.requiresPoint){
+                    status = "Você pode entregar essa quest! Aperte enter do lado dela";
+                }
+                else{
+                    status = "Você pode entregar essa quest, clique em completar!";
+                }
             }
             if(state == QuestState.FINISHED){
                 status = "Você já completou essa quest.";

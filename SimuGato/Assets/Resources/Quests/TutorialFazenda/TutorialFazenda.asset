@@ -16,7 +16,8 @@ MonoBehaviour:
   displayName: Tutorial 3 - Fazenda
   requiresPoint: 1
   levelRequirement: 0
-  questPrerequisites: []
+  questPrerequisites:
+  - {fileID: 11400000, guid: da76145517de28a4b9851ab574da591e, type: 2}
   questStepPrefabs:
   - {fileID: 8613113221889881510, guid: 9e63aa60f5723134ea73e5441b190102, type: 3}
   - {fileID: 7955270401504300647, guid: 79276f9526ab31e428d4f3bcc5047223, type: 3}
