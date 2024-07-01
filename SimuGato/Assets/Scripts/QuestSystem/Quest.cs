@@ -119,7 +119,7 @@ public class Quest
                     status = "Você pode entregar essa quest! Aperte enter do lado dela";
                 }
                 else{
-                    status = "Você pode entregar essa quest, clique em completar!";
+                    status = "Você pode entregar essa quest, clique em Terminar!";
                 }
             }
             if(state == QuestState.FINISHED){

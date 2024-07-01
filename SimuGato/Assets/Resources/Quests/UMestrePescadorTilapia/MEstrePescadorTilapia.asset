@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: MEstrePescadorTilapia
   displayName: Mestre Pescador - Tilapia
-  requiresPoint: 0
+  requiresPoint: 1
   levelRequirement: 0
   questPrerequisites:
   - {fileID: 11400000, guid: 2813a262ecddc5d4ba8fa2505c4761cd, type: 2}

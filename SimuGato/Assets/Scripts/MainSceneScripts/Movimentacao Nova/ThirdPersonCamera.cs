@@ -63,7 +63,7 @@ public class ThirdPersonCamera : MonoBehaviour,IDataPersistance
             }
         }
         //DEBUG CONTROL
-        if(Input.GetKeyDown(KeyCode.G)){
+        /* if(Input.GetKeyDown(KeyCode.G)){
             TrocaCamera(CameraStyle.Garden);
         }
         if(Input.GetKeyDown(KeyCode.B)){
@@ -74,7 +74,7 @@ public class ThirdPersonCamera : MonoBehaviour,IDataPersistance
         }
         if(Input.GetKeyDown(KeyCode.LeftBracket)){
             returnCinemachineInputs();
-        }
+        } */
 
     }
     public void TrocaCamera(CameraStyle cameraNova){

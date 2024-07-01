@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: MestrePescadorPacu
   displayName: Mestre Pescador - Pacu
-  requiresPoint: 0
+  requiresPoint: 1
   levelRequirement: 0
   questPrerequisites:
   - {fileID: 11400000, guid: bbb8e0e086abdfc4189920ff5676c246, type: 2}

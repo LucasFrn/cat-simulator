@@ -80,7 +80,7 @@ public class Player : MonoBehaviour,IDataPersistance
         timerDormindo=tempoDormir;
         //AtualizaValoresESlidesComInfoDoManager();
         GameManager.Instance.ResetCoisasManagerParaJogar();
-        GanharEnergetico(1);
+        //GanharEnergetico(1);
     }
     
     void Update()

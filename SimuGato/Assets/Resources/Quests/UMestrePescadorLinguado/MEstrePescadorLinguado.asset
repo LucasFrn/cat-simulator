@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: MEstrePescadorLinguado
   displayName: Mestre Pescador - Linguado
-  requiresPoint: 0
+  requiresPoint: 1
   levelRequirement: 0
   questPrerequisites:
   - {fileID: 11400000, guid: 4debab9f67e150948af9e0a6d8a475d8, type: 2}

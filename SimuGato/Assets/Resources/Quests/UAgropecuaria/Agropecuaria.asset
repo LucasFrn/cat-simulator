@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: Agropecuaria
   displayName: Entrando no Agronegocio
-  requiresPoint: 0
+  requiresPoint: 1
   levelRequirement: 0
   questPrerequisites:
   - {fileID: 11400000, guid: d1e4fac2bd8fdfa47bfe472ff83b5271, type: 2}

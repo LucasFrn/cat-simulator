@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: MestrePescadorPiranha
   displayName: Mestre Pescador - Piranha
-  requiresPoint: 0
+  requiresPoint: 1
   levelRequirement: 0
   questPrerequisites:
   - {fileID: 11400000, guid: 2b02a34f73d1c35479becb27c6dc4555, type: 2}
